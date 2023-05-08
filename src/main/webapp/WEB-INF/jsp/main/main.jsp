@@ -132,7 +132,29 @@
 		</nav>
 		<section class="contents bg-warning">
 			<article class="bestcontent">
-				<div class="font50">베스트셀러</div>
+				<div class="d-flex justify-content-between align-items-center">
+					<div class="font50 p-4 font-weight-bold">BestSeller</div>
+					<div class="font20 p-4"><a href="#">더 보러가기</a> </div>
+				</div>
+				<!-- 글 목록 -->
+				<div id="contentsBox" class="contents-box ">
+					<div
+						class="contents-parent-box d-flex flex-wrap p-3">
+						<%-- <c:forEach var='posts' items='${postList}' varStatus="status"> --%>
+							<article id="BestSeller">
+								<a href="#">
+									<img src="/static/image/list.png" alt="이미지"
+										width="300" height="300" class="list-box">
+									<div class="ml-3 font-weight-bold">
+										제목 : <span class="ml-3"> 코스모스</span>
+									</div>
+									<div class="copy-font ml-3 font-weight-bold">
+										작가 : <span class="ml-3">칼 세이건</span>
+									</div>
+								</a>
+							</article>
+					<!-- 	</c:forEach> -->
+					</div>
 			</article>
 			<article class="reivewcontent"></article>
 		</section>
