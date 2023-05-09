@@ -37,17 +37,24 @@
 
 </head>
 <body>
-	<div id="wrap" class="bg-danger">
-		<header class="bg-success d-flex ">
-			<div id="logo" class="bg-primary d-flex align-items-center  pl-4">
+	<div id="wrap">
+		<header class="d-flex ">
+			<div id="logo" class="d-flex align-items-center  pl-4">
 				<a href="#" class="logo-font">Hi Book</a>
 			</div>
-			<div id="keyword" class="bg-light d-flex justify-content-center align-items-center">
-				<input type="text" class="form-control col-6">
+			<div id="keyword" class="d-flex justify-content-center align-items-center">
+				<input type="text" class="main-keyword form-control col-6 font30" placeholder="제목 또는 글쓴이를 입력하여주세요." style="height: 80px; width: 320px;">
+				<button type="button" class="main-keyword  btn ml-3 font30 "
+					id="keywordBtn" style="height: 80px; width: 110px;">검색</button>
 			</div>
-			<div id="userImage" class="bg-info"></div>
+			<div id="userImage" class="pl-5 pt-4">
+				<div id="imgae-border">
+					<img src="/static/image/userImage.png" alt="유저이미지" class="user-image">
+				</div>
+				<div class="pt-2 pl-4 font20">유저아이디</div>
+			</div>
 		</header>
-		<nav class="bg-secondary d-flex align-items-center ">
+		<nav class="d-flex align-items-center ">
 			<div class="ml-4 col-3">
 				<input type="checkbox" id="menuicon"> <label for="menuicon">
 					<span></span> <span></span> <span></span>
@@ -127,38 +134,181 @@
 					<div>국외도서</div>
 					<div>e-Book</div>
 				</div>
-			
-			
 		</nav>
-		<section class="contents bg-warning">
-			<article class="bestcontent">
-				<div class="d-flex justify-content-between align-items-center">
+		<section class="contents ">
+			<article class="ranker-content">
+				<div class="d-flex justify-content-between align-items-center pb-3">
 					<div class="font50 p-4 font-weight-bold">BestSeller</div>
-					<div class="font20 p-4"><a href="#">더 보러가기</a> </div>
+					<div class="font30 p-4"><a href="#">더 보러가기</a> </div>
 				</div>
-				<!-- 글 목록 -->
-				<div id="contentsBox" class="contents-box ">
+				<!-- 베스트셀러 -->
+				<div id="bestSeller" class="contents-box pb-2">
 					<div
-						class="contents-parent-box d-flex flex-wrap p-3">
-						<%-- <c:forEach var='posts' items='${postList}' varStatus="status"> --%>
-							<article id="BestSeller">
+						class="d-flex flex-wrap p-3">
+							<article id="Best1" class="m-4">
 								<a href="#">
 									<img src="/static/image/list.png" alt="이미지"
-										width="300" height="300" class="list-box">
-									<div class="ml-3 font-weight-bold">
+										width="300" height="300">
+									<div class="ml-3 pt-3 font20 font-weight-bold">
 										제목 : <span class="ml-3"> 코스모스</span>
 									</div>
-									<div class="copy-font ml-3 font-weight-bold">
+									<div class="ml-3 font-weight-bold font20 ">
 										작가 : <span class="ml-3">칼 세이건</span>
 									</div>
 								</a>
 							</article>
-					<!-- 	</c:forEach> -->
+							<article id="Best2" class="m-4">
+								<a href="#">
+									<img src="/static/image/list.png" alt="이미지"
+										width="300" height="300">
+									<div class="ml-3 pt-3 font20 font-weight-bold">
+										제목 : <span class="ml-3"> 코스모스</span>
+									</div>
+									<div class="ml-3 font20 font-weight-bold">
+										작가 : <span class="ml-3">칼 세이건</span>
+									</div>
+								</a>
+							</article>
+							<article id="Best3" class="m-4">
+								<a href="#">
+									<img src="/static/image/list.png" alt="이미지"
+										width="300" height="300" class="list-box">
+									<div class="ml-3 pt-3 font20 font-weight-bold">
+										제목 : <span class="ml-3"> 코스모스</span>
+									</div>
+									<div class="font20 ml-3 font-weight-bold">
+										작가 : <span class="ml-3">칼 세이건</span>
+									</div>
+								</a>
+							</article>
+							<article id="Best4" class="m-4">
+								<a href="#">
+									<img src="/static/image/list.png" alt="이미지"
+										width="300" height="300" class="list-box">
+									<div class="ml-3 pt-3 font20 font-weight-bold">
+										제목 : <span class="ml-3"> 코스모스</span>
+									</div>
+									<div class="ml-3 font20 font-weight-bold">
+										작가 : <span class="ml-3">칼 세이건</span>
+									</div>
+								</a>
+							</article>
+							<article id="Best4" class="m-4">
+								<a href="#">
+									<img src="/static/image/list.png" alt="이미지"
+										width="300" height="300" class="list-box">
+									<div class="ml-3 pt-3 font20 font-weight-bold">
+										제목 : <span class="ml-3"> 코스모스</span>
+									</div>
+									<div class="ml-3 font20 font-weight-bold">
+										작가 : <span class="ml-3">칼 세이건</span>
+									</div>
+								</a>
+							</article>
+							<article id="Best4" class="m-4">
+								<a href="#">
+									<img src="/static/image/list.png" alt="이미지"
+										width="300" height="300" class="list-box">
+									<div class="ml-3 pt-3 font20 font-weight-bold">
+										제목 : <span class="ml-3"> 코스모스</span>
+									</div>
+									<div class="ml-3 font20 font-weight-bold">
+										작가 : <span class="ml-3">칼 세이건</span>
+									</div>
+								</a>
+							</article>
+						</div>
+				</div>
+					<!-- 리뷰랭커 -->
+					<div class="d-flex justify-content-between align-items-center pt-5 pb-4">
+						<div class="font50 p-4 font-weight-bold">Review Ranker</div>
+						<div class="font30 p-4"><a href="#">더 보러가기</a> </div>
+					</div>
+					
+					<div id="reviewRanker" class="contents-box ">
+					<div
+						class="d-flex flex-wrap p-3">
+							<article id="review1" class="m-4">
+								<a href="#">
+									<img src="/static/image/list.png" alt="이미지"
+										width="300" height="300">
+									<div class="ml-3 pt-3 font20 font-weight-bold">
+										제목 : <span class="ml-3"> 코스모스</span>
+									</div>
+									<div class="ml-3 font-weight-bold font20 ">
+										작가 : <span class="ml-3">칼 세이건</span>
+									</div>
+								</a>
+							</article>
+							<article id="review2" class="m-4">
+								<a href="#">
+									<img src="/static/image/list.png" alt="이미지"
+										width="300" height="300" class="list-box">
+									<div class="ml-3 pt-3 font20 font-weight-bold">
+										제목 : <span class="ml-3"> 코스모스</span>
+									</div>
+									<div class="ml-3 font20 font-weight-bold">
+										작가 : <span class="ml-3">칼 세이건</span>
+									</div>
+								</a>
+							</article>
+							<article id="review3" class="m-4">
+								<a href="#">
+									<img src="/static/image/list.png" alt="이미지"
+										width="300" height="300" class="list-box">
+									<div class="ml-3 pt-3 font20 font-weight-bold">
+										제목 : <span class="ml-3"> 코스모스</span>
+									</div>
+									<div class="font20 ml-3 font-weight-bold">
+										작가 : <span class="ml-3">칼 세이건</span>
+									</div>
+								</a>
+							</article>
+							<article id="review4" class="m-4">
+								<a href="#">
+									<img src="/static/image/list.png" alt="이미지"
+										width="300" height="300" class="list-box">
+									<div class="ml-3 pt-3 font20 font-weight-bold">
+										제목 : <span class="ml-3"> 코스모스</span>
+									</div>
+									<div class="ml-3 font20 font-weight-bold">
+										작가 : <span class="ml-3">칼 세이건</span>
+									</div>
+								</a>
+							</article>
+							<article id="review5" class="m-4">
+								<a href="#">
+									<img src="/static/image/list.png" alt="이미지"
+										width="300" height="300" class="list-box">
+									<div class="ml-3 pt-3 font20 font-weight-bold">
+										제목 : <span class="ml-3"> 코스모스</span>
+									</div>
+									<div class="ml-3 font20 font-weight-bold">
+										작가 : <span class="ml-3">칼 세이건</span>
+									</div>
+								</a>
+							</article>
+							<article id="review6" class="m-4">
+								<a href="#">
+									<img src="/static/image/list.png" alt="이미지"
+										width="300" height="300" class="list-box">
+									<div class="ml-3 pt-3 font20 font-weight-bold">
+										제목 : <span class="ml-3"> 코스모스</span>
+									</div>
+									<div class="ml-3 font20 font-weight-bold">
+										작가 : <span class="ml-3">칼 세이건</span>
+									</div>
+								</a>
+							</article>
+						</div>
 					</div>
 			</article>
 			<article class="reivewcontent"></article>
 		</section>
-		<footer class="bg-primary"></footer>
+		<footer class="text-center">
+				<div class="font20 pt-5 mb-2">Copyright © Hi Book 2023</div>
+			<div class="font20 mb-5">API출처: 알라딘 https://www.aladin.co.kr/home/welcome.aspx</div>
+		</footer>
 	</div>
 </body>
 </html>
