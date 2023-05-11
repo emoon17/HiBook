@@ -26,6 +26,9 @@ public class MainController {
 		List<Map<String, Object>> bestBookList = passing.bestBookParshing();
 		model.addAttribute("bestBookList", bestBookList);
 		
+		List<Map<String, Object>> bestBlogBookList = passing.bestBlogParshing();
+		model.addAttribute("bestBlogBookList", bestBlogBookList);
+		
 		model.addAttribute("veiwName", "main/main");
 		
 		return "template/layout";

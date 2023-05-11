@@ -30,7 +30,7 @@ public class ListRestAPI {
 	private final String key = "ttbwjddmsgo452053001";
 	private String bestQuery ="&QueryType=Bestseller";
 
-	// book 베스트셀러 api
+	// book 베스트셀러 api -10개
 	public String bestSellerBookList() throws JsonProcessingException {
 
 		// 0. 결과 값을 담을 객체를 생성한다.
@@ -57,8 +57,7 @@ public class ListRestAPI {
 			HttpHeaders header = new HttpHeaders();
 			HttpEntity<String> entity = new HttpEntity<>(header);
 
-			//http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=키&QueryType=Bestseller
-			//&MaxResults=10&start=1&SearchTarget=Book&output=xml&Version=20131101
+			
 			// 4. url와 key값
 			UriComponents uri = UriComponentsBuilder
 					.fromHttpUrl(listUrl + "?ttbkey=" + key + bestQuery + "&MaxResults=10&start=1&SearchTarget=Book&output=JS&Version=20131101").build();
