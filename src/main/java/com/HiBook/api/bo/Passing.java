@@ -64,9 +64,9 @@ public class Passing {
 		return bestBookList;
 	}
 	
-	public List<Map<String,Object>> bestBlogParshing() throws ParseException {
+	public List<Map<String,Object>> bestBlogParshing() throws ParseException, JsonProcessingException {
 		
-		String json = listWebClientApi.BlogBestkList();
+		String json = listRestApi.BlogBestList();
 
 		JSONParser jsonParser = new JSONParser();
 		JSONObject jsonObject = (JSONObject) jsonParser.parse(json);
