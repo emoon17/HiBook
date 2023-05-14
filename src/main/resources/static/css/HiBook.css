@@ -147,6 +147,10 @@ input[id="menuicon"]:checked+label+div {
 	font-size: 20px;
 }
 
+.font40 {
+	font-size: 40px;
+}
+
 .logo-font {
 	font-size : 70px;
 	font-weight: 900;
@@ -161,7 +165,7 @@ input[id="menuicon"]:checked+label+div {
 .contents-box {
 	border: 0.1px solid #f1f1f1;
 	width: 2050px;
-	height: 850px;
+	height: 870px;
 	border-radius: 9px;
 }
 
@@ -170,6 +174,30 @@ input[id="menuicon"]:checked+label+div {
 	height: 450px;
 }
 
+.description {
+		height: 700px;
+}
+
+.line {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  border: 0.5px solid lightgray;
+}
+
+.content_detail {
+	margin-top:120px;
+}
+
+.cart_order_btn{
+	width:200px;
+	height:60px;
+	border-radius:9px;
+}
+
+.comment-write{
+	border-radius:9px;
+	border : 0.5px #000000;
+}
 
 footer {
 	height : 100px;

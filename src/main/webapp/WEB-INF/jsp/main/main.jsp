@@ -12,9 +12,10 @@
 	<div id="bestSeller" class="contents-box pb-2">
 		<div class="d-flex flex-wrap p-3 justify-content-center">
 			<c:forEach items="${bestBookList}" var ="bestBook">
+			<a href="/hiBook/hi_detail_view?isbn13=${bestBook.isbn13}">
 				<article id="Best" class="best-box p-2">
 					<div class="d-flex justify-content-center">
-						<a href="#"> <img src="${bestBook.cover}" alt="이미지"
+						<img src="${bestBook.cover}" alt="이미지"
 							width="200" height="200" class="pl-3">
 					</div>
 						<div class="d-flex justify-content-center">
@@ -32,13 +33,13 @@
 								작가 : <span class="ml-1">${bestBook.author}</span>
 							</div>
 						</div>
-						
-					</a>
-				</article>
+					</article>
+				</a>
 			</c:forEach>
 		</div>
 	</div>
-	<!-- 편집장 추천 -->
+
+	<!-- 블로그 베스트-->
 	<div
 		class="d-flex justify-content-between align-items-center pt-5 pb-4">
 		<div class="font50 p-4 font-weight-bold">Best Blog </div>
@@ -50,9 +51,10 @@
 	<div id="reviewRanker" class="contents-box ">
 		<div class="d-flex flex-wrap p-3">
 		<c:forEach items="${bestBlogBookList}" var ="bestBlog">
+		<a href="/hiBook/hi_detail_view?isbn13=${bestBlog.isbn13}">
 			<article id="Best" class="best-box p-2">
 					<div class="d-flex justify-content-center">
-						<a href="#"> <img src="${bestBlog.cover}" alt="이미지"
+						<img src="${bestBlog.cover}" alt="이미지"
 							width="200" height="200" class="pl-3">
 					</div>
 						<div class="d-flex justify-content-center">
@@ -71,10 +73,9 @@
 							</div>
 						</div>
 						
-					</a>
 				</article>
+			</a>
 		</c:forEach>
 		</div>
 	</div>
 </article>
-<article class="reivewcontent"></article>
