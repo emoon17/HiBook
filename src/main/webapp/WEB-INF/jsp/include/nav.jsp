@@ -12,8 +12,8 @@
 								<tr>
 									<th class="font50 font-weight-bold">Menu</th>
 									<c:if test="${empty userId}">
-										<th class="font30 font-weight-bold"><a href="#">로그인</a></th>
-										<th class="font30 font-weight-bold"><a href="#">회원가입</a></th>
+										<th class="font30 font-weight-bold"><a href="/hiBook/user/sign_in_view">로그인</a></th>
+										<th class="font30 font-weight-bold"><a href="/hiBook/user/sign_up_view">회원가입</a></th>
 									</c:if>
 									<c:if test="${not empty userId}">
 										<th class="font30 font-weight-bold"><a href="#">${loginId}</a></th>

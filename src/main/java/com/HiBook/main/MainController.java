@@ -19,7 +19,10 @@ public class MainController {
 	@Autowired
 	private Passing passing;
 	
+	
+	
 	//메인화면
+	
 	@GetMapping("/main/main_veiw")
 	public String mainView (Model model) throws JsonProcessingException, ParseException {
 		

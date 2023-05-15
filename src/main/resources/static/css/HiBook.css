@@ -175,7 +175,7 @@ input[id="menuicon"]:checked+label+div {
 }
 
 .description {
-		height: 700px;
+		height: 800px;
 }
 
 .line {
@@ -197,6 +197,10 @@ input[id="menuicon"]:checked+label+div {
 .comment-write{
 	border-radius:9px;
 	border : 0.5px #000000;
+}
+
+.login_check {
+	margin-left:130px;
 }
 
 footer {

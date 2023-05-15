@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.HiBook.user.UserDAO;
+import com.HiBook.user.dao.UserDAO;
 
 @Controller
 public class TestController {
@@ -38,9 +38,10 @@ public class TestController {
 		return "test/test";
 	}
 	
-	@GetMapping("/test4")
-	@ResponseBody
-	public List<Map<String, Object>> test4(){
-		return userDAO.selectUserListTest();
-	}
+	/*
+	 * @GetMapping("/test4")
+	 * 
+	 * @ResponseBody public List<Map<String, Object>> test4(){ return
+	 * userDAO.selectUserListTest(); }
+	 */
 }

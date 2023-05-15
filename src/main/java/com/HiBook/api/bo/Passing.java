@@ -140,6 +140,7 @@ public class Passing {
 			map.put("priceSales", priceSales);
 			map.put("bestRank", bestRank);
 			map.put("customerReviewRank", reviewRank);
+			map.put("isbn13", isbn13);
 			
 			inquiryBookList.add(map);
 			

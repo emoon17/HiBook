@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<article class="pt-5">
 <c:forEach items="${inquiryBookList}" var ="inquiryBook">
+<article class="pt-5">
 	<div class="description d-flex justify-content-center">
 		<div class="book_cover col-6 d-flex justify-content-center align-items-center ">
 				<img src="${inquiryBook.cover}" width="450" height="500">
@@ -31,7 +31,7 @@
 		
 		
 	</div>
-</c:forEach>
+
 </article>
 <div class="line"></div>
 <article>
@@ -82,9 +82,54 @@
 					class=" form-control mr-2 font30"
 					placeholder="댓글 달기" />
 				<button type="button" class="comment-btn btn btn-light font30"
-					data-post-id="">등록</button>
+					data-isbn13-id="${inquiryBook.isbn13}">등록</button>
 			</div>
 
 		</div>
-
 </article>
+</c:forEach>
+<script>
+	$(document).ready(function(){
+		
+		//댓글 게시 버튼 눌렀을 때
+		$('.comment-btn').on('click', function() {
+
+			let isbn13 = $(this).data('isbn13-id');
+		
+			// 지금 클릭 된 게시버튼 근처에 있는 형제의 input을 가져온다. : siblings
+			let content = $(this).siblings('input').val();
+			if (content == '') {
+				alert("댓글을 입력하여주세요.");
+			}
+
+			//ajax
+			$.ajax({
+				type : 'post',
+				url : '/hibook/hi_detail/comment_create',
+				data : {
+					"isbn13" : isbn13,
+					"content" : content
+				}
+
+				,
+				success : function(data) {
+					if (data.code == 1) {
+						alert("댓글을 등록하였습니다.");
+						document.location.reload();
+					} else {
+						alert(data.errormessage);
+					}
+				},
+				error : function(e) {
+					alert("오류가 발생했습니다.")
+				}
+			});
+		}) // comment-btn end
+
+		
+		
+		
+		
+		
+	}); /* document */
+</script>
