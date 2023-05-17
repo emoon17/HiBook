@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <div class="ml-4 col-3">
 				<input type="checkbox" id="menuicon"> <label for="menuicon">
 					<span></span> <span></span> <span></span>
@@ -11,14 +12,14 @@
 							<thead>
 								<tr>
 									<th class="font50 font-weight-bold">Menu</th>
-									<c:if test="${empty userId}">
+									<c:if test="${empty loginId}">
 										<th class="font30 font-weight-bold"><a href="/hiBook/user/sign_in_view">로그인</a></th>
 										<th class="font30 font-weight-bold"><a href="/hiBook/user/sign_up_view">회원가입</a></th>
 									</c:if>
-									<c:if test="${not empty userId}">
+									<c:if test="${not empty loginId}">
 										<th class="font30 font-weight-bold"><a href="#">${loginId}</a></th>
 										<th class="font30 font-weight-bold"><a
-											href="/user/signOut">logout</a></th>
+											href="/hiBook/user/sign_out">logout</a></th>
 									</c:if>
 								</tr>
 							</thead>

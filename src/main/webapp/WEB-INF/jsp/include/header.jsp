@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="logo" class="d-flex align-items-center  pl-4">
-	<a href="/hiBook/main/main_veiw" class="logo-font">Hi Book ${loginId}</a>
+	<a href="/hiBook/main/main_veiw" class="logo-font">Hi Book</a>
 </div>
 <div id="keyword"
 	class="d-flex justify-content-center align-items-center">
