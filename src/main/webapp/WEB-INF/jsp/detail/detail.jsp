@@ -37,20 +37,20 @@
 <article>
 	<%-- 댓글 목록 --%>
 		<div class="card-comment-list mt-5">
-
 			<%-- 댓글내용 --%>
+			<c:forEach items="${reviewViewList}" var="reviewView">
 				<div class="card-comment  d-flex justify-content-between m-3">
 					<div class="font-weight-bold font30 ">
-						아이디<span class="ml-3">:</span> <span
-							id="content" class="font30 ml-3">내용</span>
+						${reviewView.user.loginId}<span class="ml-3">:</span> <span
+							id="content" class="font30 ml-3">${reviewView.review.content}</span>
 					</div>
 
 					<%-- <%-- 모달로 댓글 삭제하기 --%>
-						<img src="/static/image/delete.png" id="deleteCommentBtn"
+						<img src="/static/image/delete.png"
 							class="mt-1 more-btn write-area"
 							data-toggle="modal" data-target="#modal"
-							data-post-id=""
-							data-comment-content=""
+							data-isbn13-id="${reviewView.review.isbn13}"
+							data-comment-content="${reviewView.review.content}"
 							width="30px" height="35x">
 						<!--댓글 Modal -->
 						<div class="modal fade" id="modal">
@@ -73,8 +73,8 @@
 							</div>
 						</div>
 			
+</c:forEach>
 				</div>
-
 			<%--댓글 달기 --%>
 			<%-- 	<c:if test="${not empty userId}"> --%>
 			<div class="d-flex mt-4 comment-write">
@@ -84,10 +84,10 @@
 				<button type="button" class="comment-btn btn btn-light font30"
 					data-isbn13-id="${inquiryBook.isbn13}">등록</button>
 			</div>
-
+		</c:forEach>
 		</div>
 </article>
-</c:forEach>
+
 <script>
 	$(document).ready(function(){
 		
@@ -100,11 +100,13 @@
 			let content = $(this).siblings('input').val();
 			if (content == '') {
 				alert("댓글을 입력하여주세요.");
+				return;
 			}
+			//alert(content);
 
 			//ajax
 			$.ajax({
-				type : 'post',
+				type : 'put',
 				url : '/hibook/hi_detail/comment_create',
 				data : {
 					"isbn13" : isbn13,
@@ -117,7 +119,7 @@
 						alert("댓글을 등록하였습니다.");
 						document.location.reload();
 					} else {
-						alert(data.errormessage);
+						alert("댓글 등록에 실패하였습니다.");
 					}
 				},
 				error : function(e) {
@@ -125,7 +127,48 @@
 				}
 			});
 		}) // comment-btn end
-
+		
+		$(".more-btn").on('click', function() {
+			//getting
+			let isbn13 = $(this).data('isbn13-id');
+			let content = $(this).data('comment-content');
+		//	alert(isbn13);
+		//	alert(content);
+			$("#modal").data("isbn13", isbn13);
+			$("#modal").data("content", content);
+			//setting
+			
+		});
+		
+		$('#deleteCommentBtn').on('click', function(e) {
+			e.preventDefault();
+			
+			let isbn13 = $("#modal").data('isbn13');
+			let content = $('#modal').data("content");
+			//alert(content);
+			
+			$.ajax({
+				//request
+				type : 'delete'
+				, url : '/hibook/hi_detail/comment_delete'
+				, data : {
+					"isbn13" : isbn13,
+					"content" : content
+				}
+				,success : function(data) {
+					if (data.code == 1) {
+						alert("댓글을 삭제하였습니다.");
+						document.location.reload();
+					} else {
+						alert("댓글 삭제에 실패하였습니다.");
+					}
+				},
+				error : function(e) {
+					alert("오류가 발생했습니다.")
+				}
+			});
+		
+		});
 		
 		
 		

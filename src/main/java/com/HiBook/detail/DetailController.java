@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.HiBook.api.bo.Passing;
+import com.HiBook.review.bo.ReviewBO;
+import com.HiBook.review.model.ReviewView;
 
 @RequestMapping("/hiBook")
 @Controller
@@ -19,6 +21,9 @@ public class DetailController {
 
 	@Autowired
 	private Passing passing;
+	
+	@Autowired
+	private ReviewBO reviewBO;
 	
 	
 	@GetMapping("/hi_detail_view")
@@ -28,6 +33,10 @@ public class DetailController {
 		
 		List<Map<String, Object>> inquiryBookList = passing.inquiryBookPassing(isbn13);
 		model.addAttribute("inquiryBookList", inquiryBookList);
+		
+		List<ReviewView> reviewViewList = reviewBO.generateCommentList(isbn13);
+		model.addAttribute("reviewViewList", reviewViewList);
+		
 		
 		model.addAttribute("veiwName", "detail/detail");
 

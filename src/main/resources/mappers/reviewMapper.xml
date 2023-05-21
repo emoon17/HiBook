@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.HiBook.review.dao.ReviewDAO">
+ 	<insert id="insertReviewByIsbn13UserIdComment" parameterType="map">
+ 		INSERT INTO `review`
+ 		(
+			`isbn13`
+			,`userId`
+			,`content`
+			,`createdAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{isbn13}
+ 			, #{userId}
+ 			, #{content}
+ 			, NOW()
+ 		)
+ 	</insert>
+ 	
+ 	<select id="selectReviewListByIsbn13" parameterType="String" resultType="com.HiBook.review.model.Review">
+ 		SELECT
+ 			`id`
+			,`isbn13`
+			,`userId`
+			,`content`
+			,`createdAt`
+		FROM
+			`review`
+		WHERE
+			`isbn13` = #{isbn13}
+ 	</select>
+ 	<delete id="deleteReviewByIsbn13ContentUserId" parameterType="map">
+ 		DELETE
+		FROM
+			`review`
+		WHERE
+			`isbn13` = #{isbn13}
+			AND
+			`userId` = #{userId}
+			AND
+			`content` = #{content}
+ 	</delete>
+ </mapper>

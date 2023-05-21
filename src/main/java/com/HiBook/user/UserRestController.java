@@ -80,6 +80,7 @@ public class UserRestController {
 		Map<String, Object> result = new HashMap<>();
 		if (user != null) {
 			result.put("code", 1);
+			session.setAttribute("userId", user.getId());
 			session.setAttribute("name", user.getName());
 			session.setAttribute("loginId", user.getLoginId());
 			session.setAttribute("password", user.getPassword());
