@@ -151,6 +151,10 @@ input[id="menuicon"]:checked+label+div {
 	font-size: 40px;
 }
 
+.font17 {
+	font-size: 17px;
+}
+
 .logo-font {
 	font-size : 70px;
 	font-weight: 900;
@@ -166,6 +170,13 @@ input[id="menuicon"]:checked+label+div {
 	border: 0.1px solid #f1f1f1;
 	width: 2050px;
 	height: 870px;
+	border-radius: 9px;
+}
+
+.mallType-box {
+	border: 0.1px solid #f1f1f1;
+	width: 2050px;
+	height: 425px;
 	border-radius: 9px;
 }
 

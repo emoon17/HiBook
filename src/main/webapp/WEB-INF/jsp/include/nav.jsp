@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <div class="ml-4 col-3">
-				<input type="checkbox" id="menuicon"> <label for="menuicon">
+				<!-- <input type="checkbox" id="menuicon"> <label for="menuicon">
 					<span></span> <span></span> <span></span>
 				</label>
-
-				<div class="sidebar">
+ -->
+				<%-- <div class="sidebar">
 					<div class="menu-tap d-flex m-3">
 						<table class="table h-100 w-100">
 							<thead>
@@ -31,7 +31,7 @@
 								</tr>
 								<tr>
 									<td colspan='3' class="font20 font-weight-bold pt-5"><a
-										href="#">소설/시/희곡 </a></td>
+										href="#">소설/시</a></td>
 								</tr>
 								<tr>
 									<td colspan='3' class="font20 font-weight-bold pt-5"><a
@@ -47,7 +47,7 @@
 								</tr>
 								<tr>
 									<td colspan='3' class="font20 font-weight-bold pt-5"><a
-										href="#">소설/시/희곡 </a></td>
+										href="#">소설/시 </a></td>
 								</tr>
 								<tr>
 									<td colspan='3' class="font20 font-weight-bold pt-5"><a
@@ -72,11 +72,11 @@
 							</tbody>
 						</table>
 					</div>
-				</div>
-			</div>
+				</div> --%>
+			</div> 
 			<!-- side바 메뉴 -->
 				<div class="d-flex align-items-center justify-content-around col-7 font30 font-weight-bold">
-					<div><a href="#">국내도서</a></div>
+					<div><a href="/hiBook/hikorean_view">국내도서</a></div>
 					<div><a href="#">국외도서</a></div>
 					<div><a href="#">e-Book</a></div>
 					<div><a href="#">마이페이지</a></div>

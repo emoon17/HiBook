@@ -106,6 +106,50 @@ public class Passing {
 		
 	}
 	
+	// 국내도서 소설/시 리스트 파싱 - 출판일 기준
+		public List<Map<String,Object>> koreanNovelPoemBookList() throws ParseException {
+			
+			String json = WebClientApi.koreanNovelPoemBookList();
+
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(json);
+			
+			JSONArray item = (JSONArray) jsonObject.get("item");
+			JSONObject book;
+			
+			List<Map<String, Object>> koreanNovelBookList = new ArrayList<>();
+			for (int i = 0; i < item.size(); i++) {
+				book = (JSONObject) item.get(i);
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				String title = (String) book.get("title");
+				String author = (String) book.get("author");
+				String cover = (String) book.get("cover");
+				String reviewRank = String.valueOf(book.get("customerReviewRank"));
+				String bestRank = String.valueOf(book.get("bestRank"));
+				String isbn13 = String.valueOf(book.get("isbn13"));
+				String categoryName = (String) book.get("categoryName");
+				
+				if (categoryName.contains("국내도서>소설")) {
+					map.put("isbn13", isbn13);
+					map.put("title", title);
+					map.put("author", author);
+					map.put("cover", cover);
+					map.put("customerReviewRank", reviewRank);
+					map.put("bestRank", bestRank);
+					map.put("categoryName", categoryName);
+					
+					koreanNovelBookList.add(map);
+					if (koreanNovelBookList.size() > 5) {
+						koreanNovelBookList.remove(koreanNovelBookList.size() - 1);
+					}
+				}
+				
+			}
+			return koreanNovelBookList;
+			
+		}
+	
 	// 상품 조회 파싱
 	public List<Map<String,Object>> inquiryBookPassing(String isbn13) throws ParseException {
 		
