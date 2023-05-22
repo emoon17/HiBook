@@ -60,4 +60,25 @@ public class CategoryCotroller {
 		return "template/layout";
 				
 	}
+	
+	// e-book view
+	@GetMapping("/hiebook_view")
+	public String hiebook_view(Model model)throws ParseException {
+		
+		//소설 / 시 / 희곡
+		List<Map<String, Object>> eBookNovelPoemBookList = passing.eBookNovelPoemBookList();
+		model.addAttribute("eBookNovelPoemBookList", eBookNovelPoemBookList);
+		
+		//경제경영 / 자기계발
+		List<Map<String, Object>> eBookHumanitiesBookList = passing.eBookHumanitiesBookList();
+		model.addAttribute("eBookHumanitiesBookList", eBookHumanitiesBookList);
+		
+		//만화
+		List<Map<String, Object>> eBookToonList = passing.eBookToonList();
+		model.addAttribute("eBookToonList", eBookToonList);
+		
+		model.addAttribute("veiwName", "category/ebook");
+
+		return "template/layout";
+	}
 }

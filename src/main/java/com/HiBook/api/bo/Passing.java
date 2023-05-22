@@ -354,6 +354,129 @@ public class Passing {
 
 	}
 
+	// e-book 소설 /시 /희곡
+	public List<Map<String, Object>> eBookNovelPoemBookList() throws ParseException {
+
+		String json = WebClientApi.eBookList();
+
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObject = (JSONObject) jsonParser.parse(json);
+
+		JSONArray item = (JSONArray) jsonObject.get("item");
+		JSONObject book;
+
+		List<Map<String, Object>> eBookNovelPoemBookList = new ArrayList<>();
+		for (int i = 0; i < item.size(); i++) {
+			book = (JSONObject) item.get(i);
+
+			Map<String, Object> map = new HashMap<String, Object>();
+			String title = (String) book.get("title");
+			String author = (String) book.get("author");
+			String cover = (String) book.get("cover");
+			String bestRank = String.valueOf(book.get("bestRank"));
+			String isbn13 = String.valueOf(book.get("isbn13"));
+			String categoryName = (String) book.get("categoryName");
+
+			if (categoryName.contains("소설")) {
+				map.put("isbn13", isbn13);
+				map.put("title", title);
+				map.put("author", author);
+				map.put("cover", cover);
+				map.put("bestRank", bestRank);
+
+				eBookNovelPoemBookList.add(map);
+				if (eBookNovelPoemBookList.size() > 5) {
+					eBookNovelPoemBookList.remove(eBookNovelPoemBookList.size() - 1);
+				}
+			}
+
+		}
+		return eBookNovelPoemBookList;
+
+	}
+
+	// e-book 교양/인문학
+	public List<Map<String, Object>> eBookHumanitiesBookList() throws ParseException {
+
+		String json = WebClientApi.eBookList();
+
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObject = (JSONObject) jsonParser.parse(json);
+
+		JSONArray item = (JSONArray) jsonObject.get("item");
+		JSONObject book;
+
+		List<Map<String, Object>> eBookHumanitiesBookList = new ArrayList<>();
+		for (int i = 0; i < item.size(); i++) {
+			book = (JSONObject) item.get(i);
+
+			Map<String, Object> map = new HashMap<String, Object>();
+			String title = (String) book.get("title");
+			String author = (String) book.get("author");
+			String cover = (String) book.get("cover");
+			String bestRank = String.valueOf(book.get("bestRank"));
+			String isbn13 = String.valueOf(book.get("isbn13"));
+			String categoryName = (String) book.get("categoryName");
+
+			if (categoryName.contains("교양") || categoryName.contains("인문학")) {
+				map.put("isbn13", isbn13);
+				map.put("title", title);
+				map.put("author", author);
+				map.put("cover", cover);
+				map.put("bestRank", bestRank);
+
+				eBookHumanitiesBookList.add(map);
+				if (eBookHumanitiesBookList.size() > 5) {
+					eBookHumanitiesBookList.remove(eBookHumanitiesBookList.size() - 1);
+				}
+			}
+
+		}
+		return eBookHumanitiesBookList;
+
+	}
+
+	// e-book 교양/인문학
+	public List<Map<String, Object>> eBookToonList() throws ParseException {
+
+		String json = WebClientApi.eBookList();
+
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObject = (JSONObject) jsonParser.parse(json);
+
+		JSONArray item = (JSONArray) jsonObject.get("item");
+		JSONObject book;
+
+		List<Map<String, Object>> eBookToonList = new ArrayList<>();
+		for (int i = 0; i < item.size(); i++) {
+			book = (JSONObject) item.get(i);
+
+			Map<String, Object> map = new HashMap<String, Object>();
+			String title = (String) book.get("title");
+			String author = (String) book.get("author");
+			String cover = (String) book.get("cover");
+			String bestRank = String.valueOf(book.get("bestRank"));
+			String isbn13 = String.valueOf(book.get("isbn13"));
+			String categoryName = (String) book.get("categoryName");
+
+			if (categoryName.contains("만화")) {
+				map.put("isbn13", isbn13);
+				map.put("title", title);
+				map.put("author", author);
+				map.put("cover", cover);
+				map.put("bestRank", bestRank);
+
+				eBookToonList.add(map);
+				if (eBookToonList.size() > 5) {
+					eBookToonList.remove(eBookToonList.size() - 1);
+				}
+			}
+
+		}
+		return eBookToonList;
+
+	}
+
 	// 상품 조회 파싱
 	public List<Map<String, Object>> inquiryBookPassing(String isbn13) throws ParseException {
 

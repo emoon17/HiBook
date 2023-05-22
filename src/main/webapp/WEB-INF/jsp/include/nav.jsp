@@ -78,6 +78,6 @@
 				<div class="d-flex align-items-center justify-content-around col-7 font30 font-weight-bold">
 					<div><a href="/hiBook/hikorean_view">국내도서</a></div>
 					<div><a href="/hiBook/hiforeign_view">국외도서</a></div>
-					<div><a href="#">e-Book</a></div>
+					<div><a href="/hiBook/hiebook_view">e-Book</a></div>
 					<div><a href="#">마이페이지</a></div>
 				</div>
