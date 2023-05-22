@@ -9,7 +9,7 @@
 	<div id="novelPoem" class="mallType-box pb-2">
 		<div class="d-flex flex-wrap p-3">
 			<c:forEach items="${foreignBookNovelPoemList}" var="foreignBookNovelPoem">
-			<a href="/hiBook/hi_detail_view?isbn13=$}">
+			<a href="/hiBook/hi_detail_view?isbn13=${foreignBookNovelPoem.isbn13}">
 				<article id="novelPoemBook" class="best-box p-2">
 					<div class="d-flex justify-content-center">
 						<img src="${foreignBookNovelPoem.cover}" alt="이미지"
@@ -45,7 +45,7 @@
 	<div id="reference" class="mallType-box ">
 		<div class="d-flex flex-wrap p-3">
 		<c:forEach items="${foreignChildrenBookList}" var="foreignChildrenBook">
-			<a href="/hiBook/hi_detail_view?isbn13=$}">
+			<a href="/hiBook/hi_detail_view?isbn13=${foreignChildrenBook.isbn13}">
 				<article id="referenceBook" class="best-box p-2">
 						<div class="d-flex justify-content-center">
 							<img src="${foreignChildrenBook.cover}" alt="이미지"
@@ -79,11 +79,11 @@
 		<div class="font50 p-4 font-weight-bold">일본도서 </div>
 	</div>
 
-	<div id="economy" class="mallType-box ">
+	<div id="japanese" class="mallType-box ">
 		<div class="d-flex flex-wrap p-3">
 		<c:forEach items="${foreignJapaneseBookList}" var="foreignJapaneseBook">
-		<a href="/hiBook/hi_detail_view?isbn13=$}">
-			<article id="economyBook" class="best-box p-2">
+		<a href="/hiBook/hi_detail_view?isbn13=${foreignJapaneseBook.isbn13}">
+			<article id="japaneseBook" class="best-box p-2">
 					<div class="d-flex justify-content-center">
 						<img src="${foreignJapaneseBook.cover}" alt="이미지"
 							width="200" height="200" class="pl-3">

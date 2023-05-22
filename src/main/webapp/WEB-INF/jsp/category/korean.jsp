@@ -9,7 +9,7 @@
 	<div id="novelPoem" class="mallType-box pb-2">
 		<div class="d-flex flex-wrap p-3">
 			<c:forEach items="${koreanNovelBookList}" var="koreanNovelBook">
-			<a href="/hiBook/hi_detail_view?isbn13=$}">
+			<a href="/hiBook/hi_detail_view?isbn13=${koreanNovelBook.isbn13}">
 				<article id="novelPoemBook" class="best-box p-2">
 					<div class="d-flex justify-content-center">
 						<img src="${koreanNovelBook.cover}" alt="이미지"
@@ -45,7 +45,7 @@
 	<div id="economy" class="mallType-box ">
 		<div class="d-flex flex-wrap p-3">
 		<c:forEach items="${koreanEconomyBookList}" var="koreanEconomyBook">
-		<a href="/hiBook/hi_detail_view?isbn13=$}">
+		<a href="/hiBook/hi_detail_view?isbn13=${koreanEconomyBook.isbn13}">
 			<article id="economyBook" class="best-box p-2">
 					<div class="d-flex justify-content-center">
 						<img src="${koreanEconomyBook.cover}" alt="이미지"
@@ -81,7 +81,7 @@
 	<div id="reference" class="mallType-box ">
 		<div class="d-flex flex-wrap p-3">
 		<c:forEach items="${koreanEssayBookList}" var="koreanEssayBook">
-			<a href="/hiBook/hi_detail_view?isbn13=$}">
+			<a href="/hiBook/hi_detail_view?isbn13=${koreanEssayBook.isbn13}">
 				<article id="referenceBook" class="best-box p-2">
 						<div class="d-flex justify-content-center">
 							<img src="${koreanEssayBook.cover}" alt="이미지"

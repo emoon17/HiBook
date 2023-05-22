@@ -31,7 +31,7 @@ public class DetailController {
 			Model model) throws ParseException {
 		
 		
-		List<Map<String, Object>> inquiryBookList = passing.inquiryBookPassing(isbn13);
+		List<Map<Object, Object>> inquiryBookList = passing.inquiryBookPassing(isbn13);
 		model.addAttribute("inquiryBookList", inquiryBookList);
 		
 		List<ReviewView> reviewViewList = reviewBO.generateCommentList(isbn13);

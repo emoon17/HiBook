@@ -1,5 +1,6 @@
 package com.HiBook.api.bo;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -478,7 +479,7 @@ public class Passing {
 	}
 
 	// 상품 조회 파싱
-	public List<Map<String, Object>> inquiryBookPassing(String isbn13) throws ParseException {
+	public List<Map<Object, Object>> inquiryBookPassing(String isbn13) throws ParseException {
 
 		String json = WebClientApi.inquiryBookAPI(isbn13);
 
@@ -488,11 +489,11 @@ public class Passing {
 		JSONArray item = (JSONArray) jsonObject.get("item");
 		JSONObject book;
 
-		List<Map<String, Object>> inquiryBookList = new ArrayList<>();
+		List<Map<Object, Object>> inquiryBookList = new ArrayList<>();
 		for (int i = 0; i < item.size(); i++) {
 			book = (JSONObject) item.get(i);
 
-			Map<String, Object> map = new HashMap<String, Object>();
+			Map<Object, Object> map = new HashMap<Object, Object>();
 			String title = (String) book.get("title");
 			String author = (String) book.get("author");
 			String pubDate = (String) book.get("pubDate");
@@ -501,7 +502,12 @@ public class Passing {
 			String description = (String) book.get("description");
 			String bestRank = String.valueOf(book.get("bestRank"));
 			String reviewRank = String.valueOf(book.get("customerReviewRank"));
-
+			
+			Integer priceSale = Integer.parseInt(priceSales);
+			
+			DecimalFormat df = new DecimalFormat("###,###");
+			priceSales = df.format(Integer.parseInt(priceSales));
+			
 			map.put("title", title);
 			map.put("author", author);
 			map.put("pubdate", pubDate);

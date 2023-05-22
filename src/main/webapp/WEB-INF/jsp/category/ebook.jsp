@@ -9,7 +9,7 @@
 	<div id="novelPoem" class="mallType-box pb-2">
 		<div class="d-flex flex-wrap p-3">
 			<c:forEach items="${eBookNovelPoemBookList}" var="eBookNovelPoemBook">
-			<a href="/hiBook/hi_detail_view?isbn13=$}">
+			<a href="/hiBook/hi_detail_view?isbn13=${eBookNovelPoemBook.isbn13}">
 				<article id="novelPoemBook" class="best-box p-2">
 					<div class="d-flex justify-content-center">
 						<img src="${eBookNovelPoemBook.cover}" alt="이미지"
@@ -45,7 +45,7 @@
 	<div id="toon" class="mallType-box ">
 		<div class="d-flex flex-wrap p-3">
 		<c:forEach items="${eBookToonList}" var="eBookToon">
-		<a href="/hiBook/hi_detail_view?isbn13=$}">
+		<a href="/hiBook/hi_detail_view?isbn13=${eBookToon.isbn13}">
 			<article id="webtoon" class="best-box p-2">
 					<div class="d-flex justify-content-center">
 						<img src="${eBookToon.cover}" alt="이미지"
@@ -81,7 +81,7 @@
 	<div id="humanities" class="mallType-box ">
 		<div class="d-flex flex-wrap p-3">
 		<c:forEach items="${eBookHumanitiesBookList}" var="eBookHumanitiesBook">
-			<a href="/hiBook/hi_detail_view?isbn13=$}">
+			<a href="/hiBook/hi_detail_view?isbn13=${eBookHumanitiesBook.isbn13}">
 				<article id="humanitiesBook" class="best-box p-2">
 						<div class="d-flex justify-content-center">
 							<img src="${eBookHumanitiesBook.cover}" alt="이미지"
