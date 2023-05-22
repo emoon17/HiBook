@@ -25,7 +25,7 @@
 				</div>
 	
 				<div class="font40">
-					<button type="button" id="signInBtn"
+					<button type="submit" id="signInBtn"
 					 class="font40 user-btn btn mt-5 font-weight-bold main-keyword"
 						style="width: 630px; height: 85px;">로그인</button>
 				</div>
@@ -40,8 +40,9 @@
 
 <script>
 	$(document).ready(function() {
-		$('#signInForm').on('click', function(e) {
+		$('#signInForm').on('submit', function(e) {
 			e.preventDefault();
+			//alert("Dd");
 			
 			let loginId = $('#loginId').val();
 			let password = $('#password').val();
@@ -62,13 +63,13 @@
 			let url = $(this).attr('action'); // form 태그의 action속성
 			let params = $(this).serialize(); // form 태그 name 값들
 			
-			$.post(url, params)
+			 $.post(url, params)
 			.done(function(data) {
 				if(data.code == 1) {
 					location.href = "/hiBook/main/main_veiw";
 				} else {
 					alert(data.errorMessage);
-				}
+				} 
 			});
 			
 		});

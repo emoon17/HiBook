@@ -23,13 +23,18 @@ public class ReviewRestController {
 	public Map<String, Object> createReview(String isbn13, String content, HttpSession session) {
 		
 		
+		Map<String, Object> result = new HashMap<String, Object>();
 		// userId 가져오기
 		Integer userId = (Integer)session.getAttribute("userId");
+		if (userId == null) {
+			result.put("code", 500);
+			result.put("errorMessage", "로그인 후 이용 가능합니다..");
+			return result;
+		}
 		
 		// insert시키기
 		reviewBO.addReviewByIsbn13UserIdComment(isbn13, content, userId);
 		// 결과 나누기
-		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("code", 1);
 		// 응답하기
 		return result;

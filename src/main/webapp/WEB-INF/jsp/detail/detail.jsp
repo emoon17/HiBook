@@ -119,7 +119,7 @@
 						alert("댓글을 등록하였습니다.");
 						document.location.reload();
 					} else {
-						alert("댓글 등록에 실패하였습니다.");
+						alert(data.errorMessage);
 					}
 				},
 				error : function(e) {

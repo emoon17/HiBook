@@ -25,7 +25,7 @@
 			<div id="imgae-border" class="ml-4">
 				<img src="/static/image/userImage.png" alt="유저이미지" class="user-image">
 			</div>
-				<div class="pt-2 font20">유저아이디  | <a href="/hiBook/user/sign_out" class="pl-2">로그아웃</a></div>
+				<div class="pt-2 font20 ml-4">${loginId}    | <a href="/hiBook/user/sign_out" class="pl-2">로그아웃</a></div>
 		</div>
 	</c:if>
 

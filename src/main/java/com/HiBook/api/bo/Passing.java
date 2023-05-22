@@ -378,17 +378,16 @@ public class Passing {
 			String isbn13 = String.valueOf(book.get("isbn13"));
 			String categoryName = (String) book.get("categoryName");
 
-			if (categoryName.contains("소설")) {
+			if (!isbn13.equals("0") && categoryName.contains("소설")) {
 				map.put("isbn13", isbn13);
 				map.put("title", title);
 				map.put("author", author);
 				map.put("cover", cover);
 				map.put("bestRank", bestRank);
-
 				eBookNovelPoemBookList.add(map);
-				if (eBookNovelPoemBookList.size() > 5) {
-					eBookNovelPoemBookList.remove(eBookNovelPoemBookList.size() - 1);
-				}
+			}
+			if (eBookNovelPoemBookList.size() > 5) {
+				eBookNovelPoemBookList.remove(eBookNovelPoemBookList.size() - 1);
 			}
 
 		}
@@ -502,12 +501,12 @@ public class Passing {
 			String description = (String) book.get("description");
 			String bestRank = String.valueOf(book.get("bestRank"));
 			String reviewRank = String.valueOf(book.get("customerReviewRank"));
-			
+
 			Integer priceSale = Integer.parseInt(priceSales);
-			
+
 			DecimalFormat df = new DecimalFormat("###,###");
 			priceSales = df.format(Integer.parseInt(priceSales));
-			
+
 			map.put("title", title);
 			map.put("author", author);
 			map.put("pubdate", pubDate);
