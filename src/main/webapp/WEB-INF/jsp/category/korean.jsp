@@ -25,7 +25,7 @@
 								제목 : ${koreanNovelBook.title} <span class="ml-1"> </span>
 							</div>
 						</div>
-						<div class="d-flex justify-content-center">
+						<div class="d-flex justify-content-center mt-1">
 							<div class="font-weight-bold font20 ">
 								작가 : ${koreanNovelBook.author}<span class="ml-1"></span>
 							</div>
@@ -44,67 +44,68 @@
 
 	<div id="economy" class="mallType-box ">
 		<div class="d-flex flex-wrap p-3">
+		<c:forEach items="${koreanEconomyBookList}" var="koreanEconomyBook">
 		<a href="/hiBook/hi_detail_view?isbn13=$}">
 			<article id="economyBook" class="best-box p-2">
 					<div class="d-flex justify-content-center">
-						<img src="" alt="이미지"
+						<img src="${koreanEconomyBook.cover}" alt="이미지"
 							width="200" height="200" class="pl-3">
 					</div>
 						<div class="d-flex justify-content-center">
 							<div class="pt-3 font20 font-weight-bold">
-								Rank : <span class="ml-1"> </span>
+								Rank : <span class="ml-1">${koreanEconomyBook.bestRank} </span>
 							</div>
 						</div>
 						<div class="d-flex justify-content-center">
 							<div class="pt-3 font20 font-weight-bold">
-								제목 : <span class="ml-1"> }</span>
+								제목 : <span class="ml-1"> ${koreanEconomyBook.title}</span>
 							</div>
 						</div>
-						<div class="d-flex justify-content-center">
+						<div class="d-flex justify-content-center mt-1">
 							<div class="font-weight-bold font20 ">
-								작가 : <span class="ml-1">}</span>
+								작가 : <span class="ml-1">${koreanEconomyBook.author}</span>
 							</div>
 						</div>
-						
 				</article>
 			</a>
-
+		</c:forEach>
 		</div>
 	</div>
 	
-	<!-- 수험서 / 참고서-->
+	<!-- 에세이-->
 	<div
 		class="d-flex justify-content-between align-items-center pt-5 pb-4">
-		<div class="font50 p-4 font-weight-bold">수험서 / 참고서 </div>
+		<div class="font50 p-4 font-weight-bold">어린이 / 만화 </div>
 	</div>
 
 	<div id="reference" class="mallType-box ">
 		<div class="d-flex flex-wrap p-3">
-		<a href="/hiBook/hi_detail_view?isbn13=$}">
-			<article id="referenceBook" class="best-box p-2">
-					<div class="d-flex justify-content-center">
-						<img src="" alt="이미지"
-							width="200" height="200" class="pl-3">
-					</div>
+		<c:forEach items="${koreanEssayBookList}" var="koreanEssayBook">
+			<a href="/hiBook/hi_detail_view?isbn13=$}">
+				<article id="referenceBook" class="best-box p-2">
 						<div class="d-flex justify-content-center">
-							<div class="pt-3 font20 font-weight-bold">
-								Rank : <span class="ml-1"> </span>
-							</div>
+							<img src="${koreanEssayBook.cover}" alt="이미지"
+								width="200" height="200" class="pl-3">
 						</div>
-						<div class="d-flex justify-content-center">
-							<div class="pt-3 font20 font-weight-bold">
-								제목 : <span class="ml-1"> }</span>
+							<div class="d-flex justify-content-center">
+								<div class="pt-3 font20 font-weight-bold">
+									Rank : <span class="ml-1">${koreanEssayBook.bestRank} </span>
+								</div>
 							</div>
-						</div>
-						<div class="d-flex justify-content-center">
-							<div class="font-weight-bold font20 ">
-								작가 : <span class="ml-1">}</span>
+							<div class="d-flex justify-content-center">
+								<div class="pt-3 font20 font-weight-bold">
+									제목 : <span class="ml-1"> ${koreanEssayBook.title}</span>
+								</div>
 							</div>
-						</div>
-						
-				</article>
-			</a>
-
+							<div class="d-flex justify-content-center mt-1">
+								<div class="font-weight-bold font20 ">
+									작가 : <span class="ml-1">${koreanEssayBook.author}</span>
+								</div>
+							</div>
+							
+					</article>
+				</a>
+			</c:forEach>
 		</div>
 	</div>
 </article>

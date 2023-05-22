@@ -25,7 +25,7 @@
 								제목 : <span class="ml-1"> ${bestBook.title}</span>
 							</div>
 						</div>
-						<div class="d-flex justify-content-center">
+						<div class="d-flex justify-content-center mt-1">
 							<div class="font-weight-bold font20 ">
 								작가 : <span class="ml-1">${bestBook.author}</span>
 							</div>
@@ -61,7 +61,7 @@
 								제목 : <span class="ml-1"> ${bestBlog.title}</span>
 							</div>
 						</div>
-						<div class="d-flex justify-content-center">
+						<div class="d-flex justify-content-center mt-1">
 							<div class="font-weight-bold font20 ">
 								작가 : <span class="ml-1">${bestBlog.author}</span>
 							</div>
