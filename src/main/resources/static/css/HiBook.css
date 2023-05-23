@@ -20,6 +20,7 @@ a:hover {
 	text-decoration: none;
 }
 
+
 header {
 	width: 2350px;
 	height: 220px;
@@ -59,15 +60,13 @@ nav {
 	
 }
 
+
 /* 메뉴 로고 css */
 input[id="menuicon"] {
 	display: none;
 }
 
 input[id="menuicon"]+label {
-	display: block;
-	width: 55px;
-	height: 30px;
 	position: relative;
 	/* position:fixed;
 	right: 0px;rgb(0, 0, 0)alc(50% - 25px);
@@ -76,7 +75,7 @@ input[id="menuicon"]+label {
 }
 
 input[id="menuicon"]+label span {
-	display: block;
+	
 	position: absolute;
 	width: 100%;
 	height: 5px;
@@ -118,10 +117,10 @@ input[id="menuicon"]:checked+label span:nth-child(3) {
 .sidebar {
 	width: 700px;
 	height: 100%;
-	background: #dedede;
+	background:#f8f8f8;
 	position: fixed; /* 스크롤 해도 고정 */
 	top: 0%;
-	left: -800px;
+	right: -800px;
 	z-index: 1; /* 우선순위 메뉴가 먼저 나오게 */
 	transition: all .35s;
 	opacity: 0.8;
@@ -132,7 +131,7 @@ input[id="menuicon"]:checked+label {
 }
 
 input[id="menuicon"]:checked+label+div {
-	left: 0;
+	right: 0;
 }
 
 .font50 {
