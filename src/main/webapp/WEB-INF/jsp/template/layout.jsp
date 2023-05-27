@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +28,18 @@
 
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="/static/css/HiBook.css">
+<!-- 데이트피커 -->
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+<style>
+.ui-datepicker{ font-size: 20px; width: 400px;}
+.ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 20px; }
+.ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 20px; }
+</style>
 
 <!-- 폰트 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,16 +52,16 @@
 <body>
 	<div id="wrap">
 		<header class="d-flex ">
-			<jsp:include page="../include/header.jsp"/>
+			<jsp:include page="../include/header.jsp" />
 		</header>
 		<nav class="d-flex align-items-center ">
-			<jsp:include page="../include/nav.jsp"/>
+			<jsp:include page="../include/nav.jsp" />
 		</nav>
 		<section class="contents ">
-		 	<jsp:include page="../${veiwName}.jsp"/>
+			<jsp:include page="../${veiwName}.jsp" />
 		</section>
 		<footer class="text-center">
-			<jsp:include page="../include/footer.jsp"/>
+			<jsp:include page="../include/footer.jsp" />
 		</footer>
 	</div>
 </body>

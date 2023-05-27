@@ -42,7 +42,7 @@
 								</tr>
 								<tr>
 									<td colspan='3' class="font20 font-weight-bold pt-5"><a
-										href="#">마이리뷰 </a></td>
+										href="/hiBook/mypage/my_review_view">마이리뷰 </a></td>
 								</tr>
 
 								<tr>

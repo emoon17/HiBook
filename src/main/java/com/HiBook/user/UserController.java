@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpSession;
-@RequestMapping("/hiBook/user")
+@RequestMapping("/hiBook")
 @Controller
 public class UserController {
 	
 	// 회원가입 화면
-	@GetMapping("/sign_up_view")
+	@GetMapping("/user/sign_up_view")
 	public String signUpView (Model model){
 		
 		model.addAttribute("veiwName", "user/signUp");
@@ -21,7 +21,7 @@ public class UserController {
 
 	
 	// 로그인 화면
-	@GetMapping("/sign_in_view")
+	@GetMapping("/user/sign_in_view")
 	public String signInView(Model model) {
 
 		model.addAttribute("veiwName", "user/signIn");
@@ -30,7 +30,7 @@ public class UserController {
 	}
 	
 	// 로그아웃 	
-	@GetMapping("/sign_out")
+	@GetMapping("/user/sign_out")
 	public String signOut(HttpSession session) {
 		
 		//로그인 시 세션에 담아뒀던 정보 지우기 
@@ -44,4 +44,15 @@ public class UserController {
 		
 		return "redirect:/hiBook/main/main_veiw";
 	}
+	
+	// 개인정보 수정
+	@GetMapping("/mypage/user_information_view")
+	public String userInformationView(Model model) {
+		
+		
+		model.addAttribute("veiwName", "mypage/userInformation");
+
+		return "template/layout";
+	}
+	
 }

@@ -1,20 +1,18 @@
-package com.HiBook.mypage;
+package com.HiBook.review;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/hiBook/mypage")
+@RequestMapping("/hiBook")
 @Controller
-public class MypageController {
+public class ReviewController {
 
-	
-	@GetMapping("/user_information_view")
-	public String userInformationView(Model model) {
+	@GetMapping("/mypage/my_review_view")
+	public String review_view(Model model) {
 		
-		
-		model.addAttribute("veiwName", "mypage/userInformation");
+		model.addAttribute("veiwName", "mypage/myReview");
 
 		return "template/layout";
 	}
