@@ -1,15 +1,18 @@
 package com.HiBook.user;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.HiBook.common.EncrypUtils;
 import com.HiBook.user.bo.UserBO;
@@ -17,7 +20,7 @@ import com.HiBook.user.model.User;
 
 import jakarta.servlet.http.HttpSession;
 
-@RequestMapping("/hiBook/user")
+@RequestMapping("/hiBook")
 @RestController
 public class UserRestController {
 
@@ -27,7 +30,7 @@ public class UserRestController {
 	private UserBO userBO;
 
 	// 아이디 중복확인
-	@PostMapping("/is_duplicated_id")
+	@PostMapping("/user/is_duplicated_id")
 	public Map<String, Object> isDuplicatedId(@RequestParam("loginId") String loginId) {
 
 		// select
@@ -48,7 +51,7 @@ public class UserRestController {
 	}
 
 	// 회원가입하기
-	@PostMapping("/sign_up")
+	@PostMapping("/user/sign_up")
 	public Map<String, Object> signUp(@RequestParam("name") String name, @RequestParam("loginId") String loginId,
 			@RequestParam("password") String password, @RequestParam("phoneNumber") String phoneNumber,
 			@RequestParam("address") String address, @RequestParam(value="kakaoCheck", required=false, defaultValue="부") String kakaoCheck,
@@ -68,7 +71,7 @@ public class UserRestController {
 	}
 	
 	// 로그인하기
-	@PostMapping("/sign_in")
+	@PostMapping("/user/sign_in")
 	public Map<String, Object> signIn(String loginId, String password, HttpSession session){
 		
 		// 1. 비밀번호 해싱
@@ -94,6 +97,38 @@ public class UserRestController {
 		// 4. 응답
 		return result;
 	
+	}
+	
+	// update
+	
+	@PutMapping("/mypage/information_update")
+	public Map<String, Object> informationUpdate(
+			@RequestParam(value="name", required=false) String name,
+			@RequestParam(value="phoneNumber", required=false) String phoneNumber,
+			@RequestParam(value="loginId", required=false) String loginId,
+			@RequestParam(value="address", required=false) String address,
+			@RequestParam("file") MultipartFile file,
+			HttpSession session){
+		
+		
+		Map<String, Object> result = new HashMap<>();
+		Integer userId = (Integer)session.getAttribute("userId");
+		if (userId == null) {
+			result.put("code", 500);
+			result.put("errorMessage", "로그인 후 이용 가능합니다..");
+			return result;
+		}
+		//db update
+		userBO.informationUpdate(name, phoneNumber, loginId, address, file, userId);
+		session.removeAttribute("name");
+		session.removeAttribute("phoneNumber");
+		session.removeAttribute("loginId");
+		session.removeAttribute("address");
+		// 결과 나누기
+		result.put("code", 1);
+		// 응답
+		
+		return result;
 	}
 
 }

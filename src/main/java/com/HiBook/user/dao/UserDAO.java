@@ -1,7 +1,10 @@
 package com.HiBook.user.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.HiBook.user.model.User;
 
@@ -25,4 +28,14 @@ public interface UserDAO {
 			@Param("password") String password);
 	
 	public User selectUserById(int userId);
+	
+	public List<User> selectUserListBYId(Integer userId);
+	
+	public void informationUpdate(
+			@Param("name") String name, 
+			@Param("phoneNumber") String phoneNumber,
+			@Param("loginId") String loginId, 
+			@Param("address") String address, 
+			@Param("imagePath") String imagePath, 
+			@Param("userId") Integer userId);
 }

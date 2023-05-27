@@ -38,7 +38,7 @@
 		<div class="font30 ml-5 mr-5 font-weight-bold " style="width: 170px;"></div>
 		<input type="text" id="address" name="address" placeholder="주소"
 			style="height: 85px; width: 650px;"
-			class="font30 ml-5 mt-3 form-control main-keyword">
+			class="font30 ml-5 mt-3 form-control main-keyword" value="${address}">
 	</div>
 
 	<div class="d-flex">
@@ -154,13 +154,13 @@
 			formData.append('phoneNumber', phoneNumber);
 			formData.append('loginId', loginId);
 			formData.append('address', addressList);
-			formData.append('files', $('#file')[0].files[0]); 
+			formData.append('file', $('#file')[0].files[0]); 
 			
 			//ajax 통신으로 forData에 있는 데이터 전송
 			 $.ajax({
 					//request
 				type:"put"
-				, url:"/hibook/mypage/information_update"
+				, url:"/hiBook/mypage/information_update"
 				, data:formData // json이 아니라 form객체를 통으로 넣어야됌
 					
 				// 파일 업로드시 필요한 3가지 설정 - Requestbody에 json이 아니라 form객체가 담겨지는 설정
@@ -173,8 +173,8 @@
 				, success:function(data) {
 					if (data.code == 1) {
 						// 성공
-						alert("개인정보 수정이 완료되었습니다.");
-						location.href="/hiBook/mypage/user_information_view";
+						alert("개인정보 수정이 완료되었습니다. \n 로그인을 다시 해주세요");
+						location.href="/hiBook/user/sign_in_view";
 					} else {
 							//실패
 						alert(data.errorMessage);
