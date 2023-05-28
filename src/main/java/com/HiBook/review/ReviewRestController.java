@@ -12,14 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.HiBook.review.bo.ReviewBO;
 
 import jakarta.servlet.http.HttpSession;
-@RequestMapping("/hibook/hi_detail")
+@RequestMapping("/hibook")
 @RestController
 public class ReviewRestController {
 	
 	@Autowired
 	private ReviewBO reviewBO;
 	
-	@PutMapping("/comment_create")
+	// 댓글 쓰기
+	@PutMapping("/hi_detail/comment_create")
 	public Map<String, Object> createReview(String isbn13, String content, HttpSession session) {
 		
 		
@@ -40,7 +41,9 @@ public class ReviewRestController {
 		return result;
 	}
 	
-	@DeleteMapping("/comment_delete")
+	//댓글 삭제
+	
+	@DeleteMapping("/hi_detail/comment_delete")
 	public Map<String, Object> deleteReview(String isbn13, String content, HttpSession session) {
 		
 		// userId가져오기
@@ -55,5 +58,8 @@ public class ReviewRestController {
 		// 응답하기
 		return result;
 	}
+	
+	
+	
 
 }

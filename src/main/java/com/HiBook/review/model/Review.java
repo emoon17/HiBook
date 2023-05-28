@@ -2,13 +2,16 @@ package com.HiBook.review.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Review {
 	
 	private int id; 
 	private String isbn13;
 	private int userId;
 	private String content;
-	private Date createdAt;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private String createdAt;
 	public int getId() {
 		return id;
 	}
@@ -33,11 +36,11 @@ public class Review {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getCreatedAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+	public void setCreatedAt(String sdate) {
+		this.createdAt = sdate;
 	}
 	
 	

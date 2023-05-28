@@ -36,9 +36,9 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 <style>
-.ui-datepicker{ font-size: 20px; width: 400px;}
-.ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 20px; }
-.ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 20px; }
+.ui-datepicker{ font-size: 30px; width: 400px;}
+.ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 25px; }
+.ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 25px; }
 </style>
 
 <!-- 폰트 -->

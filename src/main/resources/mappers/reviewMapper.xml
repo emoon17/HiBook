@@ -32,6 +32,20 @@
 		WHERE
 			`isbn13` = #{isbn13}
  	</select>
+ 	<select id="selectReviewListByStartDateEndDateUserId" parameterType="map" resultType="com.HiBook.review.model.Review">
+ 		SELECT
+ 			`id`
+			,`isbn13`
+			,`userId`
+			,`content`
+			,`createdAt`
+		FROM
+			`review`
+		WHERE
+			`userId` = #{userId}
+			AND
+			`createdAt` BETWEEN #{startDate} AND #{endDate}
+ 	</select>
  	<delete id="deleteReviewByIsbn13ContentUserId" parameterType="map">
  		DELETE
 		FROM

@@ -20,19 +20,18 @@
 </article>
 
 
-<table class="table h-100 w-100 font30 mt-5 text-center">
+<table id="reviewBox" class="table h-100 w-100 font30 mt-5 text-center">
 	<thead>
 		<tr>
 			<th>작성일</th>
 			<th>책 제목</th>
-			<th>review Book</th>
 			<th>내용</th>
 			<th>선택</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td class="text-center">1</td>
+			
 		</tr>
 	</tbody>
 
@@ -54,7 +53,7 @@
 					,
 					dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ] // 일 한글로 표기
 					,
-					minDate : "0" // 최소로 가능한 선택 일자 : 오늘부터
+					minDate : "-5y" // 최소로 가능한 선택 일자 : 5년 전
 					,
 					maxDate : "+5y" // 최대로 가능한 선택 날짜 : 5년 후
 					,
@@ -64,26 +63,69 @@
 					prevText : '이전 달',
 					nextText : '다음 달'
 				});
+
+				// 오늘 날짜로 이동하는 함수
+				$.datepicker._gotoToday = function(id) {
+					$(id).datepicker('setDate', new Date()).datepicker('hide')
+							.blur();
+				};
+
+				$('#startDatepicker').datepicker(
+						{
+							showButtonPanel : true //  버튼 패널 노출
+						/* 	,
+							minDate : 0 // 오늘과 그 이후만 선택 가능
+
+							,
+							onSelect : function(dateText) {// 시작일이 선택되는 순간 종료일의 minDate 변경
+								$('#endDatepicker').datepicker('option',
+										'minDate', dateText);
+							} */
+						});
+
+				$('#endDatepicker').datepicker({
+					showButtonPanel : true  ,
+					minDate : 0
+				});
 				
-				 // 오늘 날짜로 이동하는 함수
-                $.datepicker._gotoToday = function(id) {
-                    $(id).datepicker('setDate', new Date()).datepicker('hide').blur();
-                };
-
-                $('#startDatepicker').datepicker({
-                    showButtonPanel: true // 오늘 버튼 노출
-                    , minDate:0 // 오늘과 그 이후만 선택 가능
-
-                    
-                    , onSelect:function(dateText) {// 시작일이 선택되는 순간 종료일의 minDate 변경
-                        $('#endDatepicker').datepicker('option', 'minDate', dateText);
-                    }
-                });
-
-                $('#endDatepicker').datepicker({
-                    minDate:0 
-                });
-
-
+				
+				$('.date-btn').on('click', function(){
+					let startDate = $('#startDatepicker').val();
+					let endDate = $('#endDatepicker').val();
+				//	alert(endDate);
+				
+				if(startDate == '') {
+					alert("조회 시작 날짜를 선택하여주세요.");
+					return;
+				}
+				
+				if (endDate == '') {
+					alert("조회 마지막 날짜를 선택하여주세요.");
+					return;
+				}
+					
+				$.ajax ({
+					//request
+					type: 'get'
+					, url : '/hiBook/mypage/my_review_search_view'
+					, data : {
+						'startDate' : startDate,
+						'endDate' : endDate
+						}
+				
+					//response
+					,success : function(data) {
+							console.log(data);
+							$('#reviewBox').html(data);
+					},
+					
+					error : function(e) {
+						alert(e + "오류가 발생했습니다. 다시 시도해주세요.");
+					}
+				
+					});
+				});
 			});
+		
+				
 </script>

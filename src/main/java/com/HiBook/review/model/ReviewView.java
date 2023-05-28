@@ -6,7 +6,14 @@ public class ReviewView {
 	
 	private Review review;
 	private User user;
+	private Object title;
 	
+	public Object getTitle() {
+		return title;
+	}
+	public void setTitle(Object object) {
+		this.title = object;
+	}
 	public Review getReview() {
 		return review;
 	}
