@@ -107,7 +107,7 @@
 			//ajax
 			$.ajax({
 				type : 'put',
-				url : '/hibook/hi_detail/comment_create',
+				url : '/hiBook/hi_detail/comment_create',
 				data : {
 					"isbn13" : isbn13,
 					"content" : content
@@ -150,7 +150,7 @@
 			$.ajax({
 				//request
 				type : 'delete'
-				, url : '/hibook/hi_detail/comment_delete'
+				, url : '/hiBook/hi_detail/comment_delete'
 				, data : {
 					"isbn13" : isbn13,
 					"content" : content

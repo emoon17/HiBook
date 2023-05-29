@@ -51,7 +51,7 @@
 								</tr>
 								<tr>
 									<td colspan='3' class="font20 font-weight-bold pt-5"><a
-										href="#">장바구니 </a></td>
+										href="/hiBook/mypage/cart_view">장바구니 </a></td>
 								</tr>
 								<tr>
 									<td colspan='3' class="font20 font-weight-bold pt-5"><a

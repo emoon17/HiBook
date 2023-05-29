@@ -23,6 +23,10 @@ public interface ReviewDAO {
 			@Param("content") String content, 
 			@Param("userId") Integer userId);
 	
+	public void deleteReviewByReivewIdUserId(
+			@Param("reviewId") Integer reviewId,
+			@Param("userId") Integer userId);
+	
 	public List<Review> selectReviewListByStartDateEndDateUserId(
 			@Param("startDate") Date startDate, 
 			@Param("endDate") Date endDate, 

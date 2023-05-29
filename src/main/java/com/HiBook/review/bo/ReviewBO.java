@@ -95,4 +95,9 @@ public class ReviewBO {
 	public void deleteReviewByIsbn13ContentUserId(String isbn13, String content, Integer userId) {
 		reviewDAO.deleteReviewByIsbn13ContentUserId(isbn13, content, userId);
 	}
+	
+	public void deleteReviewByReivewIdUserId(Integer reviewId, Integer userId) {
+		reviewDAO.deleteReviewByReivewIdUserId(reviewId, userId);
+		
+	}
 }

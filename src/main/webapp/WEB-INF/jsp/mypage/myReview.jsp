@@ -19,8 +19,8 @@
 
 </article>
 
-
-<table id="reviewBox" class="table h-100 w-100 font30 mt-5 text-center">
+<div  id="reviewBox">
+<table class="table h-100 w-100 font30 mt-5 text-center">
 	<thead>
 		<tr>
 			<th>작성일</th>
@@ -36,7 +36,7 @@
 	</tbody>
 
 </table>
-
+</div>
 <script>
 	$(document).ready(
 			function() {
@@ -85,7 +85,7 @@
 
 				$('#endDatepicker').datepicker({
 					showButtonPanel : true  ,
-					minDate : 0
+					
 				});
 				
 				
@@ -125,7 +125,9 @@
 				
 					});
 				});
-			});
+				
+				
+		});
 		
 				
 </script>

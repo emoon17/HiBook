@@ -212,6 +212,10 @@ input[id="menuicon"]:checked+label+div {
 .login_check {
 	margin-left:130px;
 }
+.line {
+	 border: 0.5px solid lightgray;
+	 width : 2150px;	
+}
 
 footer {
 	height : 100px;
