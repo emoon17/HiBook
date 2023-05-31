@@ -23,4 +23,18 @@
 			,NOW()
 		)
  	</insert>
+ 	<select id="selectCartList" parameterType="int" resultType="com.HiBook.cart.model.Cart">
+ 		SELECT
+ 			`id`
+			,`productId`
+			,`userId`
+			,`count`
+			,`price`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`cart`
+		WHERE
+			userId = #{userId}
+ 	</select>
  </mapper>

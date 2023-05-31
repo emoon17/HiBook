@@ -16,6 +16,8 @@ public class PurchaseBO {
 	@Autowired
 	private CartBO cartBO;
 	
+	
+	// 장바구니, 상품 insert
 	@Transactional 
 	public void addcartAndProductByCountIsbn13TitlePriceUserId(
 			Integer count,
@@ -29,5 +31,7 @@ public class PurchaseBO {
 		cartBO.addCartByProductIdUserIdCountPrice(product.getId(), userId, count, product.getPrice());
 		
 	}
+	
+	
 
 }
