@@ -24,8 +24,16 @@
 					<div class="font40 font-weight-bold">판매가 : ${inquiryBook.priceSales} 원</div>
 			</div>
 		<div class="mt-5 d-flex justify-content-center align-items-center">
-			<button type="button" id="cartBtn" class="cart_order_btn btn mr-5 font20 font-weight-bold">장바구니</button>
-			<button type="button" id="orderBtn" class="cart_order_btn btn ml-5 font20 font-weight-bold">주문하기</button>
+			<button type="button" id="cartBtn" class="cart_order_btn btn mr-5 font20 font-weight-bold"
+			 data-isbn13-id="${inquiryBook.isbn13}" data-book-title="${inquiryBook.title}" data-book-price="${inquiryBook.priceSales}">장바구니</button>
+			<select name="count" class="font30 main-keyword">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+			<button type="button" id="orderBtn" class="cart_order_btn btn ml-5 font20 font-weight-bold" data-isbn13-id="${inquiryBook.isbn13}">주문하기</button>
 		</div>
 		</div>
 		
@@ -170,7 +178,40 @@
 		
 		});
 		
-		
+		$('#cartBtn').on('click', function(){
+			let counts = $("select[name=count] option:selected").text();
+			//alert(count);
+			let isbn13 = $(this).data('isbn13-id');
+			//alert(isbn13);
+			let title = $(this).data('book-title');
+			//alert(title);
+			let prices = $(this).data('book-price');
+			let price = prices.replace(',', '');
+			
+			let count = parseInt(counts);
+			//alert(count);
+			  $.ajax({
+				//request
+				type: 'post'
+				, url : '/hiBook/cart_create'
+				, data : {
+					'count': count,
+					'isbn13' : isbn13,
+					'title' : title,
+					'price' : price
+				}
+				,success:function(data) {
+					if (data.code == 1) {
+						alert("장바구니에 추가하였습니다.");
+					} else {
+						alert(data.errorMessage);
+					}
+				}
+				, error: function(e) {
+					alert("오류가 발생했습니다.");
+				}
+			});  
+		});
 		
 		
 		
