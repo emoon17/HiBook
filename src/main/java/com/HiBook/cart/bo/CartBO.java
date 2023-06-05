@@ -32,6 +32,10 @@ public class CartBO {
 		
 	}
 	
+	public void deleteCartBYProductIdUserId(Integer productId, Integer userId) {
+		cartDAO.deleteCartBYProductIdUserId(productId, userId);
+	}
+	
 	public List<Cart> getCartList(Integer userId){
 		return cartDAO.selectCartList(userId);
 	}

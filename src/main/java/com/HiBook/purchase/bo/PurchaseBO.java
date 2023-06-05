@@ -32,6 +32,15 @@ public class PurchaseBO {
 		
 	}
 	
+	public void deleteCartANDProductBYProductIdUserId(Integer productId, Integer userId) {
+		
+		// cart delete
+	//	cartBO.deleteCartBYProductIdUserId(productId, userId);
+		// 상품 delete
+		productBO.deleteProudctById(productId);
+		
+	}
+	
 	
 
 }

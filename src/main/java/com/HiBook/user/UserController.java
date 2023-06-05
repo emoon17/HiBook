@@ -34,6 +34,7 @@ public class UserController {
 	public String signOut(HttpSession session) {
 		
 		//로그인 시 세션에 담아뒀던 정보 지우기 
+		session.removeAttribute("userId");
 		session.removeAttribute("name");
 		session.removeAttribute("loginId");
 		session.removeAttribute("password");
@@ -47,9 +48,12 @@ public class UserController {
 	
 	// 개인정보 수정
 	@GetMapping("/mypage/user_information_view")
-	public String userInformationView(Model model) {
+	public String userInformationView(Model model, HttpSession session) {
 		
-		
+		Integer userId = (Integer) session.getAttribute("userId");
+		if (userId == null) {
+			return "redirect:/hiBook/user/sign_in_view";
+		}
 		model.addAttribute("veiwName", "mypage/userInformation");
 
 		return "template/layout";

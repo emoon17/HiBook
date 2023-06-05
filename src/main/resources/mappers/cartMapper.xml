@@ -37,4 +37,13 @@
 		WHERE
 			userId = #{userId}
  	</select>
+ 	<delete id="deleteCartBYProductIdUserId" parameterType="map">
+ 		DELETE
+ 		FROM
+ 			`cart`
+ 		WHERE
+ 			`productId` = ${productId}
+ 			AND
+ 			 `userId` = ${userId}
+ 	</delete>
  </mapper>

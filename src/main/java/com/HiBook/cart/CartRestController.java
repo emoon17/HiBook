@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,25 +19,48 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/hiBook")
 @RestController
 public class CartRestController {
-	
+
 	@Autowired
 	private PurchaseBO purchaseBO;
 
 	@PostMapping("/cart_create")
-	public Map<String, Object> cartCreate(
-			@RequestParam("count") Integer count,
-			@ModelAttribute Product product,
-			HttpSession session){
-		
+	public Map<String, Object> cartCreate(@RequestParam("count") Integer count, @ModelAttribute Product product,
+			HttpSession session) {
+
 		// userId
-		Integer userId = (Integer)session.getAttribute("userId");
+		Map<String, Object> result = new HashMap<>();
+		Integer userId = (Integer) session.getAttribute("userId");
+		if (userId == null) {
+			result.put("code", 500);
+			result.put("errorMessage", "로그인 후 이용 가능합니다..");
+			return result;
+		}
 		// cart insert
 		// purchaseBO 가져오기
 		purchaseBO.addcartAndProductByCountIsbn13TitlePriceUserId(count, product, userId);
 		// 결과 나누기
-		Map<String, Object> result = new HashMap<>();
 		result.put("code", 1);
+
+		// 응답
+		return result;
+	}
+
+	@DeleteMapping("/cart_delete")
+	public Map<String, Object> cartDelete(@RequestParam("productId") Integer ProductId, HttpSession session) {
+
+		// userId
+		Map<String, Object> result = new HashMap<>();
+		Integer userId = (Integer) session.getAttribute("userId");
+		if (userId == null) {
+			result.put("code", 500);
+			result.put("errorMessage", "로그인 후 이용 가능합니다..");
+			return result;
+		}
 		
+		// cart delete
+		purchaseBO.deleteCartANDProductBYProductIdUserId(ProductId, userId);
+		//결과 
+		result.put("code", 1);
 		//응답
 		return result;
 	}

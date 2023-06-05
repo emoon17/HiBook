@@ -17,4 +17,8 @@ public interface CartDAO {
 			@Param("price") Integer price);
 	
 	public List<Cart> selectCartList(Integer userId);
+	
+	public void deleteCartBYProductIdUserId(
+			@Param("productId") Integer productId, 
+			@Param("userId") Integer userId);
 }

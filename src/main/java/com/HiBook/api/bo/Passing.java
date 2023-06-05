@@ -50,7 +50,11 @@ public class Passing {
 			String bestRank = String.valueOf(book.get("bestRank"));
 			String reviewRank = String.valueOf(book.get("customerReviewRank"));
 			String isbn13 = String.valueOf(book.get("isbn13"));
-
+			
+			if (isbn13 == "") {
+				isbn13 = String.valueOf(book.get("isbn"));
+				
+			}
 			map.put("isbn13", isbn13);
 			map.put("title", title);
 			map.put("author", author);
@@ -93,6 +97,11 @@ public class Passing {
 			String reviewRank = String.valueOf(book.get("customerReviewRank"));
 			String isbn13 = String.valueOf(book.get("isbn13"));
 
+			if (isbn13 == "") {
+				isbn13 = String.valueOf(book.get("isbn"));
+				
+			}
+			
 			map.put("isbn13", isbn13);
 			map.put("title", title);
 			map.put("author", author);
@@ -133,6 +142,10 @@ public class Passing {
 			String categoryName = (String) book.get("categoryName");
 
 			if (categoryName.contains("국내도서>소설")) {
+				if (isbn13 == "") {
+					isbn13 = String.valueOf(book.get("isbn"));
+					
+				}
 				map.put("isbn13", isbn13);
 				map.put("title", title);
 				map.put("author", author);
@@ -174,6 +187,10 @@ public class Passing {
 			String categoryName = (String) book.get("categoryName");
 
 			if (categoryName.contains("국내도서>경제경영") || categoryName.contains("국내도서>자기계발")) {
+				if (isbn13 == "") {
+					isbn13 = String.valueOf(book.get("isbn"));
+					
+				}
 				map.put("isbn13", isbn13);
 				map.put("title", title);
 				map.put("author", author);
@@ -215,6 +232,11 @@ public class Passing {
 			String categoryName = (String) book.get("categoryName");
 
 			if (categoryName.contains("국내도서>어린이") || categoryName.contains("국내도서>만화")) {
+				if (isbn13 == "") {
+					isbn13 = String.valueOf(book.get("isbn"));
+					
+				}
+				
 				map.put("isbn13", isbn13);
 				map.put("title", title);
 				map.put("author", author);
@@ -256,6 +278,11 @@ public class Passing {
 			String categoryName = (String) book.get("categoryName");
 
 			if (categoryName.contains("소설") || categoryName.contains("문학") || categoryName.contains("인문")) {
+				if (isbn13 == "") {
+					isbn13 = String.valueOf(book.get("isbn"));
+					
+				}
+				
 				map.put("isbn13", isbn13);
 				map.put("title", title);
 				map.put("author", author);
@@ -297,6 +324,11 @@ public class Passing {
 			String categoryName = (String) book.get("categoryName");
 
 			if (categoryName.contains("일본")) {
+				
+				if (isbn13 == "") {
+					isbn13 = String.valueOf(book.get("isbn"));
+					
+				}
 				map.put("isbn13", isbn13);
 				map.put("title", title);
 				map.put("author", author);
@@ -338,6 +370,10 @@ public class Passing {
 			String categoryName = (String) book.get("categoryName");
 
 			if (categoryName.contains("어린이")) {
+				if (isbn13 == "") {
+					isbn13 = String.valueOf(book.get("isbn"));
+					
+				}
 				map.put("isbn13", isbn13);
 				map.put("title", title);
 				map.put("author", author);
@@ -379,6 +415,11 @@ public class Passing {
 			String categoryName = (String) book.get("categoryName");
 
 			if (!isbn13.equals("0") && categoryName.contains("소설")) {
+				
+				if (isbn13 == "") {
+					isbn13 = String.valueOf(book.get("isbn"));
+					
+				}
 				map.put("isbn13", isbn13);
 				map.put("title", title);
 				map.put("author", author);
@@ -419,6 +460,11 @@ public class Passing {
 			String categoryName = (String) book.get("categoryName");
 
 			if (categoryName.contains("교양") || categoryName.contains("인문학")) {
+				
+				if (isbn13 == "") {
+					isbn13 = String.valueOf(book.get("isbn"));
+					
+				}
 				map.put("isbn13", isbn13);
 				map.put("title", title);
 				map.put("author", author);
@@ -436,7 +482,7 @@ public class Passing {
 
 	}
 
-	// e-book 교양/인문학
+	// e-book 만화
 	public List<Map<String, Object>> eBookToonList() throws ParseException {
 
 		String json = WebClientApi.eBookList();
@@ -460,6 +506,11 @@ public class Passing {
 			String categoryName = (String) book.get("categoryName");
 
 			if (categoryName.contains("만화")) {
+				if (isbn13 == "") {
+					isbn13 = String.valueOf(book.get("isbn"));
+					
+				}
+				
 				map.put("isbn13", isbn13);
 				map.put("title", title);
 				map.put("author", author);

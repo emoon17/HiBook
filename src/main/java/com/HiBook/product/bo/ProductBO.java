@@ -22,4 +22,8 @@ public class ProductBO {
 	public List<Product> getProductList(Integer productId){
 		return productDAO.selectProductList(productId);
 	}
+	
+	public void deleteProudctById(Integer productId) {
+		productDAO.deleteProudctById(productId);
+	}
 }

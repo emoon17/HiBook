@@ -13,4 +13,6 @@ public interface ProductDAO {
 			Product product);
 	
 	public List<Product> selectProductList(Integer productId);
+	
+	public void deleteProudctById(Integer productId);
 }

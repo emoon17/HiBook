@@ -25,6 +25,9 @@ public class CartController {
 
 		// userId
 		Integer userId = (Integer) session.getAttribute("userId");
+		if (userId == null) {
+			return "redirect:/hiBook/user/sign_in_view";
+		}
 		
 		List<CartView> cartViewList = cartBO.getCartViewList(userId);
 		model.addAttribute("cartViewList", cartViewList);
