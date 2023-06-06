@@ -47,7 +47,7 @@ public class PurchaseBO {
 	}
 	
 	
-
+	@Transactional
 	public void deleteCartANDProductBYProductIdUserId(Integer productId, Integer userId) {
 
 		// cart delete
@@ -56,7 +56,7 @@ public class PurchaseBO {
 		productBO.deleteProudctById(productId);
 
 	}
-
+	
 	public void updateCartByCount(Integer productId, Integer count, Integer price, Integer userId) {
 
 		price = price * count;
