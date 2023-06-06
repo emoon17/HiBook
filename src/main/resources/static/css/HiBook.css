@@ -20,6 +20,10 @@ a:hover {
 	text-decoration: none;
 }
 
+.cart-title:hover {
+	text-decoration : underline;
+	text-decoration-color: #d0cecf;
+}
 
 header {
 	width: 2350px;

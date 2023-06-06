@@ -553,7 +553,7 @@ public class Passing {
 			String bestRank = String.valueOf(book.get("bestRank"));
 			String reviewRank = String.valueOf(book.get("customerReviewRank"));
 
-			Integer priceSale = Integer.parseInt(priceSales);
+		//	Integer priceSale = Integer.parseInt(priceSales);
 
 			DecimalFormat df = new DecimalFormat("###,###");
 			priceSales = df.format(Integer.parseInt(priceSales));

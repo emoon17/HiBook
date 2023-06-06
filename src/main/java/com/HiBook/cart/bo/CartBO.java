@@ -1,5 +1,6 @@
 package com.HiBook.cart.bo;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class CartBO {
 	@Autowired
 	private ProductBO productBO;
 
+
 	public void addCartByProductIdUserIdCountPrice(Integer productId, Integer userId, Integer count, Integer price){
 		
 		price = count * price;
@@ -36,6 +38,17 @@ public class CartBO {
 		cartDAO.deleteCartBYProductIdUserId(productId, userId);
 	}
 	
+	public Cart getCartByProductId(Integer productId) {
+		
+		return cartDAO.selectCartByProductId(productId);
+	}
+
+	public void updateCartByCountProductIdUserId(Integer productId, Integer count, Integer price, Integer userId){
+	
+		cartDAO.updateCartByCountProductIdUserId(productId, count, price, userId);
+	}
+	
+	
 	public List<Cart> getCartList(Integer userId){
 		return cartDAO.selectCartList(userId);
 	}
@@ -47,12 +60,10 @@ public class CartBO {
 		List<Cart> cartList = getCartList(userId);
 		for (Cart cart : cartList) {
 			CartView cartView = new CartView();
+			DecimalFormat df = new DecimalFormat("###,###");
 			cartView.setCart(cart);
-			
 			User user = userBO.getUserById(cart.getUserId());
 			cartView.setUser(user);
-			
-			
 			List<Product> productList = productBO.getProductList(cart.getProductId());
 			for (Product product : productList) {
 				cartView.setProduct(product);

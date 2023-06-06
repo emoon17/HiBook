@@ -35,6 +35,30 @@
 		WHERE
 			`id` = #{productId}
  	</select>
+ 	<select id="getPriceByProductId" resultType="com.HiBook.product.model.Product">
+ 		SELECT
+ 			`id`
+			,`isbn13`
+			,`title`
+			,`price`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`product`
+		WHERE
+			`id` = #{productId}
+ 	</select>
+ 	<select id="selectProductAllList" resultType="com.HiBook.product.model.Product"> 
+ 		SELECT
+ 			`id`
+			,`isbn13`
+			,`title`
+			,`price`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`product`
+ 	</select>
  	<delete id="deleteProudctById" parameterType="Integer">
  		DELETE
  		FROM

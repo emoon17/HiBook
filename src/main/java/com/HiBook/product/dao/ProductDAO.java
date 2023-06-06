@@ -15,4 +15,9 @@ public interface ProductDAO {
 	public List<Product> selectProductList(Integer productId);
 	
 	public void deleteProudctById(Integer productId);
+	
+	public Product selectPriceByProductId(Integer productId);
+	
+	public List<Product> selectProductAllList();
+	
 }

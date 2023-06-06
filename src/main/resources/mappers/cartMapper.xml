@@ -23,6 +23,7 @@
 			,NOW()
 		)
  	</insert>
+ 	
  	<select id="selectCartList" parameterType="int" resultType="com.HiBook.cart.model.Cart">
  		SELECT
  			`id`
@@ -42,8 +43,34 @@
  		FROM
  			`cart`
  		WHERE
- 			`productId` = ${productId}
+ 			`productId` = #{productId}
  			AND
- 			 `userId` = ${userId}
+ 			 `userId` = #{userId}
  	</delete>
+ 	<select id="selectCartByProductId" resultType="com.HiBook.cart.model.Cart">
+ 		SELECT
+ 			`id`
+			,`productId`
+			,`userId`
+			,`count`
+			,`price`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`cart`
+		WHERE
+			`productId` = #{productId}
+ 	</select>
+ 	
+ 	<update id="updateCartByCountProductIdUserId" parameterType="map">
+ 		UPDATE `cart`
+ 		SET
+ 			`count` = #{count}
+ 			, `price` = #{price}
+ 		WHERE
+ 			`productId` = #{productId}
+ 			AND
+ 			`userId` =  #{userId}
+ 	
+ 	</update>
  </mapper>
