@@ -53,6 +53,10 @@ public class CartBO {
 		return cartDAO.selectCartList(userId);
 	}
 	
+	public List<Cart> getCartListByProductIdUserId(Integer productId, Integer userId) {
+		return cartDAO.selectCartListByProductIdUserId(productId, userId);
+	}
+	
 	public List<CartView> getCartViewList(Integer userId){
 		
 		List<CartView> cartViewList = new ArrayList<>();

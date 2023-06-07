@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class OrderController {
 
-	@GetMapping("/mypage/order_view")
+	@GetMapping("/order_view")
 	public String review_view(Model model) {
 
 		model.addAttribute("veiwName", "mypage/order");

@@ -18,7 +18,8 @@
 			<tbody>
 				<tr>
 					<td class="text-center"><a
-						href="/hiBook/hi_detail_view?isbn13=${cartView.product.isbn13}" class="cart-title">${cartView.product.title}</a></td>
+						href="/hiBook/hi_detail_view?isbn13=${cartView.product.isbn13}"
+						class="cart-title">${cartView.product.title}</a></td>
 					<td class="text-center" id="countChangeInput"><input
 						type="text" name="count" style="width: 50px; height: 40px;"
 						class="count text-center" value="${cartView.cart.count}">
@@ -27,7 +28,11 @@
 							data-product-price="${cartView.product.price}">수량변경</button></td>
 
 					<td class="text-center"><fmt:formatNumber
-							value="${cartView.cart.price}" pattern="#,###" /></td>
+							value="${cartView.cart.price}" pattern="#,###" /> <c:set
+							var="sum" value="${sum + cartView.cart.price}" /></td>
+
+
+
 					<td class="text-center"><input type="checkbox" name="check"
 						value="${cartView.product.id}" style="width: 40px; height: 40px;"></td>
 				</tr>
@@ -35,6 +40,15 @@
 		</c:forEach>
 
 	</table>
+	<div
+		class="d-flex justify-content-end align-items-center font-weight-bold">
+		<div class="font30 total-table-text">총 합계 :</div>
+
+		<div class="font30 total-table-sum">
+			<fmt:formatNumber value="${sum}" pattern="#,###" />
+			원
+		</div>
+	</div>
 	<div class="d-flex justify-content-end align-items-center">
 		<button type="button" class="btn font30 mr-3" id="prouductDelete">삭제</button>
 		<button type="button" class="btn font30 mr-5" id="productOrder">주문</button>
@@ -87,7 +101,7 @@
 			$('input[name=check]:checked').each(function() {
 				let productId = $(this).val();
 				//alert(productId);
-				
+
 				$.ajax({
 					//request
 					type : 'delete',
@@ -113,10 +127,34 @@
 		});
 
 		$('#productOrder').on('click', function() {
-			$('input[name=check]:checked').each(function() {
-				let productId = $(this).val();
-				alert(productId);
 
+				let productIdArr = new Array();
+			$('input[name=check]:checked').each(function(i) {
+				let productId = $(this).val();
+				productIdArr.push(productId);
+				//alert(productIdArr);
+
+			});
+				console.log(productIdArr);
+			
+			$.ajax({
+				//request
+				type : "post",
+				url : "/hiBook/order/order_create",
+				data : {
+					"productIdArr" : productIdArr
+				},
+				success : function(data) {
+					if (data.code == 1) {
+						location.href = "/hiBook/order_view";
+					} else {
+						alert(data.errorMessage);
+					}
+
+				},
+				error : function(e) {
+					alert("오류가 발생했습니다.")
+				}
 			});
 		});
 

@@ -30,4 +30,8 @@ public interface CartDAO {
 	
 	
 	public Cart selectCartByProductId(Integer productId);
+	
+	public List<Cart> selectCartListByProductIdUserId(
+			@Param("productId") Integer productId, 
+			@Param("userId") Integer userId);
 }

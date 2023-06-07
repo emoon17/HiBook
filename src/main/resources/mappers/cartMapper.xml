@@ -38,6 +38,22 @@
 		WHERE
 			userId = #{userId}
  	</select>
+ 	<select id="selectCartListByProductIdUserId" resultType="com.HiBook.cart.model.Cart" parameterType="map">
+ 		SELECT
+ 			`id`
+			,`productId`
+			,`userId`
+			,`count`
+			,`price`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`cart`
+		WHERE
+			`productId` = #{productId}
+			AND 
+			`userId` = #{userId}
+ 	</select>
  	<delete id="deleteCartBYProductIdUserId" parameterType="map">
  		DELETE
  		FROM

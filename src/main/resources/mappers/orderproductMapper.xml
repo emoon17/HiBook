@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.HiBook.orderproduct.dao.OrderproductDAO">
+ 	<insert id="insertOrderProductByProductIdCountPrice" parameterType="map">
+ 		INSERT INTO `orderproduct`
+ 		(
+ 			`productId`
+			,`userId`
+			,`count`
+			,`price`
+			,`createdAt`
+			,`updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{productId}
+ 			, #{userId}
+ 			, #{count}
+ 			, #{price}
+ 			, NOW()
+ 			, NOW()
+ 		)
+ 		
+ 	</insert>
+ 	<select id="selectOrderProductListById" parameterType="int" resultType="com.HiBook.orderproduct.model.Orderproduct">
+ 		SELECT
+ 			`id`
+			,`productId`
+			,`orderProductId`
+			,`userId`
+			,`count`
+			,`price`
+			,`state`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`orderproduct`
+		WHERE
+			`productId` = #{productId}
+ 	</select>
+ </mapper>
