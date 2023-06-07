@@ -91,6 +91,9 @@ public class PurchaseBO {
 				orderBO.addOrderByProductIdUserIdOrderproductIdCountPriceState(productid, userId, cart.getCount(), cart.getPrice());
 				}
 			
+			//cart 내용 지우기
+			deleteCartANDProductBYProductIdUserId(productid, userId);
+			
 		}
 		
 		
