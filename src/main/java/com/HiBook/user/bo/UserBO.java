@@ -29,9 +29,9 @@ public class UserBO {
 	}
 
 	// 회원가입
-	public void addUser(String name, String loginId, String password, String phoneNumber, String address,
-			String kakaoCheck, String profileImage) {
-		userDAO.insertUser(name, loginId, password, phoneNumber, address, kakaoCheck, profileImage);
+	public void addUser(String name, String loginId, String password, String phoneNumber,String postcode, String address,
+			String detailAddress, String kakaoCheck, String profileImage) {
+		userDAO.insertUser(name, loginId, password, phoneNumber, postcode, address, detailAddress, kakaoCheck, profileImage);
 	}
 
 	// 로그인하기
@@ -50,7 +50,7 @@ public class UserBO {
 	}
 
 	// update
-	public void informationUpdate(String name, String phoneNumber, String loginId, String address,
+	public void informationUpdate(String name, String phoneNumber, String loginId, String address, String postcode, String detailAddress,
 			MultipartFile file, Integer userId) {
 
 		List<User> userList = getUserListBYId(userId);
@@ -69,7 +69,7 @@ public class UserBO {
 			// 파일이 있을 때만 업로드 -> 이미지 경로를 얻어냄
 			imagePath = fileManagerService.saveFile(loginId, file);
 		}
-		userDAO.informationUpdate(name, phoneNumber, loginId, address, imagePath, userId);
+		userDAO.informationUpdate(name, phoneNumber, loginId, postcode, address, detailAddress, imagePath, userId);
 	}
 
 }

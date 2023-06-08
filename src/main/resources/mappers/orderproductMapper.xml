@@ -28,16 +28,28 @@
  		SELECT
  			`id`
 			,`productId`
-			,`orderProductId`
 			,`userId`
 			,`count`
 			,`price`
-			,`state`
 			,`createdAt`
 			,`updatedAt`
 		FROM
 			`orderproduct`
 		WHERE
 			`productId` = #{productId}
+ 	</select>
+ 	<select	id="selectOrderProductListByUserId" parameterType="int" resultType="com.HiBook.orderproduct.model.Orderproduct">
+ 		SELECT
+ 			`id`
+			,`productId`
+			,`userId`
+			,`count`
+			,`price`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`orderproduct`
+		WHERE
+			`userId` = #{userId}
  	</select>
  </mapper>

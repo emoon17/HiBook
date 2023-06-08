@@ -146,7 +146,7 @@
 				},
 				success : function(data) {
 					if (data.code == 1) {
-						location.href = "/hiBook/order_view";
+						location.href = "/hiBook/order_product_view";
 					} else {
 						alert(data.errorMessage);
 					}

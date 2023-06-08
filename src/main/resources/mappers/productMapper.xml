@@ -59,6 +59,19 @@
 		FROM
 			`product`
  	</select>
+ 	<select id="selectProductByUserId" resultType="com.HiBook.product.model.Product">
+ 		SELECT
+ 			`id`
+			,`isbn13`
+			,`title`
+			,`price`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`product`
+		WHERE
+			`id` = #{productId}
+ 	</select>
  	<delete id="deleteProudctById" parameterType="Integer">
  		DELETE
  		FROM

@@ -31,6 +31,10 @@ public class ProductBO {
 		return productDAO.selectPriceByProductId(productId);
 	}
 	
+	public Product getProductByUserId(Integer productId) {
+		return productDAO.selectProductByUserId(productId);
+	}
+	
 	public List<Product> getProductAllList(){
 		return productDAO.selectProductAllList();
 	}

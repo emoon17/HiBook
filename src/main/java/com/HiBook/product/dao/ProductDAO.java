@@ -18,6 +18,8 @@ public interface ProductDAO {
 	
 	public Product selectPriceByProductId(Integer productId);
 	
+	public Product selectProductByUserId(Integer productId);
+	
 	public List<Product> selectProductAllList();
 	
 }

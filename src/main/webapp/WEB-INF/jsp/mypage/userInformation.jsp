@@ -29,7 +29,7 @@
 		<div class="font30 ml-5 mr-5 font-weight-bold " style="width: 170px;">주소</div>
 		<input type="text" id="postcode" placeholder="우편번호"
 			style="height: 85px; width: 650px;"
-			class="font30 ml-5 form-control main-keyword">
+			class="font30 ml-5 form-control main-keyword" value="${postcode}">
 		<button type="button"
 			class="check-btn btn pl-3 font-weight-bold font30 main-keyword"
 			id="daumPostcode" style="height: 85px;">주소 검색</button>
@@ -45,13 +45,13 @@
 		<div class="font30 ml-5 mr-5 font-weight-bold " style="width: 170px;"></div>
 		<input type="text" id="detailAddress" name="detailAddress"
 			placeholder="상세주소" style="height: 85px; width: 650px;"
-			class="font30 ml-5 mt-3 form-control main-keyword">
+			class="font30 ml-5 mt-3 form-control main-keyword" value="${detailAddress}">
 	</div>
 
 	<div class="d-flex align-items-center pt-5">
 		<div class="font30 ml-5 mr-5 font-weight-bold " style="width: 170px;">계정연동</div>
 		<button type="button" class="btn font30 ml-5 mt-3 main-keyword"
-			style="width: 150px;">kakao</button>
+			style="width: 150px;">kakao </button>
 	</div>
 
 	<div class="d-flex  align-items-center pt-5">
@@ -140,12 +140,13 @@
 			let name = $("#name").val();
 			let loginId = $('#loginId').val();
 			let phoneNumber = $('#phoneNumber').val();
-			let Address = $('#address').val();
+			let address = $('#address').val();
+			let postcode = $('#postcode').val();
 			let detailAddress = $('#detailAddress').val();
 			
-			let addressList = new Array();
+			/* let addressList = new Array();
 			addressList.push(Address);
-			addressList.push(detailAddress);
+			addressList.push(detailAddress); */
 			
 		//	alert(Address);
 			let formData = new FormData($('#fileUploadForm')[0]); // 폼객체
@@ -153,7 +154,9 @@
 			formData.append("name", name);
 			formData.append('phoneNumber', phoneNumber);
 			formData.append('loginId', loginId);
-			formData.append('address', addressList);
+			formData.append('address', address);
+			formData.append('postcode', postcode);
+			formData.append('detailAddress', detailAddress);
 			formData.append('file', $('#file')[0].files[0]); 
 			
 			//ajax 통신으로 forData에 있는 데이터 전송

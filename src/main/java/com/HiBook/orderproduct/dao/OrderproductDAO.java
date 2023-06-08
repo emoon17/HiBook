@@ -18,4 +18,6 @@ public interface OrderproductDAO {
 			@Param("userId") Integer userId);
 	
 	public List<Orderproduct> selectOrderProductListById(Integer productId);
+
+	public List<Orderproduct> selectOrderProductListByUserId(Integer userId);
 }

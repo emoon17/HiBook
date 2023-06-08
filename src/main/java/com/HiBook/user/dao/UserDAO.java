@@ -18,7 +18,9 @@ public interface UserDAO {
 			@Param("loginId") String loginId, 
 			@Param("password") String password,
 			@Param("phoneNumber") String phoneNumber, 
+			@Param("postcode") String postcode,
 			@Param("address") String address,
+			@Param("detailAddress") String detailAddress,
 			@Param("kakaoCheck") String kakaoCheck,
 			@Param("profileImage") String profileImage
 			);
@@ -36,6 +38,8 @@ public interface UserDAO {
 			@Param("phoneNumber") String phoneNumber,
 			@Param("loginId") String loginId, 
 			@Param("address") String address, 
+			@Param("postcode") String postcode,
+			@Param("detailAddress") String detailAddress,
 			@Param("imagePath") String imagePath, 
 			@Param("userId") Integer userId);
 }

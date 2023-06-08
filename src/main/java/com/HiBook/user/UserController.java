@@ -39,6 +39,8 @@ public class UserController {
 		session.removeAttribute("loginId");
 		session.removeAttribute("password");
 		session.removeAttribute("phoneNumber");
+		session.removeAttribute("postcode");
+		session.removeAttribute("detailAddress");
 		session.removeAttribute("address");
 		session.removeAttribute("kakaoCheck");
 		session.removeAttribute("profileImage");

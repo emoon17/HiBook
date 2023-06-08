@@ -9,11 +9,26 @@ public class User {
 	private String password;
 	private String phoneNumber;
 	private String address;
+	private String postcode;
+	private String detailAddress;
 	private String kakaoCheck;
 	private String profileImage;
 	private Date createdAt;
 	private Date updatedAt;
 	
+	
+	public String getPostcode() {
+		return postcode;
+	}
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
 	public int getId() {
 		return id;
 	}

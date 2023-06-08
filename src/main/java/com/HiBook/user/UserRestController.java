@@ -54,14 +54,14 @@ public class UserRestController {
 	@PostMapping("/user/sign_up")
 	public Map<String, Object> signUp(@RequestParam("name") String name, @RequestParam("loginId") String loginId,
 			@RequestParam("password") String password, @RequestParam("phoneNumber") String phoneNumber,
-			@RequestParam("address") String address, @RequestParam(value="kakaoCheck", required=false, defaultValue="부") String kakaoCheck,
-			@RequestParam(value="profileImage", required=false) String profileImage) {
+			@RequestParam("postcode") String postcode, @RequestParam("address") String address, @RequestParam(value="kakaoCheck", required=false, defaultValue="부") String kakaoCheck,
+			@RequestParam("detailAddress") String detailAddress, @RequestParam(value="profileImage", required=false) String profileImage) {
 
 		// 비밀번호 해싱
 		String HashedPassword = EncrypUtils.md5(password);
 
 		// insert
-		userBO.addUser(name, loginId, HashedPassword, phoneNumber, address, kakaoCheck, profileImage);
+		userBO.addUser(name, loginId, HashedPassword, phoneNumber, postcode, address, detailAddress, kakaoCheck, profileImage);
 		// 결과 넣기
 		Map<String, Object> result = new HashMap<>();
 		result.put("code", 1);
@@ -89,6 +89,8 @@ public class UserRestController {
 			session.setAttribute("password", user.getPassword());
 			session.setAttribute("phoneNumber", user.getPhoneNumber());
 			session.setAttribute("address", user.getAddress());
+			session.setAttribute("postcode", user.getPostcode());
+			session.setAttribute("detailAddress", user.getDetailAddress());
 			session.setAttribute("kakaoCheck", user.getKakaoCheck());
 			session.setAttribute("profileImage", user.getProfileImage());
 		} else {
@@ -107,6 +109,8 @@ public class UserRestController {
 			@RequestParam(value="phoneNumber", required=false) String phoneNumber,
 			@RequestParam(value="loginId", required=false) String loginId,
 			@RequestParam(value="address", required=false) String address,
+			@RequestParam(value="postcode", required=false) String postcode,
+			@RequestParam(value="detailAddress", required=false) String detailAddress,
 			@RequestParam("file") MultipartFile file,
 			HttpSession session){
 		
@@ -119,7 +123,7 @@ public class UserRestController {
 			return result;
 		}
 		//db update
-		userBO.informationUpdate(name, phoneNumber, loginId, address, file, userId);
+		userBO.informationUpdate(name, phoneNumber, loginId, address, postcode, detailAddress, file, userId);
 		session.removeAttribute("name");
 		session.removeAttribute("phoneNumber");
 		session.removeAttribute("loginId");

@@ -56,7 +56,7 @@
 			<div class="d-flex">
 				<input type="text" id="postcode" placeholder="우편번호"
 					style="height: 85px; width: 600px;"
-					class="font30 mt-4 form-control main-keyword">
+					class="font30 mt-4 form-control main-keyword" name="postcode">
 				<button type="button"
 					class="check-btn btn ml-3 mt-4 font-weight-bold font30 main-keyword"
 					id="daumPostcode" style="height: 85px;">주소 검색</button>
@@ -66,7 +66,7 @@
 					style="height: 85px; width: 600px;"
 					class="font30 mt-4 form-control main-keyword">
 			</div>
-			<input type="text" id="detailAddress" name="address"
+			<input type="text" id="detailAddress" name="detailAddress"
 				placeholder="상세주소" style="height: 85px; width: 600px;"
 				class="font30 mt-2 form-control">
 

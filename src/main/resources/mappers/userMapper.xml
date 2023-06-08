@@ -24,7 +24,9 @@
 			,`loginId`
 			,`password`
 			,`phoneNumber`
+			,`postcode`
 			,`address`
+			,`detailAddress`
 			,`kakaoCheck`
 			,`profileImage`
 			,`createdAt`
@@ -36,7 +38,9 @@
 			,#{loginId}
 			,#{password}
 			,#{phoneNumber}
+			,#{postcode}
 			,#{address}
+			,#{detailAddress}
 			,#{kakaoCheck}
 			,#{profileImage}
 			, NOW()
@@ -52,7 +56,9 @@
 			,`loginId`
 			,`password`
 			,`phoneNumber`
+			,`postcode`
 			,`address`
+			,`detailAddress`
 			,`kakaoCheck`
 			,`profileImage`
 			,`createdAt`
@@ -72,7 +78,9 @@
 			,`loginId`
 			,`password`
 			,`phoneNumber`
+			,`postcode`
 			,`address`
+			,`detailAddress`
 			,`kakaoCheck`
 			,`profileImage`
 			,`createdAt`
@@ -89,7 +97,9 @@
 			,`loginId`
 			,`password`
 			,`phoneNumber`
+			,`postcode`
 			,`address`
+			,`detailAddress`
 			,`kakaoCheck`
 			,`profileImage`
 			,`createdAt`
@@ -105,7 +115,9 @@
  			`name` = #{name}
  			, `loginId` = #{loginId}
  			, `phoneNumber` = #{phoneNumber}
- 			, `address` = #{address}
+ 			,`postcode` = #{postcode}
+			,`address` = #{address}
+			,`detailAddress` = #{detailAddress}
  			, `profileImage` = #{imagePath}
  			, `updatedAt` = NOW()
  		WHERE

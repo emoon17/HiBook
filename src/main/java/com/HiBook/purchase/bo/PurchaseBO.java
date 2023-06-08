@@ -1,5 +1,6 @@
 package com.HiBook.purchase.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.HiBook.cart.bo.CartBO;
 import com.HiBook.cart.model.Cart;
 import com.HiBook.order.bo.OrderBO;
 import com.HiBook.orderproduct.bo.OrderproductBO;
+import com.HiBook.orderproduct.model.OrderProductView;
 import com.HiBook.orderproduct.model.Orderproduct;
 import com.HiBook.product.bo.ProductBO;
 import com.HiBook.product.model.Product;
@@ -64,6 +66,10 @@ public class PurchaseBO {
 
 	}
 	
+	public void deleteCartByProductIdUserId(Integer productId, Integer userId) {
+		cartBO.deleteCartBYProductIdUserId(productId, userId);
+	}
+	
 	//cart 수량, 가격 update (장바구니 변경)
 	public void updateCartByCount(Integer productId, Integer count, Integer price, Integer userId) {
 
@@ -88,17 +94,35 @@ public class PurchaseBO {
 				orderproductBO.addOrderProductByProductIdCountPriceUserId(productid, cart.getCount(), cart.getPrice(), userId);
 				
 				//order insert - productid, userId, cart- count, price ,  state(주문완료)
-				orderBO.addOrderByProductIdUserIdOrderproductIdCountPriceState(productid, userId, cart.getCount(), cart.getPrice());
+				//orderBO.addOrderByProductIdUserIdOrderproductIdCountPriceState(productid, userId, cart.getCount(), cart.getPrice());
 				}
 			
 			//cart 내용 지우기
-			deleteCartANDProductBYProductIdUserId(productid, userId);
+			deleteCartByProductIdUserId(productid, userId);
 			
 		}
-		
-		
-		
 	}
 	
+	// 주문화면 select
+	public List<OrderProductView> getOrderproductList(Integer userId){
+		
+		List<OrderProductView> orderproductViewList = new ArrayList<>();
+		
+		List<Orderproduct> orderproductList = orderproductBO.getOrderproductListByUserId(userId);
+		
+		for (Orderproduct orderproduct : orderproductList) {
+			OrderProductView orderproductView = new OrderProductView();
+			
+			orderproductView.setOrderproduct(orderproduct);
+			
+			Product product = productBO.getProductByUserId(orderproduct.getProductId());
+			orderproductView.setProduct(product);
+			
+			orderproductViewList.add(orderproductView);
+		}
+		
+		return orderproductViewList;
+		
+	}
 
 }

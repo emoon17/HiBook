@@ -1,5 +1,7 @@
 package com.HiBook.orderproduct.model;
 
+import java.util.Date;
+
 public class Orderproduct {
 	
 	private int id;
@@ -9,8 +11,21 @@ public class Orderproduct {
 	private int count;
 	private int price;
 	private String state;
-	private int createdAt;
-	private int updatedAt;
+	private Date createdAt;
+	private Date updatedAt;
+	
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 	public int getId() {
 		return id;
 	}
@@ -53,18 +68,7 @@ public class Orderproduct {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public int getCreatedAt() {
-		return createdAt;
-	}
-	public void setCreatedAt(int createdAt) {
-		this.createdAt = createdAt;
-	}
-	public int getUpdatedAt() {
-		return updatedAt;
-	}
-	public void setUpdatedAt(int updatedAt) {
-		this.updatedAt = updatedAt;
-	}
+	
 
 
 }
