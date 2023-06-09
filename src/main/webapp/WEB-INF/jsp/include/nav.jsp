@@ -55,7 +55,7 @@
 								</tr>
 								<tr>
 									<td colspan='3' class="font20 font-weight-bold pt-5"><a
-										href="#">주문조회/반품신청</a></td>
+										href="/hiBook/order_inquiry_view">주문조회/반품신청</a></td>
 								</tr>
 								<tr>
 									<td colspan='3' class="font20 font-weight-bold pt-5"><a

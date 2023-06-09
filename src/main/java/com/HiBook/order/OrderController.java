@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class OrderController {
 
+	// 주문 조회, 반품 신청 view
 	@GetMapping("/order_inquiry_view")
 	public String orderInquiryView(Model model) {
 		

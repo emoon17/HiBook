@@ -142,6 +142,9 @@ public class PurchaseBO {
 		
 	}
 	
+	// 주문 조회, 반품 신청 select
+	
+	
 	// 결제하기 
 	@Transactional
 	public void addOrder(List<Integer> orderproductIdArr, Integer orderNumber, Integer count, Integer price,
