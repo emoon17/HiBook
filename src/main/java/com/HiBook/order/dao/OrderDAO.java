@@ -6,9 +6,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderDAO {
 
-	public void insertOrderByProductIdUserIdOrderproductIdCountPriceState(
-			@Param("productId") Integer productId,
-			@Param("userId") Integer userId, 
+	public void insertOrderByProductIdCountPriceUserId(
+			@Param("productId") Integer productId, 
+			@Param("orderNumber") Integer orderNumber, 
 			@Param("count") Integer count, 
-			@Param("price") Integer price);
+			@Param("price") Integer price, 
+			@Param("userId") Integer userId);
 }
+

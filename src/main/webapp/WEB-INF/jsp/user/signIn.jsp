@@ -68,7 +68,7 @@
 				if(data.code == 1) {
 					location.href = "/hiBook/main/main_veiw";
 				} else {
-					alert(data.errorMessage);
+					alert("아이디와 비밀번호를 다시 확인해주세요");
 				} 
 			});
 			

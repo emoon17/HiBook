@@ -15,6 +15,8 @@ import com.HiBook.orderproduct.model.OrderProductView;
 import com.HiBook.orderproduct.model.Orderproduct;
 import com.HiBook.product.bo.ProductBO;
 import com.HiBook.product.model.Product;
+import com.HiBook.user.bo.UserBO;
+import com.HiBook.user.model.User;
 
 @Service
 public class PurchaseBO {
@@ -27,6 +29,8 @@ public class PurchaseBO {
 	private OrderproductBO orderproductBO;
 	@Autowired
 	private OrderBO orderBO;
+	@Autowired
+	private UserBO userBO;
 
 	// cart, product insert (장바구니 추가)
 	@Transactional
@@ -37,9 +41,9 @@ public class PurchaseBO {
 		int i = -1;
 		
 		for (Product pr : productList) {
-			if(product.getIsbn13().equals(pr.getIsbn13())) { // 같으면 1 반환
+			Cart cart = cartBO.getCartByProductId(pr.getId());
+			if(cart != null && cart.getProductId() == product.getId()) { // 같으면 1 반환
 				i = 1;
-				Cart cart = cartBO.getCartByProductId(pr.getId());
 				Integer addCount = cart.getCount() + count;
 				updateCartByCount(pr.getId(), addCount , pr.getPrice(), userId);
 			}
@@ -122,6 +126,37 @@ public class PurchaseBO {
 		}
 		
 		return orderproductViewList;
+		
+	}
+
+	@Transactional
+	public void addOrder(List<Integer> productArr, Integer orderNumber, Integer count, Integer price,
+			String postcode, String address, String detailAddress,  String phoneNumber, Integer userId ) {
+		
+		List<User> userList = userBO.getUserListBYId(userId);
+		for (Integer productId : productArr) {
+			// order insert
+			
+			//주문 주소 변경 시 user update
+			for (User user : userList) {
+				if (!user.getPostcode().equals(postcode)) {
+					userBO.userAddressUpdate(user.getPhoneNumber(), postcode, user.getAddress(), user.getDetailAddress(), userId);
+				}
+				if (!user.getAddress().equals(address)) {
+					userBO.userAddressUpdate(user.getPhoneNumber(), user.getPostcode(), address, user.getDetailAddress(), userId);
+				}
+				if (!user.getDetailAddress().equals(detailAddress)) {
+					userBO.userAddressUpdate(user.getPhoneNumber(), user.getPostcode(), user.getAddress(), detailAddress, userId);
+				}
+				if (!user.getPhoneNumber().equals(phoneNumber)) {
+					userBO.userAddressUpdate(phoneNumber, user.getPostcode(), user.getAddress(), detailAddress, userId);
+				}
+			}
+			orderBO.addOrderByProductIdCountPriceUserId(productId, orderNumber, count, price, userId);
+			
+			
+		}
+		
 		
 	}
 

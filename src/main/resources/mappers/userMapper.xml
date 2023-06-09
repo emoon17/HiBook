@@ -49,6 +49,8 @@
  		
  	</insert>
  	
+ 	
+ 	
  	<select id="selectUserByLoginIdPassword" resultType="com.HiBook.user.model.User" parameterType="map">
  		SELECT
  			`id`
@@ -124,5 +126,16 @@
  			`id` = #{userId}
  		
  	
+ 	</update>
+ 	<update id="userAddressUpdate" parameterType="map">
+ 		UPDATE `user`
+ 		SET
+ 			 `phoneNumber` = #{phoneNumber}
+ 			,`postcode` = #{postcode}
+			,`address` = #{address}
+			,`detailAddress` = #{detailAddress}
+ 			, `updatedAt` = NOW()
+ 		WHERE
+ 			`id` = #{userId}
  	</update>
  </mapper>

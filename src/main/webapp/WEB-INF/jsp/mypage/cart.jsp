@@ -20,6 +20,7 @@
 					<td class="text-center"><a
 						href="/hiBook/hi_detail_view?isbn13=${cartView.product.isbn13}"
 						class="cart-title">${cartView.product.title}</a></td>
+						
 					<td class="text-center" id="countChangeInput"><input
 						type="text" name="count" style="width: 50px; height: 40px;"
 						class="count text-center" value="${cartView.cart.count}">

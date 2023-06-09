@@ -37,9 +37,16 @@ public interface UserDAO {
 			@Param("name") String name, 
 			@Param("phoneNumber") String phoneNumber,
 			@Param("loginId") String loginId, 
-			@Param("address") String address, 
 			@Param("postcode") String postcode,
+			@Param("address") String address, 
 			@Param("detailAddress") String detailAddress,
 			@Param("imagePath") String imagePath, 
+			@Param("userId") Integer userId);
+	
+	public void userAddressUpdate(
+			@Param("phoneNumber") String phoneNumber,
+			@Param("postcode") String postcode,
+			@Param("address") String address, 
+			@Param("detailAddress") String detailAddress,
 			@Param("userId") Integer userId);
 }

@@ -14,13 +14,9 @@ public class OrderBO {
 
 	@Autowired
 	private OrderDAO orderDAO;
-	@Autowired
-	private OrderproductBO orderproductBO;
 	
-	public void addOrderByProductIdUserIdOrderproductIdCountPriceState(Integer productId, Integer userId, 
-			 Integer count, Integer price) {
-		orderDAO.insertOrderByProductIdUserIdOrderproductIdCountPriceState(productId, userId, count, price);
+	
+	public void addOrderByProductIdCountPriceUserId(Integer productId, Integer orderNumber, Integer count, Integer price, Integer userId) {
+		orderDAO.insertOrderByProductIdCountPriceUserId(productId, orderNumber, count, price, userId);
 	}
-	
-
 }

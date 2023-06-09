@@ -111,7 +111,7 @@ public class UserRestController {
 			@RequestParam(value="address", required=false) String address,
 			@RequestParam(value="postcode", required=false) String postcode,
 			@RequestParam(value="detailAddress", required=false) String detailAddress,
-			@RequestParam("file") MultipartFile file,
+			@RequestParam(value="file", required=false) MultipartFile file,
 			HttpSession session){
 		
 		
@@ -123,7 +123,7 @@ public class UserRestController {
 			return result;
 		}
 		//db update
-		userBO.informationUpdate(name, phoneNumber, loginId, address, postcode, detailAddress, file, userId);
+		userBO.informationUpdate(name, phoneNumber, loginId,  postcode, address, detailAddress, file, userId);
 		session.removeAttribute("name");
 		session.removeAttribute("phoneNumber");
 		session.removeAttribute("loginId");

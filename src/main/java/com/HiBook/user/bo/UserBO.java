@@ -50,7 +50,7 @@ public class UserBO {
 	}
 
 	// update
-	public void informationUpdate(String name, String phoneNumber, String loginId, String address, String postcode, String detailAddress,
+	public void informationUpdate(String name, String phoneNumber, String loginId, String postcode, String address,  String detailAddress,
 			MultipartFile file, Integer userId) {
 
 		List<User> userList = getUserListBYId(userId);
@@ -72,4 +72,9 @@ public class UserBO {
 		userDAO.informationUpdate(name, phoneNumber, loginId, postcode, address, detailAddress, imagePath, userId);
 	}
 
+	// order시 업데이트
+	public void userAddressUpdate(String phoneNumber, String postcode, String address,  String detailAddress,
+			Integer userId) {
+		userDAO.userAddressUpdate(phoneNumber, postcode, address, detailAddress, userId);
+	}
 }
