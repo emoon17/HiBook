@@ -128,7 +128,8 @@ public class PurchaseBO {
 		return orderproductViewList;
 		
 	}
-
+	
+	// 결제하기 
 	@Transactional
 	public void addOrder(List<Integer> productArr, Integer orderNumber, Integer count, Integer price,
 			String postcode, String address, String detailAddress,  String phoneNumber, Integer userId ) {
