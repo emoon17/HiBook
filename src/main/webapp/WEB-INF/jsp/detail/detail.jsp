@@ -33,7 +33,8 @@
 				<option>4</option>
 				<option>5</option>
 			</select>
-			<button type="button" id="orderBtn" class="cart_order_btn btn ml-5 font20 font-weight-bold" data-isbn13-id="${inquiryBook.isbn13}">주문하기</button>
+			<button type="button" id="orderBtn" class="cart_order_btn btn ml-5 font20 font-weight-bold" data-isbn13-id="${inquiryBook.isbn13}"
+			data-book-title="${inquiryBook.title}" data-book-price="${inquiryBook.priceSales}">주문하기</button>
 		</div>
 		</div>
 		
@@ -213,6 +214,41 @@
 			});  
 		});
 		
+		//주문하기
+		$('#orderBtn').on('click', function(e){
+			//alert("dd");
+			let counts = $("select[name=count] option:selected").text();
+			let count = parseInt(counts);
+			let isbn13 = $(this).data('isbn13-id');
+			//alert(isbn13);
+			let title = $(this).data('book-title');
+			let prices = $(this).data('book-price');
+			let price = prices.replace(',', '')
+			//alert(count);
+			
+			$.ajax({
+				//request
+				type:"post"
+				,url : "/hiBook/order/direct_create"
+				,data : {
+					'isbn13' : isbn13,
+					'count': count,
+					'title' : title,
+					'price' : price
+				}
+			    ,success:function(data) {
+					if (data.code == 1) {
+						location.href = "/hiBook/order_product_view";
+					} else {
+						alert(data.errorMessage);
+					}
+				}
+				, error: function(e) {
+					alert("오류가 발생했습니다.");
+				}
+			});
+			
+		});
 		
 		
 	}); /* document */

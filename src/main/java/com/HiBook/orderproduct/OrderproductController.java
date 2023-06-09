@@ -22,6 +22,7 @@ public class OrderproductController {
 	@Autowired
 	private PurchaseBO purchaseBO;
 	
+	// 주문화면
 	@GetMapping("/order_product_view")
 	public String review_view(Model model, HttpSession session) {
 
