@@ -10,6 +10,7 @@
 			,`userId`
 			,`count`
 			,`price`
+			,`state`
 			,`createdAt`
 			,`updatedAt`
  		)
@@ -19,6 +20,7 @@
  			, #{userId}
  			, #{count}
  			, #{price}
+ 			, DEFAULT
  			, NOW()
  			, NOW()
  		)
@@ -31,6 +33,7 @@
 			,`userId`
 			,`count`
 			,`price`
+			, `state`
 			,`createdAt`
 			,`updatedAt`
 		FROM
@@ -45,6 +48,7 @@
 			,`userId`
 			,`count`
 			,`price`
+			, `state`
 			,`createdAt`
 			,`updatedAt`
 		FROM
@@ -52,4 +56,11 @@
 		WHERE
 			`userId` = #{userId}
  	</select>
+ 	<update id="updateOrderproductById" parameterType="int">
+ 		UPDATE `orderproduct`
+ 		SET
+ 			`state` = 'order'
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
  </mapper>

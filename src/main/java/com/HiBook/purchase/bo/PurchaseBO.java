@@ -59,6 +59,14 @@ public class PurchaseBO {
 
 	}
 	
+	// 장바구니 없이 바로 주문하기 order insert
+	@Transactional
+	public void addProductAndOrderProductByProductCountUserId(Product product, Integer count, 
+			String title, Integer price, Integer userId) {
+		productBO.addProductByIsbn13(product);
+		orderproductBO.addOrderProductByProductIdCountPriceUserId(product.getId(), count, price, userId);
+	}
+	
 	// cart, product delete (장바구니 삭제)
 	@Transactional
 	public void deleteCartANDProductBYProductIdUserId(Integer productId, Integer userId) {
@@ -107,6 +115,8 @@ public class PurchaseBO {
 		}
 	}
 	
+	
+	
 	// 주문화면 select
 	public List<OrderProductView> getOrderproductList(Integer userId){
 		
@@ -115,14 +125,17 @@ public class PurchaseBO {
 		List<Orderproduct> orderproductList = orderproductBO.getOrderproductListByUserId(userId);
 		
 		for (Orderproduct orderproduct : orderproductList) {
-			OrderProductView orderproductView = new OrderProductView();
-			
-			orderproductView.setOrderproduct(orderproduct);
-			
-			Product product = productBO.getProductByUserId(orderproduct.getProductId());
-			orderproductView.setProduct(product);
-			
-			orderproductViewList.add(orderproductView);
+			if (orderproduct.getState().equals("standby")) {
+				
+				OrderProductView orderproductView = new OrderProductView();
+				
+				orderproductView.setOrderproduct(orderproduct);
+				
+				Product product = productBO.getProductByUserId(orderproduct.getProductId());
+				orderproductView.setProduct(product);
+				
+				orderproductViewList.add(orderproductView);
+			}
 		}
 		
 		return orderproductViewList;
@@ -131,12 +144,12 @@ public class PurchaseBO {
 	
 	// 결제하기 
 	@Transactional
-	public void addOrder(List<Integer> productArr, Integer orderNumber, Integer count, Integer price,
+	public void addOrder(List<Integer> orderproductIdArr, Integer orderNumber, Integer count, Integer price,
 			String postcode, String address, String detailAddress,  String phoneNumber, Integer userId ) {
 		
 		List<User> userList = userBO.getUserListBYId(userId);
-		for (Integer productId : productArr) {
-			// order insert
+		for (Integer orderproductId : orderproductIdArr) {
+			
 			
 			//주문 주소 변경 시 user update
 			for (User user : userList) {
@@ -153,9 +166,11 @@ public class PurchaseBO {
 					userBO.userAddressUpdate(phoneNumber, user.getPostcode(), user.getAddress(), detailAddress, userId);
 				}
 			}
-			orderBO.addOrderByProductIdCountPriceUserId(productId, orderNumber, count, price, userId);
+			// order insert
+			orderBO.addOrderByProductIdCountPriceUserId(orderproductId, orderNumber, count, price, userId);
 			
-			
+			//orderproduct 상태 추가
+			orderproductBO.updateOrderproductById(orderproductId);
 		}
 		
 		

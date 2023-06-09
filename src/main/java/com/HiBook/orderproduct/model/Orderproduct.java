@@ -6,26 +6,12 @@ public class Orderproduct {
 	
 	private int id;
 	private int productId;
-	private int orderProductId;
 	private int userId;
 	private int count;
 	private int price;
 	private String state;
 	private Date createdAt;
 	private Date updatedAt;
-	
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
 	public int getId() {
 		return id;
 	}
@@ -37,12 +23,6 @@ public class Orderproduct {
 	}
 	public void setProductId(int productId) {
 		this.productId = productId;
-	}
-	public int getOrderProductId() {
-		return orderProductId;
-	}
-	public void setOrderProductId(int orderProductId) {
-		this.orderProductId = orderProductId;
 	}
 	public int getUserId() {
 		return userId;
@@ -68,7 +48,19 @@ public class Orderproduct {
 	public void setState(String state) {
 		this.state = state;
 	}
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 	
-
+	
 
 }

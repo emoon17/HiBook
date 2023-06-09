@@ -20,7 +20,6 @@
 				<tr>
 					<td>${status.count}</td>
 					<td class="text-center "><span class="title"
-						data-product-id="${orderproductView.product.id}"
 						data-orderproduct-id="${orderproductView.orderproduct.id}">
 							${orderproductView.product.title}</span></td>
 							
@@ -111,10 +110,10 @@
 <script>
 	$(document).ready(function() {
 		$('#payBtn').on('click', function() {
-			let productIdArr = new Array();
+			let orderproductIdArr = new Array();
 			$('.title').each(function(i) {
-				let productId = $(this).data('product-id');
-				productIdArr.push(productId);
+				let orderproductId = $(this).data('orderproduct-id');
+				orderproductIdArr.push(orderproductId);
 
 			});
 			let count = $('#count').data('total-count');
@@ -124,16 +123,16 @@
 			let detailAddress = $('#detailAddress').val();
 			let phoneNumber = $('#phoneNumber').val();
 			let orderNumber = $('#payBtn').val();
-			//alert(orderNumber);
+			//alert(orderproductId);
 
 			//	alert(phoneNumber);
 
-			 $.ajax({
+			  $.ajax({
 				//reques
 				type : 'post',
 				url : '/hiBook/order/payment',
 				data : {
-					'productIdArr' : productIdArr,
+					'orderproductIdArr' : orderproductIdArr,
 					'orderNumber' : orderNumber,
 					'count' : count,
 					'price' : price,
@@ -154,7 +153,7 @@
 				error : function(e) {
 					alert("오류가 발생했습니다.")
 				}
-			}); 
+			});  
 	
 		});
 		

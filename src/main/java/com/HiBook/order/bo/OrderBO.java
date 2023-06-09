@@ -16,7 +16,8 @@ public class OrderBO {
 	private OrderDAO orderDAO;
 	
 	
-	public void addOrderByProductIdCountPriceUserId(Integer productId, Integer orderNumber, Integer count, Integer price, Integer userId) {
-		orderDAO.insertOrderByProductIdCountPriceUserId(productId, orderNumber, count, price, userId);
+	public void addOrderByProductIdCountPriceUserId(Integer orderproductId, Integer orderNumber, Integer count, Integer price, Integer userId) {
+		orderDAO.insertOrderByProductIdCountPriceUserId(orderproductId, orderNumber, count, price, userId);
 	}
+	
 }

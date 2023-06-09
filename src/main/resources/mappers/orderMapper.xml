@@ -6,7 +6,7 @@
  	<insert id="insertOrderByProductIdCountPriceUserId" parameterType="map">
  		INSERT INTO `order`
  		(
- 			`productId`
+ 			`orderproductId`
  			,`orderNumber`
 			,`userId`
 			,`count`
@@ -17,7 +17,7 @@
  		)
  		VALUES
  		(
- 			#{productId}
+ 			#{orderproductId}
  			, #{orderNumber}
  			, #{userId}
  			, #{count}
