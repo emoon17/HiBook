@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.HiBook.order.dao.OrderDAO;
-import com.HiBook.orderproduct.bo.OrderproductBO;
-import com.HiBook.orderproduct.model.Orderproduct;
+import com.HiBook.order.model.Order;
 
 @Service
 public class OrderBO {
@@ -18,6 +17,10 @@ public class OrderBO {
 	
 	public void addOrderByProductIdCountPriceUserId(Integer orderproductId, Integer orderNumber, Integer count, Integer price, Integer userId) {
 		orderDAO.insertOrderByProductIdCountPriceUserId(orderproductId, orderNumber, count, price, userId);
+	}
+	
+	public List<Order> getOrderListByUserId(Integer userId){
+		return orderDAO.selectOrderListByUserId(userId);
 	}
 	
 }

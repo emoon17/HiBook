@@ -1,7 +1,11 @@
 package com.HiBook.order.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import com.HiBook.order.model.Order;
 
 @Repository
 public interface OrderDAO {
@@ -12,5 +16,7 @@ public interface OrderDAO {
 			@Param("count") Integer count, 
 			@Param("price") Integer price, 
 			@Param("userId") Integer userId);
+	
+	public List<Order> selectOrderListByUserId(Integer userId);
 }
 

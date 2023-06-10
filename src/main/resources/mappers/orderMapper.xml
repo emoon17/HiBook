@@ -28,4 +28,21 @@
  		)
  		
  	</insert>
+ 	<select id="selectOrderListByUserId" parameterType="int" resultType="com.HiBook.order.model.Order">
+ 		SELECT
+ 			`id`
+			,`orderproductId`
+			,`orderNumber`
+			,`userId`
+			,`count`
+			,`price`
+			,`state`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`order`
+		WHERE
+			`userId` = #{userId}
+		
+ 	</select>
  </mapper>

@@ -33,16 +33,24 @@
 			</tr>
 		</thead>
 		<tbody>
+		<c:forEach items="${orderViewList}" var="orderView">
 			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
+				<th><a href="#"><fmt:formatDate value="${orderView.order.createdAt}" pattern="yyyy-MM-dd mm:ss" /></a></th>
+				<th>${orderView.order.orderNumber}</a></th>
+				<th><fmt:formatNumber
+							value="${orderView.order.price}" pattern="#,###" /></th>
+				<th>${orderView.order.state}</th>
+				<th><input type="checkbox" name="check"
+						value="${orderView.order.orderNumber}"
+						style="width: 40px; height: 40px;"></th>
 			</tr>
+		</c:forEach>
 		</tbody>
 
 	</table>
+	<div class="return d-flex justify-content-end align-items-center pt-5">
+		<button type="button" id="returnBtn" class="btn font30">반품 신청</button>
+	</div>
 </div>
 
 <script>
