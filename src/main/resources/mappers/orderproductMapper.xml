@@ -56,10 +56,32 @@
 		WHERE
 			`userId` = #{userId}
  	</select>
+ 	<select id="selectOrderproductById" parameterType="int" resultType="com.HiBook.orderproduct.model.Orderproduct">
+ 		SELECT
+ 			`id`
+			,`productId`
+			,`userId`
+			,`count`
+			,`price`
+			, `state`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`orderproduct`
+		WHERE
+			`id` = #{id}
+ 	</select>
  	<update id="updateOrderproductById" parameterType="int">
  		UPDATE `orderproduct`
  		SET
  			`state` = 'order'
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
+ 	<update id="updateOrderproductByIdResultReturn" parameterType="int">
+ 		UPDATE `orderproduct`
+ 		SET
+ 			`state` = 'return'
  		WHERE
  			`id` = #{id}
  	</update>

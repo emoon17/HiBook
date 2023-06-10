@@ -33,18 +33,21 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${orderViewList}" var="orderView">
-			<tr>
-				<th><a href="#"><fmt:formatDate value="${orderView.order.createdAt}" pattern="yyyy-MM-dd mm:ss" /></a></th>
-				<th>${orderView.order.orderNumber}</a></th>
-				<th><fmt:formatNumber
-							value="${orderView.order.price}" pattern="#,###" /></th>
-				<th>${orderView.order.state}</th>
-				<th><input type="checkbox" name="check"
+			<c:forEach items="${orderViewList}" var="orderView">
+				<tr>
+					<th><a
+						href="/hiBook/order_detail_view?orderNumber=${orderView.order.orderNumber}"><fmt:formatDate
+								value="${orderView.order.createdAt}" pattern="yyyy-MM-dd" /></a></th>
+					<th><a
+						href="/hiBook/order_detail_view?orderNumber=${orderView.order.orderNumber}">${orderView.order.orderNumber}</a></th>
+					<th><fmt:formatNumber value="${orderView.order.price}"
+							pattern="#,###" /></th>
+					<th>${orderView.order.state}</th>
+					<th><input type="checkbox" name="check"
 						value="${orderView.order.orderNumber}"
 						style="width: 40px; height: 40px;"></th>
-			</tr>
-		</c:forEach>
+				</tr>
+			</c:forEach>
 		</tbody>
 
 	</table>
@@ -102,5 +105,75 @@
 
 				});
 
+				$('.date-btn').on('click', function() {
+					let startDate = $('#startDatepicker').val();
+					let endDate = $('#endDatepicker').val();
+					//	alert(endDate);
+
+					if (startDate == '') {
+						alert("조회할 시작 날짜를 선택하여주세요.");
+						return;
+					}
+
+					if (endDate == '') {
+						alert("조회할 마지막 날짜를 선택하여주세요.");
+						return;
+					}
+
+					$.ajax({
+						//request
+						type : 'get',
+						url : '/hiBook/order_date_search_view',
+						data : {
+							'startDate' : startDate,
+							'endDate' : endDate
+						}
+
+						//response
+						,
+						success : function(data) {
+							console.log(data);
+							$('#orderBox').html(data);
+						},
+
+						error : function(e) {
+							alert(e + "오류가 발생했습니다. 다시 시도해주세요.");
+						}
+
+					});
+
+				});
+
+				$('#returnBtn').on('click', function() {
+					//alert("dd");
+
+					let orderNumberArr = new Array();
+					$('input[name=check]:checked').each(function(i) {
+						let orderNumber = $(this).val();
+						orderNumberArr.push(orderNumber);
+
+					});
+					//alert(orderNumberArr);
+					//console.log(productIdArr);
+					$.ajax({
+						//request
+						type : "put",
+						url : "/hiBook/order/order_update",
+						data : {
+							"orderNumberArr" : orderNumberArr
+						},
+						success : function(data) {
+							if (data.code == 1) {
+								location.href = "/hiBook/order_return_view";
+							} else {
+								alert(data.errorMessage);
+							}
+
+						},
+						error : function(e) {
+							alert("오류가 발생했습니다.")
+						}
+					});
+				});
 			});
 </script>

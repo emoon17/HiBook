@@ -7,10 +7,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.HiBook.order.bo.OrderBO;
 import com.HiBook.product.model.Product;
 import com.HiBook.purchase.bo.PurchaseBO;
 
@@ -22,6 +24,7 @@ public class OrderRestController {
 
 	@Autowired
 	private PurchaseBO purchaseBO;
+	
 
 	// cart -> order insert
 	@PostMapping("/order/order_create")
@@ -52,8 +55,8 @@ public class OrderRestController {
 
 	// detail -> orderProduct 바로 주문하기
 	@PostMapping("/order/direct_create")
-	public Map<String, Object> directCreat(@ModelAttribute Product product, @RequestParam("count") Integer count, @RequestParam("title") String title, @RequestParam("price") Integer price,
-			HttpSession session) {
+	public Map<String, Object> directCreat(@ModelAttribute Product product, @RequestParam("count") Integer count,
+			@RequestParam("title") String title, @RequestParam("price") Integer price, HttpSession session) {
 		// userId
 		Map<String, Object> result = new HashMap<>();
 		Integer userId = (Integer) session.getAttribute("userId");
@@ -62,10 +65,10 @@ public class OrderRestController {
 			result.put("errorMessage", "로그인 후 이용 가능합니다..");
 			return result;
 		}
-		
+
 		// product, orderproduct insert
 		purchaseBO.addProductAndOrderProductByProductCountUserId(product, count, title, price, userId);
-		//응답
+		// 응답
 		result.put("code", 1);
 		return result;
 	}
@@ -95,6 +98,26 @@ public class OrderRestController {
 
 		return result;
 
+	}
+	
+	// 반품하기
+	@PutMapping("/order/order_update")
+	public Map<String, Object> orderUpdate(@RequestParam("orderNumberArr[]") List<Integer> orderNumberArr,
+			HttpSession session) {
+		// userId
+		Map<String, Object> result = new HashMap<>();
+		Integer userId = (Integer) session.getAttribute("userId");
+		if (userId == null) {
+			result.put("code", 500);
+			result.put("errorMessage", "로그인 후 이용 가능합니다..");
+			return result;
+		}
+		
+		//update
+		purchaseBO.updateOrderAndOrderprdocutByOrderNumber(orderNumberArr, userId);
+		//응답
+		result.put("code", 1);
+		return result;
 	}
 
 }

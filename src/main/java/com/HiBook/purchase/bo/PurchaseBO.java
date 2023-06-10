@@ -1,6 +1,7 @@
 package com.HiBook.purchase.bo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -142,7 +143,7 @@ public class PurchaseBO {
 
 	}
 
-	// 주문 조회, 반품 신청 select
+	// 주문 조회, 반품 신청 화면 select
 	public List<OrderView> getOrderViewListByUserId(Integer userId) {
 
 		List<OrderView> orderViewList = new ArrayList<>();
@@ -155,7 +156,7 @@ public class PurchaseBO {
 			newOrderList.add(orderList.get(i));
 			for (int j = i; j < newOrderList.size(); j++) {
 				int jON = newOrderList.get(i).getOrderNumber();
-				
+
 				if (iON == jON) {
 					newOrderList.remove(i);
 				}
@@ -164,25 +165,82 @@ public class PurchaseBO {
 
 		List<Orderproduct> orderProduct = orderproductBO.getOrderproductListByUserId(userId);
 		for (Order order : newOrderList) {
-
 			OrderView orderView = new OrderView();
 			orderView.setOrder(order);
+			Orderproduct orderproduct = orderproductBO.getOrderproductById(order.getOrderproductId());
+			if (orderproduct.getState().equals("order")) {
+				orderView.setOrderproduct(orderproduct);
 
-			for (Orderproduct orderproduct : orderProduct) {
-				if (orderproduct.getState().equals("order")) {
-					orderView.setOrderproduct(orderproduct);
+				Product product = productBO.getProductByUserId(orderproduct.getProductId());
+				orderView.setProduct(product);
 
-					Product product = productBO.getProductByUserId(orderproduct.getProductId());
-					orderView.setProduct(product);
-
-				}
+				orderViewList.add(orderView);
 			}
-			orderViewList.add(orderView);
 
 		}
 
 		return orderViewList;
 
+	}
+
+	// 
+	// order detail select
+	public List<OrderView> getOrderDetailListByUserId(Integer orderNumber, Integer userId) {
+
+		List<OrderView> orderViewList = new ArrayList<>();
+
+		List<Order> orderList = orderBO.getOrderListByOrderNumber(orderNumber);
+		
+		for(Order order : orderList) {
+			OrderView orderView = new OrderView();
+			orderView.setOrder(order);
+			Orderproduct orderproduct = orderproductBO.getOrderproductById(order.getOrderproductId());
+			orderView.setOrderproduct(orderproduct);
+			Product product = productBO.getProductByUserId(orderproduct.getProductId());
+			orderView.setProduct(product);
+			
+			orderViewList.add(orderView);
+			
+		}
+		return orderViewList;
+	}
+	
+	//// 주문 조회, 반품 신청 화면 날짜 조회
+	public List<OrderView> getOrderByDateUserId(Date startDate, Date endDate, Integer userId){
+		
+		List<OrderView> orderViewList = new ArrayList<>();
+		
+		List<Order> orderList = orderBO.getOrderListByStartDateEndDateUserId(startDate, endDate, userId);
+		
+		for (Order order : orderList) {
+			OrderView orderView = new OrderView();
+			orderView.setOrder(order);
+			Orderproduct orderproduct = orderproductBO.getOrderproductById(order.getOrderproductId());
+			orderView.setOrderproduct(orderproduct);
+			Product product = productBO.getProductByUserId(orderproduct.getProductId());
+			orderView.setProduct(product);
+			
+			orderViewList.add(orderView);
+		}
+		
+		return orderViewList;
+	}
+	
+	//반품 신청
+	public void updateOrderAndOrderprdocutByOrderNumber(List<Integer> orderNumberArr, Integer userId) {
+		
+		//order update
+		for(Integer orderNumber : orderNumberArr) {
+			orderBO.updateOrderByOrderNumber(orderNumber, userId);
+			
+			List<Order> orderList = orderBO.getOrderListByOrderNumber(orderNumber);
+			for (Order order : orderList) {
+				orderproductBO.updateOrderproductByIdResultReturn(order.getOrderproductId());
+			}
+		}
+		
+		//orderproduct update
+		
 	}
 
 	// 결제하기

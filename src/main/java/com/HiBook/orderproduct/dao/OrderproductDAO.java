@@ -21,5 +21,9 @@ public interface OrderproductDAO {
 
 	public List<Orderproduct> selectOrderProductListByUserId(Integer userId);
 	
+	public Orderproduct selectOrderproductById(Integer id);
+	
 	public void updateOrderproductById(Integer id);
+	
+	public void updateOrderproductByIdResultReturn(Integer id);
 }

@@ -33,8 +33,15 @@ public class OrderproductBO {
 		return orderproductDAO.selectOrderProductListByUserId(userId);
 	}
 	
+	public Orderproduct getOrderproductById(Integer id) {
+		return orderproductDAO.selectOrderproductById(id);
+	}
+	
 	public void updateOrderproductById(Integer id) {
 		orderproductDAO.updateOrderproductById(id);
 	}
 	
+	public void updateOrderproductByIdResultReturn(Integer id) {
+		orderproductDAO.updateOrderproductByIdResultReturn(id);
+	}
 }

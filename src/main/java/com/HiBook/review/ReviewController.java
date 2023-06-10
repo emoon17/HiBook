@@ -34,6 +34,7 @@ public class ReviewController {
 		return "template/layout";
 	}
 
+	//마이리뷰 날짜 조회
 	@GetMapping("/mypage/my_review_search_view")
 	public String myReviewSearchView(
 			@RequestParam("startDate") @DateTimeFormat(pattern="yyyy-MM-dd") Date startDate, 
