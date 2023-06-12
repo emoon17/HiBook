@@ -50,10 +50,10 @@ public class Passing {
 			String bestRank = String.valueOf(book.get("bestRank"));
 			String reviewRank = String.valueOf(book.get("customerReviewRank"));
 			String isbn13 = String.valueOf(book.get("isbn13"));
-			
+
 			if (isbn13 == "") {
 				isbn13 = String.valueOf(book.get("isbn"));
-				
+
 			}
 			map.put("isbn13", isbn13);
 			map.put("title", title);
@@ -99,9 +99,9 @@ public class Passing {
 
 			if (isbn13 == "") {
 				isbn13 = String.valueOf(book.get("isbn"));
-				
+
 			}
-			
+
 			map.put("isbn13", isbn13);
 			map.put("title", title);
 			map.put("author", author);
@@ -144,7 +144,7 @@ public class Passing {
 			if (categoryName.contains("국내도서>소설")) {
 				if (isbn13 == "") {
 					isbn13 = String.valueOf(book.get("isbn"));
-					
+
 				}
 				map.put("isbn13", isbn13);
 				map.put("title", title);
@@ -189,7 +189,7 @@ public class Passing {
 			if (categoryName.contains("국내도서>경제경영") || categoryName.contains("국내도서>자기계발")) {
 				if (isbn13 == "") {
 					isbn13 = String.valueOf(book.get("isbn"));
-					
+
 				}
 				map.put("isbn13", isbn13);
 				map.put("title", title);
@@ -234,9 +234,9 @@ public class Passing {
 			if (categoryName.contains("국내도서>어린이") || categoryName.contains("국내도서>만화")) {
 				if (isbn13 == "") {
 					isbn13 = String.valueOf(book.get("isbn"));
-					
+
 				}
-				
+
 				map.put("isbn13", isbn13);
 				map.put("title", title);
 				map.put("author", author);
@@ -280,9 +280,9 @@ public class Passing {
 			if (categoryName.contains("소설") || categoryName.contains("문학") || categoryName.contains("인문")) {
 				if (isbn13 == "") {
 					isbn13 = String.valueOf(book.get("isbn"));
-					
+
 				}
-				
+
 				map.put("isbn13", isbn13);
 				map.put("title", title);
 				map.put("author", author);
@@ -324,10 +324,10 @@ public class Passing {
 			String categoryName = (String) book.get("categoryName");
 
 			if (categoryName.contains("일본")) {
-				
+
 				if (isbn13 == "") {
 					isbn13 = String.valueOf(book.get("isbn"));
-					
+
 				}
 				map.put("isbn13", isbn13);
 				map.put("title", title);
@@ -372,7 +372,7 @@ public class Passing {
 			if (categoryName.contains("어린이")) {
 				if (isbn13 == "") {
 					isbn13 = String.valueOf(book.get("isbn"));
-					
+
 				}
 				map.put("isbn13", isbn13);
 				map.put("title", title);
@@ -415,10 +415,10 @@ public class Passing {
 			String categoryName = (String) book.get("categoryName");
 
 			if (!isbn13.equals("0") && categoryName.contains("소설")) {
-				
+
 				if (isbn13 == "") {
 					isbn13 = String.valueOf(book.get("isbn"));
-					
+
 				}
 				map.put("isbn13", isbn13);
 				map.put("title", title);
@@ -460,10 +460,10 @@ public class Passing {
 			String categoryName = (String) book.get("categoryName");
 
 			if (categoryName.contains("교양") || categoryName.contains("인문학")) {
-				
+
 				if (isbn13 == "") {
 					isbn13 = String.valueOf(book.get("isbn"));
-					
+
 				}
 				map.put("isbn13", isbn13);
 				map.put("title", title);
@@ -508,9 +508,9 @@ public class Passing {
 			if (categoryName.contains("만화")) {
 				if (isbn13 == "") {
 					isbn13 = String.valueOf(book.get("isbn"));
-					
+
 				}
-				
+
 				map.put("isbn13", isbn13);
 				map.put("title", title);
 				map.put("author", author);
@@ -553,7 +553,7 @@ public class Passing {
 			String bestRank = String.valueOf(book.get("bestRank"));
 			String reviewRank = String.valueOf(book.get("customerReviewRank"));
 
-		//	Integer priceSale = Integer.parseInt(priceSales);
+			// Integer priceSale = Integer.parseInt(priceSales);
 
 			DecimalFormat df = new DecimalFormat("###,###");
 			priceSales = df.format(Integer.parseInt(priceSales));
@@ -573,6 +573,53 @@ public class Passing {
 
 		}
 		return inquiryBookList;
+
+	}
+
+	// 상품 검색 파싱
+	public List<Map<Object, Object>> keywordBookPassing(String keyword) throws ParseException {
+
+		String json = WebClientApi.keywordBookAPI(keyword);
+
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObject = (JSONObject) jsonParser.parse(json);
+
+		JSONArray item = (JSONArray) jsonObject.get("item");
+		JSONObject book;
+
+		List<Map<Object, Object>> keywordBookList = new ArrayList<>();
+		for (int i = 0; i < item.size(); i++) {
+			book = (JSONObject) item.get(i);
+
+			Map<Object, Object> map = new HashMap<Object, Object>();
+			String title = (String) book.get("title");
+			String author = (String) book.get("author");
+			String pubDate = (String) book.get("pubDate");
+			String priceSales = String.valueOf(book.get("priceSales"));
+			String cover = (String) book.get("cover");
+			String description = (String) book.get("description");
+			String isbn13 = String.valueOf(book.get("isbn13"));
+			
+			if (isbn13 == "") {
+				isbn13 = String.valueOf(book.get("isbn"));
+
+			}
+
+			DecimalFormat df = new DecimalFormat("###,###");
+			priceSales = df.format(Integer.parseInt(priceSales));
+
+			map.put("title", title);
+			map.put("author", author);
+			map.put("pubdate", pubDate);
+			map.put("cover", cover);
+			map.put("description", description);
+			map.put("priceSales", priceSales);
+			map.put("isbn13", isbn13);
+
+			keywordBookList.add(map);
+
+		}
+		return keywordBookList;
 
 	}
 

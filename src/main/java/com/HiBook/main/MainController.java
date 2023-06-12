@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.HiBook.api.bo.Passing;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -33,8 +34,17 @@ public class MainController {
 		model.addAttribute("bestBlogBookList", bestBlogBookList);
 		
 		model.addAttribute("veiwName", "main/main");
-		
 		return "template/layout";
 	}
+	
+	@GetMapping("/main/main_search_view")
+	public String mainSearch(Model model, @RequestParam("keyword") String keyword) throws ParseException {
+		
+		//select
+		List<Map<Object, Object>> keywordBookList = passing.keywordBookPassing(keyword);
+		model.addAttribute("keywordBookList", keywordBookList);
+		return "main/mainKeyword";
+	}
+	
 
 }

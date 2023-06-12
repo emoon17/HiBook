@@ -57,7 +57,8 @@
 		<nav class="d-flex align-items-center ">
 			<jsp:include page="../include/nav.jsp" />
 		</nav>
-		<section class="contents ">
+		<section id="contents" class="contents ">
+		
 			<jsp:include page="../${veiwName}.jsp" />
 		</section>
 		<footer class="text-center">

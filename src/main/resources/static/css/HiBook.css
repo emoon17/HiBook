@@ -236,6 +236,9 @@ input[id="menuicon"]:checked+label+div {
 .return {
 	margin-right:110px;
 }
+#keyword {
+	
+}
 
 footer {
 	height : 100px;
