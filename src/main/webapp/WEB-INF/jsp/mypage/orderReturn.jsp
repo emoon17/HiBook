@@ -37,7 +37,7 @@
 				<th><a href="/hiBook/order_detail_view?orderNumber=${orderView.order.orderNumber}"><fmt:formatDate
 								value="${orderView.order.updatedAt}" pattern="yyyy-MM-dd" /></a></th>
 				<th><a
-					href="/hiBook/order_detail_view?orderNumber=${orderView.order.orderNumber}">${orderView.order.orderNumber}</a></th>
+					href="/hiBook/order_detail_view?orderNumber=${orderView.order.orderNumber}R">${orderView.order.orderNumber}</a></th>
 				<th><fmt:formatNumber value="${orderView.order.price}"
 							pattern="#,###" /></th>
 				<th>${orderView.order.state}</th>

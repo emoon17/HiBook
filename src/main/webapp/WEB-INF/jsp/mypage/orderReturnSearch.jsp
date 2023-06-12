@@ -15,11 +15,13 @@
 		<tbody>
 		<c:forEach items="${orderViewList}" var="orderView">
 			<tr>
-				<th><a href="/hiBook/order_detail_view?orderNumber=">${orderView.order.updatedAt}</a></th>
+				<th><a href="/hiBook/order_detail_view?orderNumber=${orderView.order.orderNumber}"><fmt:formatDate
+								value="${orderView.order.updatedAt}" pattern="yyyy-MM-dd" /></a></th>
 				<th><a
-					href="/hiBook/order_detail_view?orderNumber=">${orderView.order.orderNumber}</a></th>
-				<th>${orderView.orderproduct.price}</th>
-				<th></th>
+					href="/hiBook/order_detail_view?orderNumber=${orderView.order.orderNumber}">${orderView.order.orderNumber}</a></th>
+				<th><fmt:formatNumber value="${orderView.order.price}"
+							pattern="#,###" /></th>
+				<th>${orderView.order.state}</th>
 			</tr>
 		</tbody>
 		</c:forEach>

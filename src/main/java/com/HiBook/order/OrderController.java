@@ -77,8 +77,8 @@ public class OrderController {
 		
 		Integer userId = (Integer) session.getAttribute("userId");
 		//select
-		//List<OrderView> orderViewList = purchaseBO.getOrderReturnByDateUserId(startDate, endDate, userId);
-		//model.addAttribute("orderViewList", orderViewList);
+		List<OrderView> orderViewList = purchaseBO.getOrderReturnByDateUserId(startDate, endDate, userId);
+		model.addAttribute("orderViewList", orderViewList);
 		//응답
 		return "mypage/orderReturnSearch";
 	}
