@@ -30,5 +30,10 @@ public interface OrderDAO {
 	public void updateOrderByOrderNumber(
 			@Param("orderNumber") Integer orderNumber,
 			@Param("userId") Integer userId);
+	
+	public List<Order> selectOrderListUpdateByStartDateEndDateUserId(
+			@Param("startDate") Date startDate, 
+			@Param("endDate") Date endDate, 
+			@Param("userId") Integer userId);
 }
 

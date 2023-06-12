@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.HiBook.order.model.OrderView;
 import com.HiBook.purchase.bo.PurchaseBO;
-import com.HiBook.review.model.ReviewView;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -57,7 +56,7 @@ public class OrderController {
 		return "template/layout";
 	}
 
-	// 주문 화면 날짜 search 화면
+	// 주문  날짜 조회 화면
 	@GetMapping("/order_date_search_view")
 	public String OrderDateSearchView(@RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
 			@RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, HttpSession session,
@@ -70,13 +69,30 @@ public class OrderController {
 
 		return "mypage/orderSearch";
 	}
+	
+	//반품 날짜 조회 화면
+	@GetMapping("order_return_date_search_view")
+	public String OrderReturnDateSearchView(@RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+			@RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, HttpSession session, Model model) {
+		
+		Integer userId = (Integer) session.getAttribute("userId");
+		//select
+		//List<OrderView> orderViewList = purchaseBO.getOrderReturnByDateUserId(startDate, endDate, userId);
+		//model.addAttribute("orderViewList", orderViewList);
+		//응답
+		return "mypage/orderReturnSearch";
+	}
 
 	// 반품내역 view
 	@GetMapping("/order_return_view")
 	public String orderReturnView(Model model, HttpSession session) {
-
+		Integer userId = (Integer) session.getAttribute("userId");
+		if (userId == null) {
+			return "redirect:/hiBook/user/sign_in_view";
+		}
 		model.addAttribute("veiwName", "mypage/orderReturn");
-
+		List<OrderView> orderViewList = purchaseBO.getOrderReturnViewListByUserId(userId);
+		model.addAttribute("orderViewList", orderViewList);
 		return "template/layout";
 	}
 }

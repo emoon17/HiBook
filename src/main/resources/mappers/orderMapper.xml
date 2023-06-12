@@ -82,6 +82,26 @@
 			AND
 			<![CDATA[`createdAt` <= #{endDate}]]>
  	</select>
+ 	<select id="selectOrderListUpdateByStartDateEndDateUserId" parameterType="map" resultType="com.HiBook.order.model.Order">
+ 		SELECT
+ 			`id`
+			,`orderproductId`
+			,`orderNumber`
+			,`userId`
+			,`count`
+			,`price`
+			,`state`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`order`
+		WHERE
+			`userId` = #{userId}
+			AND
+			<![CDATA[`updatedAt` >= #{startDate}]]>
+			AND
+			<![CDATA[`updatedAt` <= #{endDate}]]>
+ 	</select>
  	<update id="updateOrderByOrderNumber" parameterType="map">
  		UPDATE `order`
  		SET

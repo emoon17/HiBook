@@ -32,6 +32,10 @@ public class OrderBO {
 	public List<Order> getOrderListByStartDateEndDateUserId(Date startDate, Date endDate, Integer userId) {
 		return orderDAO.selectOrderListByStartDateEndDateUserId(startDate, endDate, userId);
 	}
+	
+	public List<Order> getOrderListUpdateByStartDateEndDateUserId(Date startDate, Date endDate, Integer userId){
+		return orderDAO.selectOrderListUpdateByStartDateEndDateUserId(startDate, endDate, userId);
+	}
 
 	public void updateOrderByOrderNumber(Integer orderNumber, Integer userId) {
 

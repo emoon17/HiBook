@@ -164,6 +164,7 @@
 						},
 						success : function(data) {
 							if (data.code == 1) {
+								alert("반품 신청이 완료되었습니다.")
 								location.href = "/hiBook/order_return_view";
 							} else {
 								alert(data.errorMessage);

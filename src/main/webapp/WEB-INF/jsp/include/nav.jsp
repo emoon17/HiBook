@@ -59,7 +59,7 @@
 								</tr>
 								<tr>
 									<td colspan='3' class="font20 font-weight-bold pt-5"><a
-										href="#">반품내역 </a></td>
+										href="/hiBook/order_return_view">반품내역 </a></td>
 								</tr>
 							
 							</tbody>

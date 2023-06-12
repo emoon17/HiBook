@@ -79,7 +79,7 @@ public class PurchaseBO {
 		productBO.deleteProudctById(productId);
 
 	}
-
+	//장바구니 삭제
 	public void deleteCartByProductIdUserId(Integer productId, Integer userId) {
 		cartBO.deleteCartBYProductIdUserId(productId, userId);
 	}
@@ -151,15 +151,18 @@ public class PurchaseBO {
 		List<Order> orderList = orderBO.getOrderListByUserId(userId);
 		List<Order> newOrderList = new ArrayList<>();
 		for (int i = 0; i < orderList.size(); i++) {
-			int iON = orderList.get(i).getOrderNumber();
+			 int flag = 0;
+			 int iON = orderList.get(i).getOrderNumber();
 
-			newOrderList.add(orderList.get(i));
-			for (int j = i; j < newOrderList.size(); j++) {
-				int jON = newOrderList.get(i).getOrderNumber();
+			for (int j = 0; j < newOrderList.size(); j++) {
+				int jON = newOrderList.get(j).getOrderNumber();
 
-				if (iON == jON) {
-					newOrderList.remove(i);
+				if (iON == jON) { // orderNumber가 같을 때
+					flag = 1;
 				}
+			}
+			if (flag == 0) {
+				newOrderList.add(orderList.get(i));
 			}
 		}
 
@@ -226,6 +229,28 @@ public class PurchaseBO {
 		return orderViewList;
 	}
 	
+	//반품화면 날짜 조회 select
+//	public List<OrderView> getOrderReturnByDateUserId(Date startDate, Date endDate, Integer userId){
+//		List<OrderView> orderViewList = new ArrayList<>();
+//		
+//		List<Order> orderList = orderBO.getOrderListUpdateByStartDateEndDateUserId(startDate, endDate, userId);
+//		for (Order order : orderList) {
+//			if (order.getState().equals("반품 완료")) {
+//				
+//				OrderView orderView = new OrderView();
+//				orderView.setOrder(order);
+//				Orderproduct orderproduct = orderproductBO.getOrderproductById(order.getOrderproductId());
+//				orderView.setOrderproduct(orderproduct);
+//				Product product = productBO.getProductByUserId(orderproduct.getProductId());
+//				orderView.setProduct(product);
+//				
+//				orderViewList.add(orderView);
+//			}
+//		}
+//		
+//		return orderViewList;
+//	}
+	
 	//반품 신청
 	public void updateOrderAndOrderprdocutByOrderNumber(List<Integer> orderNumberArr, Integer userId) {
 		
@@ -241,6 +266,48 @@ public class PurchaseBO {
 		
 		//orderproduct update
 		
+	}
+	
+	// 반품 select
+	public List<OrderView> getOrderReturnViewListByUserId(Integer userId) {
+
+		List<OrderView> orderViewList = new ArrayList<>();
+
+		List<Order> orderList = orderBO.getOrderListByUserId(userId);
+		List<Order> newOrderList = new ArrayList<>();
+		for (int i = 0; i < orderList.size(); i++) {
+			 int flag = 0;
+			 int iON = orderList.get(i).getOrderNumber();
+
+			for (int j = 0; j < newOrderList.size(); j++) {
+				int jON = newOrderList.get(j).getOrderNumber();
+
+				if (iON == jON) { // orderNumber가 같을 때
+					flag = 1;
+				}
+			}
+			if (flag == 0) {
+				newOrderList.add(orderList.get(i));
+			}
+		}
+		List<Orderproduct> orderProduct = orderproductBO.getOrderproductListByUserId(userId);
+		for (Order order : newOrderList) {
+			OrderView orderView = new OrderView();
+			orderView.setOrder(order);
+			Orderproduct orderproduct = orderproductBO.getOrderproductById(order.getOrderproductId());
+			if (orderproduct.getState().equals("return")) {
+				orderView.setOrderproduct(orderproduct);
+
+				Product product = productBO.getProductByUserId(orderproduct.getProductId());
+				orderView.setProduct(product);
+
+				orderViewList.add(orderView);
+			}
+
+		}
+
+		return orderViewList;
+
 	}
 
 	// 결제하기
