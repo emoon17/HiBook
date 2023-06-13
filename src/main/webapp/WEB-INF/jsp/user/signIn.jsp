@@ -30,6 +30,15 @@
 						style="width: 630px; height: 85px;">로그인</button>
 				</div>
 				
+				<div class="font40 d-flex align-items-center justify-content-center">
+				
+					<div id="kakaoLoginBtn" class="font40 user-btn text-center mt-5 font-weight-bold main-keyword"
+						style="width: 630px; height: 85px;">
+						<a class="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=da00e9c9a82581ec40c118b0897e344d&redirect_uri=
+http://localhost/kakaoLogin&response_type=code">카카오톡으로 로그인하기	</a></div>
+					
+				</div>
+				
 				<div class="login_check font30 mt-5">
 					계정이 없으신가요? <a href="/hiBook/user/sign_up_view"
 						class="font30 font-weight-bold ">회원가입</a>
@@ -73,6 +82,7 @@
 			});
 			
 		});
+		
 		
 	});
 </script>

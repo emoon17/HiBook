@@ -64,6 +64,10 @@ nav {
 	
 }
 
+#kakaoLoginBtn {
+	background-color:#FEE500;	
+}
+
 
 /* 메뉴 로고 css */
 input[id="menuicon"] {
