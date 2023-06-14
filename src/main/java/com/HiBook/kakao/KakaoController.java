@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.HiBook.kakao.bo.KakaoLoginBO;
 import com.HiBook.kakao.bo.KakaoUserInfoBO;
+import com.HiBook.kakao.model.KakaoToken;
 
 @Controller
 public class KakaoController {
@@ -29,8 +30,8 @@ public class KakaoController {
 		// return에 페이지를 해도 되고, 여기서는 코드가 넘어오는지만 확인할거기 때문에 따로 return 값을 두지는 않았음
 
 		// 2번
-		String access_Token = kakaoLoginBO.getToken(code);
-		System.out.println("###access_Token#### : " + access_Token);
+		KakaoToken accessToken = kakaoLoginBO.getToken(code);
+		System.out.println("###access_Token#### : " + accessToken);
 		// 위의 access_Token 받는 걸 확인한 후에 밑에 진행
 
 //		// 3번
