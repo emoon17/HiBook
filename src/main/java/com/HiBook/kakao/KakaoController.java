@@ -1,7 +1,5 @@
 package com.HiBook.kakao;
 
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.HiBook.kakao.bo.KakaoLoginBO;
 import com.HiBook.kakao.bo.KakaoUserInfoBO;
 import com.HiBook.kakao.model.KakaoToken;
+import com.HiBook.kakao.model.KakaoUserInfo;
 
+import lombok.RequiredArgsConstructor;
+@RequiredArgsConstructor
 @Controller
 public class KakaoController {
 
@@ -23,7 +24,7 @@ public class KakaoController {
 
 	// 1번 카카오톡에 사용자 코드 받기(jsp의 a태그 href에 경로 있음)
 	@GetMapping("/kakaoLogin")
-	public ModelAndView kakaoLogin(@RequestParam("code") String code)throws Throwable {
+	public String kakaoLogin(@RequestParam("code") String code){
 
 		// 1번
 		System.out.println("code:" + code);
@@ -31,13 +32,13 @@ public class KakaoController {
 
 		// 2번
 		KakaoToken accessToken = kakaoLoginBO.getToken(code);
-		System.out.println("###access_Token#### : " + accessToken);
+		System.out.println("###access_Token#### : " + accessToken.getAccess_token());
 		// 위의 access_Token 받는 걸 확인한 후에 밑에 진행
 
 //		// 3번
-//		String access_TokenUserInfo = kakaoUserInfoBO.KakaoUserInfoResponseGetUserInfo(access_Token);
-//		System.out.println("###access_TokenUserInfo#### : " + access_TokenUserInfo);
+		KakaoUserInfo accessTokenUserInfo = kakaoUserInfoBO.ResponseGetUserInfo(accessToken.getAccess_token());
+		System.out.println("###access_TokenUserInfo#### : " + accessTokenUserInfo.getKakao_account().getEmail());
 
-		return null;
+		return "success";
 	}
 }

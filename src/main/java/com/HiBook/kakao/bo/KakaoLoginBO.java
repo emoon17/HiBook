@@ -5,23 +5,22 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.util.DefaultUriBuilderFactory;
 
 import com.HiBook.kakao.model.KakaoToken;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
+import reactor.core.publisher.Flux;
 @RequiredArgsConstructor
 @Service
 public class KakaoLoginBO {
 
 	    private static String TOKEN_URI = "https://kauth.kakao.com/oauth/token";
-	    private static String REDIRECT_URI = "https://localhost/kakaoLogin";
+	    private static String REDIRECT_URI = "http://localhost/kakaoLogin";
 	    private static String GRANT_TYPE = "authorization_code";
 	    private static String CLIENT_ID = "da00e9c9a82581ec40c118b0897e344d";
 	    private static String CLIENT_Secret = "o3IXxbn8MeezmoICKavYT0aD15ZbOMCV";
 
+	    
 	    public KakaoToken getToken(String code) {
 	    
 
@@ -43,23 +42,25 @@ public class KakaoLoginBO {
 			
 			//String uri = TOKEN_URI + "?grant_type=" + GRANT_TYPE + "&client_id=" + CLIENT_ID + "&redirect_uri=" + REDIRECT_URI + "&code=" + code +"&client_secret=" + CLIENT_Secret;
 			// baseURL 뒤에 붙일 파라미터들 넣기
-			String response = webClient.post()
+			Flux<KakaoToken> response = webClient.post()
 					.uri(TOKEN_URI)
 					.body(BodyInserters.fromFormData(params))
 					.header("Content-type","application/x-www-form-urlencoded;charset=utf-8" )
 	                .retrieve()
-	                .bodyToMono(String.class).block();
+	                .bodyToFlux(KakaoToken.class);
+			
+			return response.blockFirst();
 	                
-//			 //json형태로 변환
-	        ObjectMapper objectMapper = new ObjectMapper();
-	        KakaoToken kakaoToken = null;
-
-	        try {
-	            kakaoToken = objectMapper.readValue(response, KakaoToken.class);
-	        } catch (JsonProcessingException e) {
-	            e.printStackTrace();
-	        }
-	        return kakaoToken;
+////			 //json형태로 변환
+//	        ObjectMapper objectMapper = new ObjectMapper();
+//	        KakaoToken kakaoToken = null;
+//
+//	        try {
+//	            kakaoToken = objectMapper.readValue(response, KakaoToken.class);
+//	        } catch (JsonProcessingException e) {
+//	            e.printStackTrace();
+//	        }
+//	        return kakaoToken;
 		}
 //	        String uri = TOKEN_URI + "?grant_type=" + GRANT_TYPE + "&client_id=" + CLIENT_ID + "&redirect_uri=" + REDIRECT_URI + "&code=" + code;
 //	        System.out.println(uri);
