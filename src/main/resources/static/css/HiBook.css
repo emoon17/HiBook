@@ -176,7 +176,7 @@ input[id="menuicon"]:checked+label+div {
 .contents-box {
 	border: 0.1px solid #f1f1f1;
 	width: 2050px;
-	height: 870px;
+	height: auto;
 	border-radius: 9px;
 }
 
@@ -193,7 +193,7 @@ input[id="menuicon"]:checked+label+div {
 }
 
 .description {
-		height: 800px;
+		height: auto;
 }
 
 .line {

@@ -7,10 +7,10 @@
 	</div>
 	<!-- 베스트셀러 -->
 	<div id="bestSeller" class="contents-box pb-2">
-		<div class="d-flex flex-wrap p-3 justify-content-center">
+		<div class=" d-flex flex-wrap p-3 justify-content-center">
 			<c:forEach items="${bestBookList}" var ="bestBook">
 			<a href="/hiBook/hi_detail_view?isbn13=${bestBook.isbn13}">
-				<article id="Best" class="best-box p-2">
+				<article id="Best" class="description best-box p-2">
 					<div class="d-flex justify-content-center">
 						<img src="${bestBook.cover}" alt="이미지"
 							width="200" height="200" class="pl-3">
