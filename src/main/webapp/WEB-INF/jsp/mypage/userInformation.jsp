@@ -50,9 +50,17 @@
 
 	<div class="d-flex align-items-center pt-5">
 		<div class="font30 ml-5 mr-5 font-weight-bold " style="width: 170px;">계정연동</div>
-		<button type="button" class="btn font30 ml-5 mt-3 main-keyword"
-			style="width: 150px;">kakao </button>
+<c:if test="${kakaoCheck eq '부'}">		
+		<div class="font30 ml-5 mt-3"
+			style="width: 200px;"><a class="kakao font40 user-btn text-center mt-5 font-weight-bold main-keyword" href="https://kauth.kakao.com/oauth/authorize?client_id=da00e9c9a82581ec40c118b0897e344d&redirect_uri=
+http://localhost/kakaoLogin&response_type=code" >kakao 연동</a> </div>
+</c:if>	
+<c:if test="${kakaoCheck eq '여'}">	
+	<div class="font30 ml-5 mt-3"
+			style="width: 200px;">${email}</div>
+</c:if>			
 	</div>
+	
 
 	<div class="d-flex  align-items-center pt-5">
 		<div class="font30 ml-5 mr-5 font-weight-bold " style="width: 170px;">프로필이미지</div>

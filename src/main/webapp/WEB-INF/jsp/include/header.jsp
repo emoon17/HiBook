@@ -24,16 +24,26 @@
 </c:if>
 
 <c:if test="${not empty loginId}">
+<c:if test="${not empty profileImage}">
 	<div id="userImage" class="pl-4 pt-4">
 		<div id="imgae-border" class="ml-4">
+			<a href="/hiBook/mypage/user_information_view">
 			<img src="${profileImage}" alt="유저이미지" class="user-image">
+			</a>
 		</div>
-		<div class="pt-2 font20 ml-4">${loginId}
+		
+		<div class="pt-2 font20 ml-4"><a href="/hiBook/mypage/user_information_view">${loginId}</a>
 			| <a href="/hiBook/user/sign_out" class="pl-2">로그아웃</a>
 		</div>
 	</div>
 </c:if>
 
+<c:if test="${empty profileImage}">
+<div class="d-flex align-items-center justify-content-center pt-2 mr-5 font30"><a href="/hiBook/mypage/user_information_view">${loginId}</a>
+			| <a href="/hiBook/user/sign_out" class="pl-2">로그아웃</a>
+		</div>
+</c:if>
+</c:if>
 
 <script>
 	$(document).ready(function() {

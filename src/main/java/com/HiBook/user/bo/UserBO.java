@@ -37,6 +37,7 @@ public class UserBO {
 	// 회원가입
 	public void addUser(String name, String loginId, String password, String phoneNumber, String postcode,
 			String address, String detailAddress, String kakaoCheck, String profileImage) {
+		
 		userDAO.insertUser(name, loginId, password, phoneNumber, postcode, address, detailAddress, kakaoCheck,
 				profileImage);
 	}

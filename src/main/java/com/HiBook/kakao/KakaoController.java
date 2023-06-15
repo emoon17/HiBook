@@ -51,6 +51,7 @@ public class KakaoController {
 		session.setAttribute("name", user.getName());
 		session.setAttribute("loginId", user.getLoginId());
 		session.setAttribute("kakaoCheck", user.getKakaoCheck());
+		session.setAttribute("email", user.getEmail());
 		session.setAttribute("profileImage", user.getProfileImage());
 
 		return "redirect:/hiBook/main/main_veiw";
