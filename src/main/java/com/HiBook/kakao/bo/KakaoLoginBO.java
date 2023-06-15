@@ -23,13 +23,6 @@ public class KakaoLoginBO {
 	    
 	    public KakaoToken getToken(String code) {
 	    
-
-	    //	DefaultUriBuilderFactory factory = new DefaultUriBuilderFactory(TOKEN_URI);
-
-			// 인코딩 모드 설정
-			//factory.setEncodingMode(DefaultUriBuilderFactory.EncodingMode.VALUES_ONLY); // VALUES_ONLY인코딩 : 템플릿을 인코딩하지 않고
-																						// URI 변수를 템플릿에 적용하기 전에 엄격히 인코딩한다.
-
 	    	  //요청 param (body)
 	        MultiValueMap<String , String> params = new LinkedMultiValueMap<>();
 	        params.add("grant_type", GRANT_TYPE);
@@ -40,7 +33,6 @@ public class KakaoLoginBO {
 
 			WebClient webClient = WebClient.create(TOKEN_URI);
 			
-			//String uri = TOKEN_URI + "?grant_type=" + GRANT_TYPE + "&client_id=" + CLIENT_ID + "&redirect_uri=" + REDIRECT_URI + "&code=" + code +"&client_secret=" + CLIENT_Secret;
 			// baseURL 뒤에 붙일 파라미터들 넣기
 			Flux<KakaoToken> response = webClient.post()
 					.uri(TOKEN_URI)
@@ -50,27 +42,7 @@ public class KakaoLoginBO {
 	                .bodyToFlux(KakaoToken.class);
 			
 			return response.blockFirst();
-	                
-////			 //json형태로 변환
-//	        ObjectMapper objectMapper = new ObjectMapper();
-//	        KakaoToken kakaoToken = null;
-//
-//	        try {
-//	            kakaoToken = objectMapper.readValue(response, KakaoToken.class);
-//	        } catch (JsonProcessingException e) {
-//	            e.printStackTrace();
-//	        }
-//	        return kakaoToken;
-		}
-//	        String uri = TOKEN_URI + "?grant_type=" + GRANT_TYPE + "&client_id=" + CLIENT_ID + "&redirect_uri=" + REDIRECT_URI + "&code=" + code;
-//	        System.out.println(uri);
-//
-//	        Flux<KakaoTokenResponse> response = webClient.post()
-//	                .uri(uri)
-//	                .contentType(MediaType.APPLICATION_JSON)
-//	                .retrieve()
-//	                .bodyToFlux(KakaoTokenResponse.class);
-//
-//	        return response.blockFirst();
-//	    }
+	    }
+	    
+
 }

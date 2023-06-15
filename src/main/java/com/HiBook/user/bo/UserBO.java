@@ -6,9 +6,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.HiBook.common.FileManagerService;
+import com.HiBook.kakao.bo.KakaoUserInfoBO;
+import com.HiBook.kakao.model.KakaoUserInfo;
 import com.HiBook.user.dao.UserDAO;
 import com.HiBook.user.model.User;
 
@@ -22,6 +25,9 @@ public class UserBO {
 
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private KakaoUserInfoBO kakaoUserInfoBO;
 
 	// loginId 중복확인
 	public boolean existLoginId(String loginId) {
@@ -29,9 +35,10 @@ public class UserBO {
 	}
 
 	// 회원가입
-	public void addUser(String name, String loginId, String password, String phoneNumber,String postcode, String address,
-			String detailAddress, String kakaoCheck, String profileImage) {
-		userDAO.insertUser(name, loginId, password, phoneNumber, postcode, address, detailAddress, kakaoCheck, profileImage);
+	public void addUser(String name, String loginId, String password, String phoneNumber, String postcode,
+			String address, String detailAddress, String kakaoCheck, String profileImage) {
+		userDAO.insertUser(name, loginId, password, phoneNumber, postcode, address, detailAddress, kakaoCheck,
+				profileImage);
 	}
 
 	// 로그인하기
@@ -50,8 +57,8 @@ public class UserBO {
 	}
 
 	// update
-	public void informationUpdate(String name, String phoneNumber, String loginId, String postcode, String address,  String detailAddress,
-			MultipartFile file, Integer userId) {
+	public void informationUpdate(String name, String phoneNumber, String loginId, String postcode, String address,
+			String detailAddress, MultipartFile file, Integer userId) {
 
 		List<User> userList = getUserListBYId(userId);
 
@@ -73,8 +80,35 @@ public class UserBO {
 	}
 
 	// order시 업데이트
-	public void userAddressUpdate(String phoneNumber, String postcode, String address,  String detailAddress,
+	public void userAddressUpdate(String phoneNumber, String postcode, String address, String detailAddress,
 			Integer userId) {
 		userDAO.userAddressUpdate(phoneNumber, postcode, address, detailAddress, userId);
 	}
+
+	// 카카오 유저 insert
+	public void addKakaoUserBy(String name, String loginEmail, String profileImage,
+			String kakaoCheck, String email) {
+		String [] loginIdArr = loginEmail.split("@");
+		String loginId = loginIdArr[0];
+		userDAO.insertKakaoUserBy(name, loginId, profileImage, kakaoCheck, email);
+	}
+	
+	// 이메일 셀렉
+	public User getUserByEmail(String email) {
+		return userDAO.selectUserByEmail(email);
+	}
+
+	// kakaoLogin
+	@Transactional
+	public User saveUser(String accessToken) {
+		KakaoUserInfo userInfo = kakaoUserInfoBO.ResponseGetUserInfo(accessToken);
+		
+		User user = getUserByEmail(userInfo.getKakao_account().email);
+		if (user == null) {
+			addKakaoUserBy(userInfo.properties.getNickname(),  userInfo.kakao_account.email, userInfo.properties.getProfile_image(), "여",  userInfo.kakao_account.email);
+		}
+		
+		return user;
+	}
+
 }
