@@ -53,7 +53,7 @@
 					</div>
 						<div class="d-flex justify-content-center">
 							<div class="pt-3 font20 font-weight-bold">
-								Rank : <span class="ml-1">${koreanEconomyBook.bestRank} </span>
+								Best Rank : <span class="ml-1">${koreanEconomyBook.bestRank} </span>
 							</div>
 						</div>
 						<div class="d-flex justify-content-center">

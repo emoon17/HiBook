@@ -1,14 +1,21 @@
 package com.HiBook.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.HiBook.user.bo.UserBO;
+import com.HiBook.user.model.User;
+
 import jakarta.servlet.http.HttpSession;
 @RequestMapping("/hiBook")
 @Controller
 public class UserController {
+	
+	@Autowired
+	private UserBO userBO;
 	
 	// 회원가입 화면
 	@GetMapping("/user/sign_up_view")
@@ -56,6 +63,8 @@ public class UserController {
 		if (userId == null) {
 			return "redirect:/hiBook/user/sign_in_view";
 		}
+		
+		
 		model.addAttribute("veiwName", "mypage/userInformation");
 
 		return "template/layout";

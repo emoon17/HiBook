@@ -33,14 +33,14 @@
 		</div>
 		
 		<div class="pt-2 font20 ml-4"><a href="/hiBook/mypage/user_information_view">${loginId}</a>
-			| <a href="/hiBook/user/sign_out" class="pl-2">로그아웃</a>
+			| <a href="/hiBook/user/sign_out" class="pl-2">logout</a>
 		</div>
 	</div>
 </c:if>
 
 <c:if test="${empty profileImage}">
 <div class="d-flex align-items-center justify-content-center pt-2 mr-5 font30"><a href="/hiBook/mypage/user_information_view">${loginId}</a>
-			| <a href="/hiBook/user/sign_out" class="pl-2">로그아웃</a>
+			| <a href="/hiBook/user/sign_out" class="pl-2">logout</a>
 		</div>
 </c:if>
 </c:if>
