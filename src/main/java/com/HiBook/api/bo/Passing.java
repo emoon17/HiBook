@@ -28,7 +28,7 @@ public class Passing {
 	public List<Map<String, Object>> bestBookParshing()
 			throws JsonProcessingException, org.json.simple.parser.ParseException {
 
-		String json = listRestApi.bestSellerBookList();
+		String json = WebClientApi.bestSellerBookList();
 
 		JSONParser jsonParser = new JSONParser();
 		JSONObject jsonObject = (JSONObject) jsonParser.parse(json);

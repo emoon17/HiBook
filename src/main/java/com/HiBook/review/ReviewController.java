@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.HiBook.review.bo.ReviewBO;
 import com.HiBook.review.model.ReviewView;
 
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 
 @RequestMapping("/hiBook")
 @Controller

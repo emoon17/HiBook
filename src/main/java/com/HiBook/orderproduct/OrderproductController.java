@@ -12,7 +12,7 @@ import com.HiBook.orderproduct.bo.OrderproductBO;
 import com.HiBook.orderproduct.model.OrderProductView;
 import com.HiBook.purchase.bo.PurchaseBO;
 
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 @RequestMapping("/hiBook")
 @Controller
 public class OrderproductController {

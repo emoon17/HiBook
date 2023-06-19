@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.HiBook.review.bo.ReviewBO;
 
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 
 @RequestMapping("/hiBook")
 @RestController

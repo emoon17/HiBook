@@ -16,7 +16,7 @@ import com.HiBook.order.bo.OrderBO;
 import com.HiBook.product.model.Product;
 import com.HiBook.purchase.bo.PurchaseBO;
 
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 
 @RequestMapping("/hiBook")
 @RestController

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.HiBook.order.model.OrderView;
 import com.HiBook.purchase.bo.PurchaseBO;
 
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 
 @RequestMapping("/hiBook")
 @Controller

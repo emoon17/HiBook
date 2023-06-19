@@ -18,7 +18,7 @@ import com.HiBook.common.EncrypUtils;
 import com.HiBook.user.bo.UserBO;
 import com.HiBook.user.model.User;
 
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 
 @RequestMapping("/hiBook")
 @RestController

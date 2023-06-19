@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.HiBook.user.bo.UserBO;
 import com.HiBook.user.model.User;
 
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 @RequestMapping("/hiBook")
 @Controller
 public class UserController {

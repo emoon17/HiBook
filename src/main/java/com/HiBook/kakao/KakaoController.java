@@ -12,7 +12,7 @@ import com.HiBook.kakao.model.KakaoUserInfo;
 import com.HiBook.user.bo.UserBO;
 import com.HiBook.user.model.User;
 
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Controller
