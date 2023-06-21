@@ -19,7 +19,7 @@ public class FileManagerService {
 	                          			
 	// 실제 이미지가 저장될 경로(내컴퓨터 서버)
 	//public static final String FILE_UPLOAD_PATH = "C:\\jungeunhye\\5.Hi Book\\workspace\\images/";
-	public static final String FILE_UPLOAD_PATH = "/home/ec2-user/images";
+	public static final String FILE_UPLOAD_PATH = "/home/ec2-user/images/";
 	
 	//실제 업로드하는 메소드
 	//input : MultipartFile, loginId
