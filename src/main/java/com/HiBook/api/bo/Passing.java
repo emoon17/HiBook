@@ -18,8 +18,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 @Service
 public class Passing {
 
-	@Autowired
-	private ListRestAPI listRestApi;
 
 	@Autowired
 	private WebClientAPI WebClientApi;

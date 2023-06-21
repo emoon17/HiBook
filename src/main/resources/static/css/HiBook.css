@@ -189,7 +189,7 @@ input[id="menuicon"]:checked+label+div {
 
 .best-box {
 	width: 400px;
-	height: 450px;
+	height: auto;
 }
 
 .description {
