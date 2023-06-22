@@ -99,17 +99,7 @@ public class UserBO {
 		return userDAO.selectUserByEmail(email);
 	}
 
-	// kakaoLogin
-	@Transactional
-	public User saveUser(String accessToken) {
-		KakaoUserInfo userInfo = kakaoUserInfoBO.ResponseGetUserInfo(accessToken);
-		
-		User user = getUserByEmail(userInfo.getKakao_account().email);
-		if (user == null) {
-			addKakaoUserBy(userInfo.properties.getNickname(),  userInfo.kakao_account.email, userInfo.properties.getProfile_image(), "여",  userInfo.kakao_account.email);
-		}
-		
-		return user;
-	}
+	
+
 
 }

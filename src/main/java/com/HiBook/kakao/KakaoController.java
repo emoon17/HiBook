@@ -45,8 +45,17 @@ public class KakaoController {
 		System.out.println("###access_TokenUserInfo#### : " + accessTokenUserInfo.getKakao_account().getEmail());
 		System.out.println("###UserInfo#### : " + accessTokenUserInfo);
 		
+	
 		// user insert
-		User user = userBO.saveUser(accessToken.getAccess_token());
+		userBO.addKakaoUserBy(accessTokenUserInfo.properties.getNickname(),
+				accessTokenUserInfo.kakao_account.email,
+				accessTokenUserInfo.properties.getProfile_image(),
+				"여",
+				accessTokenUserInfo.kakao_account.email);
+		
+		// User select
+		User user = userBO.getUserByEmail(accessTokenUserInfo.kakao_account.email);
+		
 		session.setAttribute("userId", user.getId());
 		session.setAttribute("name", user.getName());
 		session.setAttribute("loginId", user.getLoginId());
