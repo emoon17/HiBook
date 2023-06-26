@@ -2,6 +2,8 @@ package com.HiBook.user.model;
 
 import java.util.Date;
 
+import lombok.Builder;
+
 public class User {
 	private int id;
 	private String name;
@@ -16,6 +18,7 @@ public class User {
 	private Date createdAt;
 	private Date updatedAt;
 	private String email;
+	
 	
 	
 	
@@ -98,6 +101,7 @@ public class User {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
 	
 	
 

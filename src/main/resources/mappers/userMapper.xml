@@ -50,7 +50,7 @@
 		)
  		
  	</insert>
- 	<insert id="insertKakaoUserBy" parameterType="map">
+ 	<insert id="insertKakaoUser" parameterType="map" useGeneratedKeys="true" keyProperty="id">
  		INSERT INTO `user`
  		(
  			`name`

@@ -50,12 +50,7 @@ public interface UserDAO {
 			@Param("detailAddress") String detailAddress,
 			@Param("userId") Integer userId);
 	
-	public void insertKakaoUserBy(
-			@Param("name") String name,
-			@Param("loginId") String loginId, 
-			@Param("profileImage") String profileImage, 
-			@Param("kakaoCheck") String kakaoCheck,
-			@Param("email") String email );
+	public void insertKakaoUser(User user);
 	
 	public User selectUserByEmail(String email);
 }

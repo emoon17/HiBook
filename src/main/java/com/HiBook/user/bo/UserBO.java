@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.HiBook.common.FileManagerService;
 import com.HiBook.kakao.bo.KakaoUserInfoBO;
-import com.HiBook.kakao.model.KakaoUserInfo;
 import com.HiBook.user.dao.UserDAO;
 import com.HiBook.user.model.User;
 
@@ -25,7 +24,7 @@ public class UserBO {
 
 	@Autowired
 	private UserDAO userDAO;
-	
+
 	@Autowired
 	private KakaoUserInfoBO kakaoUserInfoBO;
 
@@ -37,7 +36,7 @@ public class UserBO {
 	// 회원가입
 	public void addUser(String name, String loginId, String password, String phoneNumber, String postcode,
 			String address, String detailAddress, String kakaoCheck, String profileImage) {
-		
+
 		userDAO.insertUser(name, loginId, password, phoneNumber, postcode, address, detailAddress, kakaoCheck,
 				profileImage);
 	}
@@ -87,29 +86,44 @@ public class UserBO {
 	}
 
 	// 카카오 유저 insert
-	public void addKakaoUserBy(String name, String loginEmail, String profileImage,
-			String kakaoCheck, String email) {
-		String [] loginIdArr = loginEmail.split("@");
-		String loginId = loginIdArr[0];
-		userDAO.insertKakaoUserBy(name, loginId, profileImage, kakaoCheck, email);
+	public void addKakaoUser(User user) {
+
+		userDAO.insertKakaoUser(user);
 	}
-	
+
 	// 이메일 셀렉
 	public User getUserByEmail(String email) {
 		return userDAO.selectUserByEmail(email);
 	}
 
-	// kakaoLogin
 	@Transactional
-	public User saveUser(String accessToken) {
-		KakaoUserInfo userInfo = kakaoUserInfoBO.ResponseGetUserInfo(accessToken);
-		
-		User user = getUserByEmail(userInfo.getKakao_account().email);
+	public User saveUser(String name, String profileImage, String email) {
+	//	KakaoUserInfo userInfo = kakaoUserInfoBO.ResponseGetUserInfo(accessToken);
+
+		//accessTokenUserInfo.properties.getNickname(),accessTokenUserInfo.properties.getProfile_image()
+		//,accessTokenUserInfo.kakao_account.email
+		User user = getUserByEmail(email);
+	//	KakaoUser kakaoUser = new KakaoUser();
+
 		if (user == null) {
-			addKakaoUserBy(userInfo.properties.getNickname(),  userInfo.kakao_account.email, userInfo.properties.getProfile_image(), "여",  userInfo.kakao_account.email);
+			String[] loginIdArr = email.split("@");
+			String loginId = loginIdArr[0];
+			
+			
+			User users = new User();
+			users.setName(name);
+			users.setLoginId(loginId);
+			users.setProfileImage(profileImage);
+			users.setKakaoCheck("여");
+			users.setEmail(email);
+			addKakaoUser(users);
+			user = getUserById(users.getId());
+			
 		}
 		
+		// 이메일 있으면
 		return user;
+
 	}
 
 }
