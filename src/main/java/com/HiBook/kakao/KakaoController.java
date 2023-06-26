@@ -2,6 +2,8 @@ package com.HiBook.kakao;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +29,8 @@ public class KakaoController {
 	
 	@Autowired
 	private UserBO userBO;
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	// 1번 카카오톡에 사용자 코드 받기(jsp의 a태그 href에 경로 있음)
 	@GetMapping("/kakaoLogin")
@@ -42,14 +46,16 @@ public class KakaoController {
 		// 위의 access_Token 받는 걸 확인한 후에 밑에 진행
 
 //		// 3번
-		KakaoUserInfo accessTokenUserInfo = kakaoUserInfoBO.ResponseGetUserInfo(accessToken.getAccess_token());
-		System.out.println("###access_TokenUserInfo#### : " + accessTokenUserInfo.getKakao_account().getEmail());
-		System.out.println("###UserInfo#### : " + accessTokenUserInfo);
+		KakaoUserInfo userInfo = kakaoUserInfoBO.ResponseGetUserInfo(accessToken.getAccess_token());
+		System.out.println("###access_TokenUserInfo#### : " + userInfo.getKakao_account().getEmail());
+		System.out.println("###access_TokenUserInfo#### : " + userInfo.getId());
+//		logger.info("회원 정보 입니다.{}",userInfo);
+		System.out.println("###UserInfo#### : " + userInfo);
 		
 	
 //		// user insert
 //		userBO.addKakaoUserBy(, //,accessTokenUserInfo.properties.getNickname(),accessTokenUserInfo.properties.getProfile_image(),accessTokenUserInfo.kakao_account.email
-		User user = userBO.saveUser(accessTokenUserInfo.properties.getNickname(),accessTokenUserInfo.properties.getProfile_image(),accessTokenUserInfo.getKakao_account().email);
+		User user = userBO.saveUser(userInfo.properties.getNickname(),userInfo.properties.getProfile_image(),userInfo.getKakao_account().getEmail());
 		
 		session.setAttribute("userId", user.getId());
 		session.setAttribute("name", user.getName());
