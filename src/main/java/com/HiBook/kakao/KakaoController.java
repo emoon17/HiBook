@@ -49,7 +49,7 @@ public class KakaoController {
 	
 //		// user insert
 //		userBO.addKakaoUserBy(, //,accessTokenUserInfo.properties.getNickname(),accessTokenUserInfo.properties.getProfile_image(),accessTokenUserInfo.kakao_account.email
-		User user = userBO.saveUser(accessTokenUserInfo.properties.getNickname(),accessTokenUserInfo.properties.getProfile_image(),accessTokenUserInfo.kakao_account.email);
+		User user = userBO.saveUser(accessTokenUserInfo.properties.getNickname(),accessTokenUserInfo.properties.getProfile_image(),accessTokenUserInfo.getKakao_account().email);
 		
 		session.setAttribute("userId", user.getId());
 		session.setAttribute("name", user.getName());
