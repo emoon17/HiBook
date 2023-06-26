@@ -1,5 +1,7 @@
 package com.HiBook.kakao;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +14,6 @@ import com.HiBook.kakao.model.KakaoUserInfo;
 import com.HiBook.user.bo.UserBO;
 import com.HiBook.user.model.User;
 
-import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Controller
@@ -46,15 +47,9 @@ public class KakaoController {
 		System.out.println("###UserInfo#### : " + accessTokenUserInfo);
 		
 	
-		// user insert
-		userBO.addKakaoUserBy(accessTokenUserInfo.properties.getNickname(),
-				accessTokenUserInfo.kakao_account.email,
-				accessTokenUserInfo.properties.getProfile_image(),
-				"여",
-				accessTokenUserInfo.kakao_account.email);
-		
-		// User select
-		User user = userBO.getUserByEmail(accessTokenUserInfo.kakao_account.email);
+//		// user insert
+//		userBO.addKakaoUserBy(, //,accessTokenUserInfo.properties.getNickname(),accessTokenUserInfo.properties.getProfile_image(),accessTokenUserInfo.kakao_account.email
+		User user = userBO.saveUser(accessTokenUserInfo.properties.getNickname(),accessTokenUserInfo.properties.getProfile_image(),accessTokenUserInfo.kakao_account.email);
 		
 		session.setAttribute("userId", user.getId());
 		session.setAttribute("name", user.getName());
@@ -62,7 +57,7 @@ public class KakaoController {
 		session.setAttribute("kakaoCheck", user.getKakaoCheck());
 		session.setAttribute("email", user.getEmail());
 		session.setAttribute("profileImage", user.getProfileImage());
-
+		
 		return "redirect:/hiBook/main/main_veiw";
 	}
 }
