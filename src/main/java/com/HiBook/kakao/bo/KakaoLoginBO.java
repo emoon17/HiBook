@@ -15,7 +15,7 @@ import reactor.core.publisher.Flux;
 public class KakaoLoginBO {
 
 	    private static String TOKEN_URI = "https://kauth.kakao.com/oauth/token";
-	    private static String REDIRECT_URI = "http://13.125.178.54:8080/kakaoLogin";
+	    private static String REDIRECT_URI = "http://localhost/kakaoLogin";
 	    private static String GRANT_TYPE = "authorization_code";
 	    private static String CLIENT_ID = "da00e9c9a82581ec40c118b0897e344d";
 	    private static String CLIENT_Secret = "o3IXxbn8MeezmoICKavYT0aD15ZbOMCV";
