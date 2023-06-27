@@ -53,4 +53,6 @@ public interface UserDAO {
 	public void insertKakaoUser(User user);
 	
 	public User selectUserByEmail(String email);
+	
+	public User selectUserByKakaoId(String kakaoId);
 }

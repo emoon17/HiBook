@@ -15,9 +15,6 @@ import com.HiBook.kakao.model.KakaoToken;
 import com.HiBook.kakao.model.KakaoUserInfo;
 import com.HiBook.user.bo.UserBO;
 import com.HiBook.user.model.User;
-
-import lombok.RequiredArgsConstructor;
-@RequiredArgsConstructor
 @Controller
 public class KakaoController {
 
@@ -55,7 +52,7 @@ public class KakaoController {
 	
 //		// user insert
 //		userBO.addKakaoUserBy(, //,accessTokenUserInfo.properties.getNickname(),accessTokenUserInfo.properties.getProfile_image(),accessTokenUserInfo.kakao_account.email
-		User user = userBO.saveUser(userInfo.properties.getNickname(),userInfo.properties.getProfile_image(),userInfo.getKakao_account().getEmail());
+		User user = userBO.saveUser(userInfo.properties.getNickname(),userInfo.properties.getProfile_image(),userInfo.getKakao_account().getEmail(),userInfo.getId());
 		
 		session.setAttribute("userId", user.getId());
 		session.setAttribute("name", user.getName());

@@ -95,14 +95,18 @@ public class UserBO {
 	public User getUserByEmail(String email) {
 		return userDAO.selectUserByEmail(email);
 	}
-
+	
+	// kakaoId 셀렉
+	public User getUserByKakaoId(String kakaoId) {
+		return userDAO.selectUserByKakaoId(kakaoId);
+	}
 	@Transactional
-	public User saveUser(String name, String profileImage, String email) {
+	public User saveUser(String name, String profileImage, String email, String kakaoId) {
 	//	KakaoUserInfo userInfo = kakaoUserInfoBO.ResponseGetUserInfo(accessToken);
 
 		//accessTokenUserInfo.properties.getNickname(),accessTokenUserInfo.properties.getProfile_image()
 		//,accessTokenUserInfo.kakao_account.email
-		User user = getUserByEmail(email);
+		User user = getUserByKakaoId(kakaoId);
 	//	KakaoUser kakaoUser = new KakaoUser();
 
 		if (user == null) {
@@ -116,6 +120,7 @@ public class UserBO {
 			users.setProfileImage(profileImage);
 			users.setKakaoCheck("여");
 			users.setEmail(email);
+			users.setKakaoId(kakaoId);
 			addKakaoUser(users);
 			user = getUserById(users.getId());
 			
