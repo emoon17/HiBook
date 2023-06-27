@@ -32,6 +32,7 @@
 			,`createdAt`
 			,`updatedAt`
 			, `email`
+			, `kakaoId`
  		)
  		VALUES
 		(
@@ -46,6 +47,7 @@
 			,#{profileImage}
 			, NOW()
 			, NOW()
+			, NULL
 			, NULL
 		)
  		
@@ -65,6 +67,7 @@
 			,`createdAt`
 			,`updatedAt`
 			, `email`
+			, `kakaoId`
  		)
  		VALUES
 		(
@@ -80,6 +83,7 @@
 			, NOW()
 			, NOW()
 			,#{email}
+			, #{kakaoId}
 		)
  	</insert>
  	
@@ -99,6 +103,7 @@
 			,`createdAt`
 			,`updatedAt`
 			, `email`
+			, `kakaoId`
 		FROM
 			`user`
 		WHERE 
@@ -122,6 +127,7 @@
 			,`createdAt`
 			,`updatedAt`
 			, `email`
+			, `kakaoId`
 		FROM
 			`user`
 		WHERE
@@ -142,6 +148,7 @@
 			,`createdAt`
 			,`updatedAt`
 			, `email`
+			, `kakaoId`
 		FROM
 			`user`
 		WHERE
@@ -162,10 +169,32 @@
 			,`createdAt`
 			,`updatedAt`
 			,`email`
+			, `kakaoId`
 		FROM
 			`user`
 		WHERE
 			`email` = #{email}
+ 	</select>
+ 	<select id="selectUserByKakaoId" resultType="com.HiBook.user.model.User" parameterType="String">
+ 		SELECT 
+ 			`id`
+ 			,`name`
+			,`loginId`
+			,`password`
+			,`phoneNumber`
+			,`postcode`
+			,`address`
+			,`detailAddress`
+			,`kakaoCheck`
+			,`profileImage`
+			,`createdAt`
+			,`updatedAt`
+			,`email`
+			, `kakaoId`
+		FROM
+			`user`
+		WHERE
+			`kakaoId` = #{kakaoId}
  	</select>
  	<update id="informationUpdate" parameterType="map">
  		UPDATE `user`

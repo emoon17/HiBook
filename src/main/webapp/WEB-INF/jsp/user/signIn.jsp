@@ -35,7 +35,7 @@
 					<div id="kakaoLoginBtn" class="font40 user-btn text-center mt-5 font-weight-bold main-keyword"
 						style="width: 630px; height: 85px;">
 						<a class="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=da00e9c9a82581ec40c118b0897e344d&redirect_uri=
-http://13.125.178.54:8080/kakaoLogin&response_type=code">카카오톡으로 로그인하기	</a></div>
+http://localhost/kakaoLogin&response_type=code">카카오톡으로 로그인하기	</a></div>
 					
 				</div>
 				

@@ -18,11 +18,19 @@ public class User {
 	private Date createdAt;
 	private Date updatedAt;
 	private String email;
+	private String kakaoId;
 	
 	
 	
 	
 	
+	
+	public String getKakaoId() {
+		return kakaoId;
+	}
+	public void setKakaoId(String kakaoId) {
+		this.kakaoId = kakaoId;
+	}
 	public String getEmail() {
 		return email;
 	}
