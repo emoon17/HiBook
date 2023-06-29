@@ -53,7 +53,7 @@
 <c:if test="${kakaoCheck eq '부'}">		
 		<div class="font30 ml-5 mt-3"
 			style="width: 200px;"><a class="kakao font40 user-btn text-center mt-5 font-weight-bold main-keyword" href="https://kauth.kakao.com/oauth/authorize?client_id=da00e9c9a82581ec40c118b0897e344d&redirect_uri=
-http://localhost/kakaoLogin&response_type=code" >kakao 연동</a> </div>
+http://13.125.178.54:8080/kakaoLogin&response_type=code" >kakao 연동</a> </div>
 </c:if>	
 <c:if test="${kakaoCheck eq '여'}">	
 	<div class="font30 ml-5 mt-3"

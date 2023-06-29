@@ -61,6 +61,12 @@ public class KakaoController {
 		session.setAttribute("email", user.getEmail());
 		session.setAttribute("profileImage", user.getProfileImage());
 		
+		user = userBO.getUserByKakaoId(user.getKakaoId());
+		session.setAttribute("phoneNumber", user.getPhoneNumber());
+		session.setAttribute("address", user.getAddress());
+		session.setAttribute("postcode", user.getPostcode());
+		session.setAttribute("detailAddress", user.getDetailAddress());
+		System.out.println("####phoneNumber ###" + user.getPhoneNumber());
 		return "redirect:/hiBook/main/main_veiw";
 	}
 }

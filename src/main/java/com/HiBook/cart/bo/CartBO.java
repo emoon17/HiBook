@@ -38,9 +38,9 @@ public class CartBO {
 		cartDAO.deleteCartBYProductIdUserId(productId, userId);
 	}
 	
-	public Cart getCartByProductId(Integer productId) {
+	public List<Cart> getCartListByProductId(Integer productId) {
 		
-		return cartDAO.selectCartByProductId(productId);
+		return cartDAO.selectCartListByProductId(productId);
 	}
 
 	public void updateCartByCountProductIdUserId(Integer productId, Integer count, Integer price, Integer userId){
