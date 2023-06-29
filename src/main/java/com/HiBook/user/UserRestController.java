@@ -130,12 +130,12 @@ public class UserRestController {
 		session.removeAttribute("address");
 		
 		User user = userBO.getUserById(userId);
-		session.setAttribute("name", user.getName());
-		session.setAttribute("phoneNumber", user.getPhoneNumber());
-		session.setAttribute("loginId", user.getLoginId());
-		session.setAttribute("postcode", user.getPostcode());
-		session.setAttribute("address", user.getAddress());
-		session.setAttribute("detailAddress", user.getDetailAddress());
+//		session.setAttribute("name", user.getName());
+//		session.setAttribute("phoneNumber", user.getPhoneNumber());
+//		session.setAttribute("loginId", user.getLoginId());
+//		session.setAttribute("postcode", user.getPostcode());
+//		session.setAttribute("address", user.getAddress());
+//		session.setAttribute("detailAddress", user.getDetailAddress());
 		// 결과 나누기
 		result.put("code", 1);
 		// 응답
