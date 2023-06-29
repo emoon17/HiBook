@@ -53,7 +53,7 @@ public class KakaoController {
 //		// user insert
 //		userBO.addKakaoUserBy(, //,accessTokenUserInfo.properties.getNickname(),accessTokenUserInfo.properties.getProfile_image(),accessTokenUserInfo.kakao_account.email
 		User user = userBO.saveUser(userInfo.properties.getNickname(),userInfo.properties.getProfile_image(),userInfo.getKakao_account().getEmail(),userInfo.getId());
-		
+		System.out.println("####profileImage :" + user.getProfileImage());
 		session.setAttribute("userId", user.getId());
 		session.setAttribute("name", user.getName());
 		session.setAttribute("loginId", user.getLoginId());

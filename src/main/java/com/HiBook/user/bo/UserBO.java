@@ -71,11 +71,8 @@ public class UserBO {
 		}
 
 		// 파일 업로드 => 내 컴퓨터 서버에만 올린다. 경로로 보여지기.
-		String imagePath = null;
-		if (file != null) {
-			// 파일이 있을 때만 업로드 -> 이미지 경로를 얻어냄
-			imagePath = fileManagerService.saveFile(loginId, file);
-		}
+		String imagePath = fileManagerService.saveFile(loginId, file);
+
 		userDAO.informationUpdate(name, phoneNumber, loginId, postcode, address, detailAddress, imagePath, userId);
 	}
 
@@ -95,25 +92,25 @@ public class UserBO {
 	public User getUserByEmail(String email) {
 		return userDAO.selectUserByEmail(email);
 	}
-	
+
 	// kakaoId 셀렉
 	public User getUserByKakaoId(String kakaoId) {
 		return userDAO.selectUserByKakaoId(kakaoId);
 	}
+
 	@Transactional
 	public User saveUser(String name, String profileImage, String email, String kakaoId) {
-	//	KakaoUserInfo userInfo = kakaoUserInfoBO.ResponseGetUserInfo(accessToken);
+		// KakaoUserInfo userInfo = kakaoUserInfoBO.ResponseGetUserInfo(accessToken);
 
-		//accessTokenUserInfo.properties.getNickname(),accessTokenUserInfo.properties.getProfile_image()
-		//,accessTokenUserInfo.kakao_account.email
+		// accessTokenUserInfo.properties.getNickname(),accessTokenUserInfo.properties.getProfile_image()
+		// ,accessTokenUserInfo.kakao_account.email
 		User user = getUserByKakaoId(kakaoId);
-	//	KakaoUser kakaoUser = new KakaoUser();
+		// KakaoUser kakaoUser = new KakaoUser();
 
 		if (user == null) {
 			String[] loginIdArr = email.split("@");
 			String loginId = loginIdArr[0];
-			
-			
+
 			User users = new User();
 			users.setName(name);
 			users.setLoginId(loginId);
@@ -123,9 +120,9 @@ public class UserBO {
 			users.setKakaoId(kakaoId);
 			addKakaoUser(users);
 			user = getUserById(users.getId());
-			
+
 		}
-		
+
 		// 이메일 있으면
 		return user;
 
