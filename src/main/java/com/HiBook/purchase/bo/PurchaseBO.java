@@ -44,20 +44,22 @@ public class PurchaseBO {
 		int i = -1;
 
 		for (Product pr : productList) {
-			Cart cart = cartBO.getCartByProductId(pr.getId());
-			if (cart != null && cart.getProductId() == pr.getId()) { // 같으면 1 반환
-				i = 1;
-				Integer addCount = cart.getCount() + count;
-				updateCartByCount(pr.getId(), addCount, pr.getPrice(), userId);
+			List<Cart> cartList = cartBO.getCartListByProductId(pr.getId());
+			for (Cart cart : cartList) {
+				Product pro = productBO.getPriceByProductId(cart.getProductId()); // 카트에 있는 상품들 가져옴 (isbn 가져오기 위해)
+				if (cart != null && pro.getIsbn13().equals(product.getIsbn13())) { // 같으면 1 반환
+					i = 1;
+					Integer addCount = cart.getCount() + count;
+					updateCartByCount(pr.getId(), addCount, pr.getPrice(), userId);
+				}
 			}
 		}
-		// cart insert
 		if (i == -1) {
 			productBO.addProductByIsbn13(product);
 			cartBO.addCartByProductIdUserIdCountPrice(product.getId(), userId, count, product.getPrice());
-
+			
 		}
-		// Cart cart = cartBO.getCartByProductId(product.getId());
+		// cart insert
 
 	}
 

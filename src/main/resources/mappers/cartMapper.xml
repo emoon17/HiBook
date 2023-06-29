@@ -63,7 +63,7 @@
  			AND
  			 `userId` = #{userId}
  	</delete>
- 	<select id="selectCartByProductId" resultType="com.HiBook.cart.model.Cart">
+ 	<select id="selectCartListByProductId" resultType="com.HiBook.cart.model.Cart">
  		SELECT
  			`id`
 			,`productId`
