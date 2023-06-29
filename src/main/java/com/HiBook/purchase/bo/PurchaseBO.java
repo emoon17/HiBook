@@ -45,7 +45,7 @@ public class PurchaseBO {
 
 		for (Product pr : productList) {
 			Cart cart = cartBO.getCartByProductId(pr.getId());
-			if (cart != null && cart.getProductId() == product.getId()) { // 같으면 1 반환
+			if (cart != null && cart.getProductId() == pr.getId()) { // 같으면 1 반환
 				i = 1;
 				Integer addCount = cart.getCount() + count;
 				updateCartByCount(pr.getId(), addCount, pr.getPrice(), userId);
@@ -92,7 +92,7 @@ public class PurchaseBO {
 
 	}
 
-	// cart -> orderproduct insert
+	// cart -> orderproduct insert 장바구니에서 주문하기
 	@Transactional
 	public void addOrderProductAndOrderByProductIdUserId(List<Integer> productId, Integer userId) {
 
