@@ -98,6 +98,7 @@ public class UserBO {
 		return userDAO.selectUserByKakaoId(kakaoId);
 	}
 
+	//카카오 로그인
 	@Transactional
 	public User saveUser(String name, String profileImage, String email, String kakaoId) {
 		// KakaoUserInfo userInfo = kakaoUserInfoBO.ResponseGetUserInfo(accessToken);

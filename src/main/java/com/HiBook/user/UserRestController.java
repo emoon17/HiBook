@@ -89,12 +89,9 @@ public class UserRestController {
 			session.setAttribute("loginId", user.getLoginId());
 			session.setAttribute("password", user.getPassword());
 			session.setAttribute("phoneNumber", user.getPhoneNumber());
-			System.out.println("####userPhoneNumber###: " + user.getPhoneNumber());
 			session.setAttribute("address", user.getAddress());
-			System.out.println("####useraddress###: " + user.getAddress());
 			session.setAttribute("postcode", user.getPostcode());
 			session.setAttribute("detailAddress", user.getDetailAddress());
-			System.out.println("####userdetailAddress###: " + user.getDetailAddress());
 			session.setAttribute("kakaoCheck", user.getKakaoCheck());
 			session.setAttribute("profileImage", user.getProfileImage());
 		} else {
