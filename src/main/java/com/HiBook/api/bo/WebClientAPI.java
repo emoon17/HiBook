@@ -275,7 +275,7 @@ public class WebClientAPI {
 	//상품 검색하기 api
 	// baseURL 뒤에 붙일 파라미터들 넣기
 	// https://www.aladin.co.kr/ttb/api/ItemSearch.aspx
-//	?ttbkey=ttbwjddmsgo452053001
+//	?ttbkey=
 //			&Query=aladdin
 //			&QueryType=Keyword
 //			&MaxResults=10

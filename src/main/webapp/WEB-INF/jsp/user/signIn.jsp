@@ -77,7 +77,7 @@ http://13.125.178.54:8080/kakaoLogin&response_type=code">카카오톡으로 로�
 				if(data.code == 1) {
 					location.href = "/hiBook/main/main_veiw";
 				} else {
-					alert("아이디와 비밀번호를 다시 확인해주세요");
+					alert(data.erroMessage);
 				} 
 			});
 			
