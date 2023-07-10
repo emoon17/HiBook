@@ -69,9 +69,14 @@ public class UserBO {
 			}
 
 		}
-
+		String imagePath = null;
 		// 파일 업로드 => 내 컴퓨터 서버에만 올린다. 경로로 보여지기.
-		String imagePath = fileManagerService.saveFile(loginId, file);
+		if (file == null) { // 파일이 null로 들어왔을 때는 그 전 imagepath를 가져와서 넣는다.
+			User user = getUserProfileImageByUserId(userId);
+			imagePath = user.getProfileImage();
+		} else {
+			imagePath = fileManagerService.saveFile(loginId, file);
+		}
 
 		userDAO.informationUpdate(name, phoneNumber, loginId, postcode, address, detailAddress, imagePath, userId);
 	}
@@ -96,6 +101,11 @@ public class UserBO {
 	// kakaoId 셀렉
 	public User getUserByKakaoId(String kakaoId) {
 		return userDAO.selectUserByKakaoId(kakaoId);
+	}
+	
+	// 프로필 이미지 셀렉
+	public User getUserProfileImageByUserId(Integer userId) {
+		return userDAO.selectUserProfileImageByUserId(userId);
 	}
 
 	//카카오 로그인

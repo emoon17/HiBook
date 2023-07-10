@@ -68,6 +68,7 @@ public class PurchaseBO {
 	public void addProductAndOrderProductByProductCountUserId(Product product, Integer count, String title,
 			Integer price, Integer userId) {
 		productBO.addProductByIsbn13(product);
+		price = count * price;
 		orderproductBO.addOrderProductByProductIdCountPriceUserId(product.getId(), count, price, userId);
 	}
 
