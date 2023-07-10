@@ -55,4 +55,6 @@ public interface UserDAO {
 	public User selectUserByEmail(String email);
 	
 	public User selectUserByKakaoId(String kakaoId);
+	
+	public User selectUserProfileImageByUserId(Integer userId);
 }

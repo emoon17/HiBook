@@ -79,7 +79,7 @@ public class UserRestController {
 	
 		// 2. select
 		User user = userBO.getUserByLoginIdPassword(loginId, HashedPassword);
-		System.out.println("####프로필 이미지" + user.getProfileImage());
+		//System.out.println("####프로필 이미지" + user.getProfileImage());
 		// 3. 결과 코드 나누고 성공시 세션에 담아두기
 		Map<String, Object> result = new HashMap<>();
 		if (user != null) {
